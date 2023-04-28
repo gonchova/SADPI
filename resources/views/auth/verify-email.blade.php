@@ -25,6 +25,13 @@
                         {{ __('Resend Verification Email') }}
                     </x-button>
                 </div>
+
+                <div>
+                    <x-button  onclick="{{ route('login') }}">
+                        {{ __('Volver') }}
+                    </x-button>
+                </div>
+
             </form>
 
             <form method="POST" action="{{ route('logout') }}">

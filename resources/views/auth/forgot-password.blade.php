@@ -26,11 +26,22 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Enviar Email con Link') }}
-                </x-button>
+            <div class="container flex items-center mt-2">
+
+                 <div class="flex-row"> 
+
+                    <x-button  >
+                        {{ __('Enviar Email con Link') }}
+                    </x-button>
+                    
+                    <x-button type="button" class="mt-1 sm:mt-4" onclick=" window.location='{{ url('login') }}' ">
+                        {{ __('Volver') }}
+                    </x-button>
+
+                 </div>
+
             </div>
         </form>
+
     </x-auth-card>
 </x-guest-layout>
