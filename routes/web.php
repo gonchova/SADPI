@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Coordinador\ActividadesController;
+use App\Http\Controllers\Coordinador\DashboardController;
+use App\Http\Controllers\Coordinador\NuevoUsuarioController;
+use App\Http\Controllers\Familias\JuegoAnimalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->middleware(['auth'])->name('login');
+
+// Route::get('/', function () {
+//     return view('auth.login');
+// })->middleware(['auth'])->name('login');
+
 Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('principal');
+})->middleware(['auth'])->name('principal');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-Route::get('/actividades', function () {
-        return view('actividades');})->middleware(['auth'])->name('actividades');
 
-Route::get('animales-IA', function () {
-    return view('Juegos/animales-IA');})->middleware(['auth'])->name('animales-IA');       
 
+Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
+Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
+
+/* rutas familias */
+Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
+    
 require __DIR__.'/auth.php';
+

@@ -8,8 +8,14 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
+      
+        @if(Session::has('success'))
+        <div class="text-green-600">
+            {{Session::get('success')}}
+        </div>
+        @endif            
+      
+        <form id ="formRegister" method="POST" action="{{ route('nuevousuario') }}">
             @csrf
 
             <!-- Name -->
@@ -33,6 +39,19 @@
                 <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
             </div>
 
+            <!-- Rol Usuario -->
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Rol de Usuario')" />
+                
+                <select id="idrol" name="idrol" class="block mt-1 w-full h-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    
+                    @foreach($roles as $rol)
+                        <option id="idroloption"class="justify-content-center" value={{$rol->idrol}}>{{$rol->descripcion}}</option>
+                    @endforeach
+                    
+                </select>
+            </div>     
+            
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
@@ -52,15 +71,27 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+            <div class="flex items-center justify-left mt-4">
+                <a href="{{ route('principal') }}">
+                    <x-button type="button" id="btnVolver">
+                        {{ __('Volver') }}
+                    </x-button>
                 </a>
-
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
 </x-guest-layout>
+<script>
+// document.getElementById("btnVolver").onclick = function() {  
+//     document.querySelector('#name').required = false;
+//     document.querySelector('#email').required = false;
+//     document.querySelector('#username').required = false;
+//     document.querySelector('#idrol').required = false;
+//     document.querySelector('#password').required = false;
+//     document.querySelector('#password_confirmation').required = false;
+// }; 
+
+</script>

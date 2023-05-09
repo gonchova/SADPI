@@ -1,35 +1,39 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            
-            <!-- Logo Home -->
-            <x-responsive-nav-link :href="route('dashboard')" :active="false">
-                <div class="w-8">
-                    <x-application-logo />
-                </div>
-            </x-responsive-nav-link>
-           
-
-            
-            <div class="flex">
-                <!-- Navigation Links -->
+            <div class="flex" >
+                <!-- Logo Home -->
+                <x-nav-link :href="route('principal')" :active="false">
+                    <div class="w-8">
+                        <x-application-logo />
+                    </div>
+                </x-nav-link>
+               
+                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
-                        {{ __('Actividades') }}
-                    </x-nav-link>
+                    @if (auth()->user()->idrol == 1)
+                        <x-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
+                            {{ __('Actividades') }}
+                        </x-nav-link>
+                        
+                        <x-nav-link :href="route('principal')" :active="request()->routeIs('principal')">
+                            {{ __('principal') }}
+                        </x-nav-link>
                     
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                                        
-                    <x-nav-link :href="route('animales-IA')" :active="request()->routeIs('animales-IA')">
-                        {{ __('animales-IA') }}
-                    </x-nav-link>
-                    
+                        <x-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
+                            {{ __('animalesIA') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
+                            {{ __('Nuevo Usuario') }}
+                        </x-nav-link>
+
+                    @endif
                 </div>
             </div>
-
+        
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -82,23 +86,33 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
-                {{ __('Actividades') }}
-            </x-responsive-nav-link>
-        </div>
+        
+        @if (auth()->user()->idrol == 1)
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
+                    {{ __('Actividades') }}
+                </x-responsive-nav-link>
+            </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('principal')" :active="request()->routeIs('principal')">
+                    {{ __('principal') }}
+                </x-responsive-nav-link>
+            </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('animales-IA')" :active="request()->routeIs('animales-IA')">
-                {{ __('animales-IA') }}
-            </x-responsive-nav-link>
-        </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
+                    {{ __('animalesIA') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
+                    {{ __('Nuevo Usuario') }}
+                </x-responsive-nav-link>
+            </div>
+
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

@@ -165,6 +165,7 @@ button,
 input,
 optgroup,
 select,
+option,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
@@ -1440,4 +1441,29 @@ select {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+.i::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  opacity: 20%;
+  background: white;
+/*   background: #3B82F6; */
+  /* Centering */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+select {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit;
+  height: 45px;
+  margin: auto;
+  text-indent:10px;
 }

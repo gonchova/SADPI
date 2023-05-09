@@ -1,6 +1,6 @@
 <div class="relative " id="item3">
     {{-- <button onClick="mostrar()" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-purple-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"></button> --}}
-    <div class="font-semibold uppercase rounded-md bg-purple-200">
+    <div class="font-semibold uppercase rounded-md bg-indigo-800">
         {{ $tituloitem }}
     </div>
     <div class="rounded-md ring-1 ring-black hidden">
