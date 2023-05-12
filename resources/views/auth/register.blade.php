@@ -1,9 +1,16 @@
-<x-guest-layout>
-    <x-auth-card>
+<x-app-layout>
+   
+    <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
+        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Nuevo Usuario</h2>
+    </div>
+
+    
+    <x-auth-card class="mt-2">
+        
         <x-slot name="logo">
-            <div class="h-30 w-12 mx-auto">
+            {{-- <div class="h-30 w-12 mx-auto">
                 <x-application-logo />
-            </div>
+            </div> --}}
         </x-slot>
 
         <!-- Validation Errors -->
@@ -14,9 +21,11 @@
             {{Session::get('success')}}
         </div>
         @endif            
-      
+                  
+        
         <form id ="formRegister" method="POST" action="{{ route('nuevousuario') }}">
             @csrf
+
 
             <!-- Name -->
             <div>
@@ -83,7 +92,7 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
 <script>
 // document.getElementById("btnVolver").onclick = function() {  
 //     document.querySelector('#name').required = false;

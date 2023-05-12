@@ -1,7 +1,8 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card class="pt-40">
+
         <x-slot name="logo">
-            <div class="h-30 w-12 mx-auto mt-2 ms:mt-0">
+            <div class="h-30 w-12 mx-auto ">
                 <x-application-logo />
             </div>
         </x-slot>

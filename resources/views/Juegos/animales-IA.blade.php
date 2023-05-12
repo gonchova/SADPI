@@ -1,55 +1,58 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <title>SADPI IA</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<x-guest-layout>
+{{-- 
     <style>
-      #resultado {
-        font-weight:  bold;
-        font-size:  6rem;
-        text-align: center;
-      }
-
       .canvas-container {
           margin: 0 auto;
-          border: 1px solid #ccc;
+          border: 3px solid indigo;
       }
-    </style>
+    </style> --}}
+  
+  <div class="flex bg-white shadow-sm sm:rounded-lg mt-2  justify-center mb-4">
+    <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Adivinar animales</h2>
+  </div>
 
-  </head>
-  <body>
-    
-    <main>
-      <div class="px-4 py-2 my-2 text-center border-bottom">
-        <h1 class="display-5 fw-bold">SADPI IA</h1>
-      </div>
+  <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 justify-center mx-1 sm:mx-40" >
 
-      <div class="b-example-divider"></div>
-
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-12 col-md-4 offset-md-4 text-center">
-            <video id="video" playsinline autoplay style="width: 1px;"></video>
-            <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
-            <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
-            <canvas id="othercanvas" width="224" height="224" style="display: none"></canvas>
-            <div id="resultado"></div>            
-          </div>
+        <div class="flex flex-row justify-center mb-5 mt-2">
+          <h3 class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Mostrame un/a: <span id="animal"></span>!</h3>
         </div>
-      </div>
 
-      <div class="b-example-divider"></div>
+        <div class="flex flex-row justify-center">
+          <video id="video" playsinline autoplay style="width: 1px;"></video> 
+          <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
+          <canvas id="othercanvas" width="224" height="224" style="display: none"></canvas>
+        </div>
+        
+        <div class="flex flex-row justify-center">
+          <x-button class="mb-2 mt-4">
+            <a id = "nuevoIntentoAleatorio" class="font-medium " onclick="nuevoJuegoAleatorio();">Nuevo Intento Aleatorio</a>
+          </x-button>
+        </div>
 
-      <div class="b-example-divider mb-0"></div>
-    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <div class="flex flex-row justify-center">
+          <x-button class="mb-2 mt-4 mx-2">
+            <a id = "cambiar-camara" class="font-medium " onclick="cambiarCamara();">Cambiar Cámara</a>
+          </x-button>
+          
+          <a href="{{ route('principal') }}">
+            <x-button type="button" id="btnSalir" class="mx-2 mb-2 mt-4">
+                {{ __('Salir') }}
+            </x-button>
+          </a>
+
+        </div>
+     
+        <div class = "mb-2 mt-4 text-sm justify-center" id="resultado" hidden></div> 
+         
+        <div>
+          <span>La barra indica si el sistema detecta una figura (verde) o si debe acercarla a la camara (azul)</span>
+        </div>
+        <div class="h-2 w-full bg-neutral-200 dark:bg-neutral-400">
+          <div id="progressBar" class="h-2 bg-blue-600" style="width: 40%"></div>
+        </div>
+  
+  </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 
@@ -62,9 +65,11 @@
       var modelo = null;
       var size = 400;
       var camaras = [];
-
+      var cantDetecciones;
       var currentStream = null;
       var facingMode = "user"; //Para que funcione con el celular (user/environment)
+      var clases = ['caballo', 'cerdo','gallo','vaca'];
+
 
       (async () => {
           console.log("Cargando modelo...");
@@ -74,6 +79,7 @@
 
       window.onload = function() {
           mostrarCamara();
+          
       }
 
       function mostrarCamara() {
@@ -130,8 +136,23 @@
               })
       }
 
+      function nuevoJuegoAleatorio()
+      { var c=0;
+        var aleatorio = clases[Math.floor(Math.random() * clases.length)];
+        valorAnimal = document.getElementById("animal").innerHTML;
+
+        while (valorAnimal == aleatorio && c < 20)
+         { var aleatorio = clases[Math.floor(Math.random() * clases.length)];
+           c++;
+         }
+         document.getElementById("animal").innerHTML = aleatorio;
+     
+      }
+
       function predecir() {
         //console.log(modelo);
+         
+
           if (modelo != null) {
               //Pasar canvas a version 224x224
               resample_single(canvas, 224, 224, othercanvas);
@@ -158,13 +179,13 @@
               var resultados = modelo.predict(tensor4).dataSync();
               var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
-              var clases = ['caballo', 'cerdo','gallo','vaca'];
+              
               //console.log("Prediccion", clases[mayorIndice]);
               
               console.log(resultados[mayorIndice]);
               // Si tiene una prediccion > 4 por  10 vueltas, lo toma como valido.
               
-              if (resultados[mayorIndice] > 4) {
+              if (resultados[mayorIndice] > 4.5) {
                 cantDetecciones++;
                 
                 if (cantDetecciones > 5){
@@ -177,6 +198,23 @@
               else {
                   document.getElementById("resultado").innerHTML = "Acercar figura:" + resultados[mayorIndice];
                   cantDetecciones=0;
+              }
+
+              valor = resultados[mayorIndice]*11;
+
+              if (valor > 100)
+              { valor = 100;}
+              
+              document.getElementById("progressBar").style.width = valor+"%"
+              
+              if(resultados[mayorIndice] > 4.5)
+              {
+                document.getElementById("progressBar").classList.remove('bg-blue-600');
+                document.getElementById("progressBar").classList.add('bg-green-600');
+              }
+              else{
+                document.getElementById("progressBar").classList.remove('bg-green-600');
+                document.getElementById("progressBar").classList.add('bg-blue-600');
               }
               
               
@@ -275,5 +313,5 @@
       }
 
     </script>
-  </body>
-</html>
+
+  </x-guest-layout>

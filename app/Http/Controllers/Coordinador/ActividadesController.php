@@ -9,7 +9,15 @@ class ActividadesController extends Controller
 {
     public function index()
     { 
-        return view("actividades");
+        return view("actividades.actividades");
 
     }
+
+
+    public function nueva()
+    { 
+        return view("actividades.nuevaActividad");
+
+    }
+
 }

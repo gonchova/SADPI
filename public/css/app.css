@@ -1467,3 +1467,60 @@ select {
   margin: auto;
   text-indent:10px;
 }
+
+h3[class~="fuenteDivertida"] {
+  
+  
+  font-family: 'Luckiest Guy', cursive;
+  /*font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Bungee Spice', cursive;*/
+ 
+  font-weight: 400;
+  font-size: 180%; 
+  background-color: rgba(183, 0, 255, 0.452);
+  background-image: linear-gradient(45deg, #b457c0, #3e59d3);
+  background-size: 200%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  
+}
+
+h3[class~="fuenteDivertidaOK"] {
+  font-family: 'Luckiest Guy', cursive;
+  /*font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Bungee Spice', cursive;*/
+ 
+  font-weight: 400;
+  font-size: 180%; 
+  background-color: green;
+  background-image: linear-gradient(45deg, #78f3f3, #34a551);
+  background-size: 200%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  
+}
+
+h3[class~="fuenteDivertidaERROR"] {
+  font-family: 'Luckiest Guy', cursive;
+  /*font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Bungee Spice', cursive;*/
+ 
+  font-weight: 400;
+  font-size: 180%; 
+  background-color: red;
+  background-image: linear-gradient(45deg, #f3c278, #af4261);
+  background-size: 200%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  
+}
+

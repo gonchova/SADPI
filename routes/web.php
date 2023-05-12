@@ -34,9 +34,12 @@ Route::get('/', function () {
 
 Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
 Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
-Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
 
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
+
+Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
+Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
+ 
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
     

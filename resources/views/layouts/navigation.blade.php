@@ -10,30 +10,37 @@
                         <x-application-logo />
                     </div>
                 </x-nav-link>
-               
-                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if (auth()->user()->idrol == 1)
-                        <x-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
-                            {{ __('Actividades') }}
-                        </x-nav-link>
-                        
-                        <x-nav-link :href="route('principal')" :active="request()->routeIs('principal')">
-                            {{ __('principal') }}
-                        </x-nav-link>
-                    
-                        <x-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
-                            {{ __('animalesIA') }}
-                        </x-nav-link>
+                
+                
+                    <!-- Navigation Links -->
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
 
-                        <x-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
-                            {{ __('Nuevo Usuario') }}
-                        </x-nav-link>
+                        @if (auth()->user()->idrol == 1)
+                            <x-nav-link :href="route('actividades')" :active="request()->routeIs('actividades')">
+                                {{ __('Actividades') }}
+                            </x-nav-link>
+                            
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('dashboard') }}
+                            </x-nav-link>
+ 
+                            <x-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
+                                {{ __('Nuevo Usuario') }}
+                            </x-nav-link>
+                        @endif
 
-                    @endif
-                </div>
+                        @if (auth()->user()->idrol == 2)                                               
+                            <x-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
+                                {{ __('Animales') }}
+                            </x-nav-link>
+                        @endif
+
+                    </div>
+             
             </div>
-        
+            
+    
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -59,18 +66,19 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-
+{{-- 
                             
                         <!-- P¨rofile -->
                             <x-dropdown-link href="#">
                                    {{ __('Profile') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> --}}
 
               
                         </form>
                     </x-slot>
                 </x-dropdown>
             </div>
+           
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -83,7 +91,7 @@
             </div>
         </div>
     </div>
-
+  
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         
@@ -101,14 +109,16 @@
             </div>
 
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
-                    {{ __('animalesIA') }}
+                <x-responsive-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
+                    {{ __('Nuevo Usuario') }}
                 </x-responsive-nav-link>
             </div>
 
+        @endif
+        @if (auth()->user()->idrol == 2)        
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('nuevousuario')" :active="request()->routeIs('nuevousuario')">
-                    {{ __('Nuevo Usuario') }}
+                <x-responsive-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
+                    {{ __('animalesIA') }}
                 </x-responsive-nav-link>
             </div>
 
@@ -134,5 +144,6 @@
                 </form>
             </div>
         </div>
+   
     </div>
 </nav>
