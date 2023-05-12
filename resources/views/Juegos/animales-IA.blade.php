@@ -14,7 +14,7 @@
   <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 justify-center mx-1 sm:mx-40" >
 
         <div class="flex flex-row justify-center mb-5 mt-2">
-          <h3 class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Mostrame un/a: <span id="animal"></span>!</h3>
+          <h3 id="mensajeanimal" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="animal"></span>!</h3>
         </div>
 
         <div class="flex flex-row justify-center">
@@ -25,7 +25,7 @@
         
         <div class="flex flex-row justify-center">
           <x-button class="mb-2 mt-4">
-            <a id = "nuevoIntentoAleatorio" class="font-medium " onclick="nuevoJuegoAleatorio();">Nuevo Intento Aleatorio</a>
+            <a id = "nuevoIntentoAleatorio" class="font-medium " >Nuevo Intento Aleatorio</a>
           </x-button>
         </div>
 
@@ -68,8 +68,11 @@
       var cantDetecciones;
       var currentStream = null;
       var facingMode = "user"; //Para que funcione con el celular (user/environment)
-      var clases = ['caballo', 'cerdo','gallo','vaca'];
-
+      var clases = ['CABALLO', 'CERDO','GALLO','VACA'];
+      var aleatorio='';
+      var hayprediccion = false;
+      
+      document.getElementById("nuevoIntentoAleatorio").addEventListener("click", nuevoJuegoAleatorio);
 
       (async () => {
           console.log("Cargando modelo...");
@@ -79,6 +82,9 @@
 
       window.onload = function() {
           mostrarCamara();
+          aleatorio = clases[Math.floor(Math.random() * clases.length)];
+          document.getElementById("animal").innerHTML = 'Mostrame un/a:'+aleatorio;
+          document.getElementById("animal").value = aleatorio;
           
       }
 
@@ -96,8 +102,10 @@
                   .then(function(stream) {
                       currentStream = stream;
                       video.srcObject = currentStream;
+                      
                       procesarCamara();
                       predecir();
+
                   })
                   .catch(function(err) {
                       alert("No se pudo utilizar la camara :(");
@@ -125,7 +133,6 @@
               }
           };
 
-
           navigator.mediaDevices.getUserMedia(opciones)
               .then(function(stream) {
                   currentStream = stream;
@@ -136,23 +143,33 @@
               })
       }
 
-      function nuevoJuegoAleatorio()
-      { var c=0;
-        var aleatorio = clases[Math.floor(Math.random() * clases.length)];
-        valorAnimal = document.getElementById("animal").innerHTML;
 
-        while (valorAnimal == aleatorio && c < 20)
-         { var aleatorio = clases[Math.floor(Math.random() * clases.length)];
+      function nuevoJuegoAleatorio()
+      { 
+        var c=0;
+        aleatorio = clases[Math.floor(Math.random() * clases.length)];
+        valorAnimal = document.getElementById("animal").value;
+
+        while (valorAnimal == aleatorio && c < 10)
+        { 
+           aleatorio = clases[Math.floor(Math.random() * clases.length)];
            c++;
-         }
-         document.getElementById("animal").innerHTML = aleatorio;
-     
+        }
+        
+        document.getElementById("mensajeanimal").removeAttribute('class');
+        document.getElementById("mensajeanimal").classList.add('fuenteDivertida');
+        document.getElementById("animal").innerHTML = 'Mostrame un/a:' + aleatorio;
+
+        document.getElementById("animal").value = aleatorio;
+        
+        console.log(aleatorio);
+        
+       
       }
 
       function predecir() {
         //console.log(modelo);
          
-
           if (modelo != null) {
               //Pasar canvas a version 224x224
               resample_single(canvas, 224, 224, othercanvas);
@@ -179,24 +196,53 @@
               var resultados = modelo.predict(tensor4).dataSync();
               var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
-              
-              //console.log("Prediccion", clases[mayorIndice]);
-              
-              console.log(resultados[mayorIndice]);
+              tf.dispose([tensor4]);
+
+      //        console.log(resultados[mayorIndice]);
               // Si tiene una prediccion > 4 por  10 vueltas, lo toma como valido.
               
-              if (resultados[mayorIndice] > 4.5) {
-                cantDetecciones++;
-                
-                if (cantDetecciones > 5){
-                  document.getElementById("resultado").innerHTML = clases[mayorIndice];
-                }
-                else{
-                  document.getElementById("resultado").innerHTML = "Acercar figura:" + resultados[mayorIndice];
-                }
+              if (resultados[mayorIndice] > 4.5) 
+              {
+                  
+                  cantDetecciones++;
+
+                  //Si detecte 5 veces la misma figura, se toma como deteccion cierta
+                  if (cantDetecciones > 5)
+                  {
+                    document.getElementById("resultado").innerHTML = clases[mayorIndice];
+                    
+                    console.log(clases[mayorIndice]);
+                    console.log(aleatorio);
+
+                    if(clases.includes(aleatorio.toUpperCase()))
+                    { 
+                      document.getElementById("animal").value = aleatorio;
+
+                      if(clases[mayorIndice].toUpperCase() == aleatorio.toUpperCase())
+                      {
+                        console.log("BIEN HECHO!");
+                        document.getElementById("animal").innerHTML = 'BIEN HECHO!';
+                        document.getElementById("mensajeanimal").removeAttribute('class');
+                        document.getElementById("mensajeanimal").classList.add('fuenteDivertidaOK');
+                      }
+                      else
+                      {
+                        console.log("UPS! VOLVE A INTENTARLO!");
+                        document.getElementById("animal").innerHTML = 'UPS! VOLVE A INTENTARLO!';
+                  
+                        document.getElementById("mensajeanimal").removeAttribute('class');
+                        document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
+                      }
+                    
+
+                    }
+                 
+
+                  }
+  
               }
-              else {
-                  document.getElementById("resultado").innerHTML = "Acercar figura:" + resultados[mayorIndice];
+              else 
+              {                  
                   cantDetecciones=0;
               }
 
@@ -217,11 +263,10 @@
                 document.getElementById("progressBar").classList.add('bg-blue-600');
               }
               
-              
           }
-          
+
           setTimeout(predecir, 150);
-        
+          
       }
 
       function procesarCamara() {

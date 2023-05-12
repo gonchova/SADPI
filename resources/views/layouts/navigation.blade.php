@@ -30,8 +30,8 @@
                         @endif
 
                         @if (auth()->user()->idrol == 2)                                               
-                            <x-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
-                                {{ __('Animales') }}
+                            <x-nav-link :href="route('juegos')" :active="request()->routeIs('juegos')">
+                                {{ __('Juegos') }}
                             </x-nav-link>
                         @endif
 
@@ -66,8 +66,7 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-{{-- 
-                            
+{{--                             
                         <!-- P¨rofile -->
                             <x-dropdown-link href="#">
                                    {{ __('Profile') }}
@@ -117,8 +116,8 @@
         @endif
         @if (auth()->user()->idrol == 2)        
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('animalesIA')" :active="request()->routeIs('animalesIA')">
-                    {{ __('animalesIA') }}
+                <x-responsive-nav-link :href="route('juegos')" :active="request()->routeIs('juegos')">
+                    {{ __('Juegos') }}
                 </x-responsive-nav-link>
             </div>
 

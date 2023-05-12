@@ -1469,12 +1469,8 @@ select {
 }
 
 h3[class~="fuenteDivertida"] {
-  
-  
+   
   font-family: 'Luckiest Guy', cursive;
-  /*font-family: 'Nunito Sans', sans-serif;
-  font-family: 'Bungee Spice', cursive;*/
- 
   font-weight: 400;
   font-size: 180%; 
   background-color: rgba(183, 0, 255, 0.452);
@@ -1490,9 +1486,6 @@ h3[class~="fuenteDivertida"] {
 
 h3[class~="fuenteDivertidaOK"] {
   font-family: 'Luckiest Guy', cursive;
-  /*font-family: 'Nunito Sans', sans-serif;
-  font-family: 'Bungee Spice', cursive;*/
- 
   font-weight: 400;
   font-size: 180%; 
   background-color: green;
@@ -1506,15 +1499,12 @@ h3[class~="fuenteDivertidaOK"] {
   
 }
 
-h3[class~="fuenteDivertidaERROR"] {
+h3[class~="fuenteDivertidaMAL"] {
   font-family: 'Luckiest Guy', cursive;
-  /*font-family: 'Nunito Sans', sans-serif;
-  font-family: 'Bungee Spice', cursive;*/
- 
   font-weight: 400;
   font-size: 180%; 
   background-color: red;
-  background-image: linear-gradient(45deg, #f3c278, #af4261);
+  background-image: linear-gradient(45deg, #f5af47, #b91947);
   background-size: 200%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -1524,3 +1514,19 @@ h3[class~="fuenteDivertidaERROR"] {
   
 }
 
+div[class~="fuenteFichas"] {
+   
+  font-family: 'Luckiest Guy', cursive;
+  font-weight: 800;
+  font-size: 150%; 
+  background-color: rgba(183, 0, 255, 0.452);
+  background-image: linear-gradient(45deg, #b457c0, #3e59d3);
+  background-size: 200%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  justify-content: center;
+  
+}

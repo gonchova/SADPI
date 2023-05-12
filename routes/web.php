@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Coordinador\ActividadesController;
 use App\Http\Controllers\Coordinador\DashboardController;
 use App\Http\Controllers\Coordinador\NuevoUsuarioController;
+use App\Http\Controllers\Familias\JuegosPrincipalController;
 use App\Http\Controllers\Familias\JuegoAnimalesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,8 @@ Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middle
  
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
+
+Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
     
 require __DIR__.'/auth.php';
 
