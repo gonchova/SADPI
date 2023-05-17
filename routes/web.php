@@ -6,8 +6,8 @@ use App\Http\Controllers\Coordinador\DashboardController;
 use App\Http\Controllers\Coordinador\NuevoUsuarioController;
 use App\Http\Controllers\Familias\JuegosPrincipalController;
 use App\Http\Controllers\Familias\JuegoAnimalesController;
-
-
+use App\Http\Controllers\Familias\JuegoFichasController;
+use App\Http\Controllers\Familias\actividadesFamiliaPrincipalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,13 +39,21 @@ Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middlewar
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
+Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
 Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
- 
+Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
+Route::get('/actividades/editar', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
+Route::get('/actividades/dashboard', [ActividadesController::class,'dashboard'])->middleware(['auth'])->name('actividades.dashboard');
+Route::get('/actividades/comentarios', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
+
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
+Route::get('/colocarFicha', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
 
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
+
+Route::get('/actividadesFamilia/principal', [actividadesFamiliaPrincipalController::class,'index'])->middleware(['auth'])->name('actividadesFamilia.principal');
+Route::get('/actividadesFamilia/actividadFamilia', [actividadesFamiliaPrincipalController::class,'seleccionActividad'])->middleware(['auth'])->name('actividadesFamilia.actividadFamilia');
     
 require __DIR__.'/auth.php';
 

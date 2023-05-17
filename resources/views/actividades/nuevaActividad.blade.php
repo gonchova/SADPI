@@ -16,10 +16,18 @@
 
 
     <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-10 sm:mx-40" >
-                
+
         <div class="block mx-2">
+
             <div class="w-30 sm:w-1/2">
-                <x-label class="pt-4 justify-center" for="categorias" :value="__('Categorias')" />
+                <x-label class="pt-2" for="name" :value="__('Nombre Actividad:')" />
+    
+                <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus  />
+            </div>
+            
+
+            <div class="w-30 sm:w-1/2">
+                <x-label class="pt-4 justify-center" for="categorias" :value="__('Categoria')" />
                 
                 <select name="categorias" id="categorias" class="py-1 text-sm font-semibold  mb-2 sm:text-sm  my-1 w-40  h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
                     <option value="">Todas</option>
@@ -27,91 +35,93 @@
                 </select>
             </div>
 
-            <div class="w-30 sm:w-1/2">
-                <x-label class="pt-2" for="name" :value="__('Nombre Actividad')" />
 
-                <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
+            <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
+                    <div class="w-30 sm:w-1/2">
+                        <x-label class="" for="name" :value="__('Paso:')" />
+
+                        <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus  />
+                    </div>
+
+                    <x-button class="mt-5 mb-2 w-40" id="btnAgregarPaso">
+                        <a href="#" class="font-medium">Agregar Paso</a>
+                    </x-button>
+
+                    <div class="">
+                        <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
+                    </div>
+
+                    <div class="flex flex-col flex-shrink ">
+                    
+                        <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
+                    
+                            <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
+                                <tr class="shrink">
+                                    <th scope="col" class="border px-2  text-xs sm:text-sm">
+                                    #
+                                    </th>
+                                    <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
+                                    Descripcion paso
+                                    </th>
+                                    <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
+                                    Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="">
+                                <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                    <form method="GET" >
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            1
+                                        </td>
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            Correr hasta la puerta de la casa
+                                        </td>
+                                        <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
+                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                                <a href="#" class="font-medium">Eliminar</a>
+                                            </x-button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+                                <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                    <form method="GET" >
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            2
+                                        </td>
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            Tocar la puerta con la mano derecha
+                                        </td>
+                                        <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
+                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                                <a href="#" class="font-medium">Eliminar</a>
+                                            </x-button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+                                <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                    <form method="GET" >
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            3
+                                        </td>
+                                        <td scope="row" class="border font-medium uppercase text-black shrink">
+                                            Volver al punto de partida
+                                        </td>
+                                        <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
+                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                                <a href="#" class="font-medium">Eliminar</a>
+                                            </x-button>
+                                        </td>
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
             </div>
-            
-   
-            <x-button class="mt-5 mb-2" id="btnAgregarPaso">
-                <a href="#" class="font-medium">Agregar Paso</a>
-             </x-button>
-
-            <div class="">
-                <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
-            </div>
-
-            <div class="flex flex-col flex-shrink ">
-            
-                <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
-               
-                    <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
-                        <tr class="shrink">
-                            <th scope="col" class="border px-2  text-xs sm:text-sm">
-                               #
-                            </th>
-                            <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
-                               Descripcion paso
-                            </th>
-                            <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
-                               Acciones
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="">
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    1
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Correr hasta la puerta de la casa
-                                </td>
-                                <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    2
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Tocar la puerta con la mano derecha
-                                </td>
-                                <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    3
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Volver al punto de partida
-                                </td>
-                                <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-                    </tbody>
-                 </table>
-
-           </div>
 
            <div class="flex justify-center mb-2">
                 <x-button class="mt-5 mx-2">

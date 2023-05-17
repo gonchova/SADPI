@@ -1,11 +1,4 @@
 <x-guest-layout>
-{{-- 
-    <style>
-      .canvas-container {
-          margin: 0 auto;
-          border: 3px solid indigo;
-      }
-    </style> --}}
   
   <div class="flex bg-white shadow-sm sm:rounded-lg mt-2  justify-center mb-4">
     <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Adivinar animales</h2>
@@ -164,7 +157,6 @@
         
         console.log(aleatorio);
         
-       
       }
 
       function predecir() {
@@ -229,7 +221,6 @@
                       {
                         console.log("UPS! VOLVE A INTENTARLO!");
                         document.getElementById("animal").innerHTML = 'UPS! VOLVE A INTENTARLO!';
-                  
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
                       }

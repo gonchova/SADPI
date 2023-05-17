@@ -20,4 +20,28 @@ class ActividadesController extends Controller
 
     }
 
+    public function editar()
+    { 
+        return view("actividades.editarActividad");
+
+    }
+
+    public function dashboard()
+    { 
+        return view("actividades.dashboard");
+
+    }
+
+    public function comentarios()
+    { 
+        return view("actividades.comentarios");
+
+    }
+
+    public function asignacionActividades()
+    { 
+        return view("actividades.asignacionActividades");
+
+    }
+
 }

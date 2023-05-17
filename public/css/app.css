@@ -1530,3 +1530,67 @@ div[class~="fuenteFichas"] {
   justify-content: center;
   
 }
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(0, 97, 65);
+  margin: 0 auto;
+}
+h1 {
+  text-align: center;
+  margin: 20px;
+  font-size: 40px;
+  color: white;
+}
+.container {
+  display: flex;
+}
+.imageBox {
+  background-image: url('angular.png');
+  position: relative;
+  height: 190px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.whiteBox {
+  flex: 1;
+  flex-direction: row;
+
+  /* display: inline-block; */
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+  background-color: white;
+  border: 3px black solid;
+}
+
+.hold {
+  border: solid red 4px;
+}
+
+.dashed {
+  background: rgb(214, 206, 206);
+  border-style: dashed;
+}
+
+.hide {
+  display: none;
+}
+
+textarea{  
+  overflow:hidden;
+  padding:10px;
+  width:100%;
+  font-size:14px;
+  margin:50px auto;
+  display:block;
+  border-radius:5px;
+  border:2px solid #556677;
+}

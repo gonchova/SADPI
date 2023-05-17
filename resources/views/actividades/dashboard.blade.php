@@ -12,7 +12,7 @@
 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
         
-        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Actividades</h2>
+        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Dashboard</h2>
    
     </div>
 
@@ -28,88 +28,96 @@
                 <form method="GET" >
                     <div class="flex-full inline-flex flex-wrap px-4">   
 
-                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
+                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
                         
                         <div  class="mx-2 w-48 shrink">
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
-                                <option value="">Todas</option>
-                                <option value="">Autismo</option>
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                                <option value="">Alvarez</option>
+                                <option value="">Gomez</option>
+                                <option value="">Rimola</option>
                                 
                             </select>
                         </div>                            
 
-                        <x-label class="text-xs sm:text-sm hidden sm:flex ml-4 pl-4 pt-3 pb-2" for="buscaActividad" :value="__('Buscar:')" />
+                        {{-- <x-label class="text-xs sm:text-sm hidden sm:flex ml-4 pl-4 pt-3 pb-2" for="buscaActividad" :value="__('Buscar:')" />
 
                         <div>
-                            <input id = "buscaActividad" placeholder="Buscar" class="text-xs sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full flex px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
+                            <input id = "buscaActividad" placeholder="Buscar" class="sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full flex px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
                         </div>
                         <div>
                             <button class="pt-1 h-10 mt-1" type="submit" > <svg xmlns="http://www.w3.org/2000/svg" class=" h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </button>
-                        </div>
+                        </div> --}}
+                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Periodo:')" />
+                        <div  class="mx-2 w-60">
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                                <option value="">01/02/2023 - 31/02/2023</option>
+                                <option value="">18/03/2023 - 15/04/2023</option>
+                                
+                            </select>
+                        </div> 
+
                     </div>  
                         
                 </form>
 
             </div>
 
-            <div class="flex items-center justify-between pb-4 ">
-
-                <table class="w-full text-sm text-left text-gray-500 border-solid mx-2 border-collapse ">
-                    <thead class=" text-xs text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
+            <div class="flex items-center justify-between pb-4 px-4">
+                <table class=" min-w-full text-sm text-left text-gray-500 border-solid border-collapse">
+                    <thead class=" text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
                         <tr>
-                            <th scope="col" class="border px-6 py-2 text-xs sm:text-sm">
+                            <th scope="col" class="border px-6 py-2 text-xs sm:text-sm w-4">
                                 Nombre Actividad
                             </th>
                             <th scope="col" class="border px-6 py-2 h-2 text-xs sm:text-sm">
-                                Categoria
+                                Avance
                             </th>
-                            <th scope="col" class="border px-6 py-2 text-xs sm:text-sm">
+                            <th scope="col" class="border px-6 py-2 text-xs sm:text-sm  w-20">
                                 Acciones
                             </th>
                         </tr>
                     </thead>
                     <form method="GET" >
                     <tbody>
+                       
                         <tr class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm">
-                            
-                                <td scope="row" class="border  px-6 py-2 font-medium whitespace-nowrap uppercase text-black">
+                               <td scope="row" class="border  px-6 py-2 font-medium whitespace-nowrap uppercase text-black">
                                     Saltar la cuerda
                                 </td>
-                                <td scope="row" class=" border px-6 py-2 font-medium whitespace-nowrap uppercase text-black">
-                                    Sindrome de Down
-                                </td>
-                                <td class="px-6 py-2 border ">
-                                
-                                    <x-button>
-                                        <a href="{{route('actividades.editar')}}" class="font-medium ">Editar</a>
-                                    </x-button>
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            
-                        </tr>
 
+                                <td scope="row" class=" border px-2 py-2 font-medium whitespace-nowrap uppercase text-black">
+                                    <div class="mt-2 bg-gray-600 rounded-full ">
+                                        <div class="w-8/12 mt-2 bg-purple-900 py-1 text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">70%</div> - 8/12</div>
+                                    </div>
+                                </td>
+                             
+                                <td class="px-1 py-2 border w-30">
+                                    <x-button class="w-30">
+                                        <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+                                    </x-button>
+                                </td>
+                                
+                        </tr>
+                         
                         <tr class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm">
                             <form method="GET" >
                                 <td scope="row" class="border px-6 py-2 font-medium whitespace-nowrap uppercase text-black">
                                     Jugar a las escondidas
                                 </td>
-                                <td scope="row" class="border px-6 py-2 font-medium whitespace-nowrap uppercase text-black">
-                                    Autismo
+                                <td scope="row" class="border w-100 px-2 py-2 font-medium whitespace-nowrap uppercase text-black">
+                                    <div class="mt-2 bg-gray-600 rounded-full">
+                                        <div class="w-12/12 mt-2 bg-green-600 py-1 text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-white-700  rounded-full">100%</div>- 5/5</div>
+                                    </div>
                                 </td>
-                                <td class="border px-6 py-2">
-                                
-                                        <x-button>
-                                            <a href="{{route('actividades.editar')}}" class="font-medium ">Editar</a>
-                                        </x-button>
-                                        <x-button class=" bg-red-600" id="btnEliminar">
-                                            <a href="#" class="font-medium">Eliminar</a>
-                                        </x-button>
+                                <td class="px-1 py-2 border w-30 ">
+                                    <x-button class="w-30">
+                                        <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+                                    </x-button>
                                 </td>
+
                           
                         </tr>
                         
@@ -119,11 +127,7 @@
                
             </div>
         </div>
-        <div class="mx-6 my-3">
-            <x-button class="bg-green-600 ">
-                <a href="{{route('actividades.nueva')}}" class="font-medium ">Nueva Actividad</a>
-            </x-button>
-        </div>
+    
     </div> 
     </div> <!-- fin flex-row -->
 
