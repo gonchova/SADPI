@@ -25,20 +25,27 @@
                 <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus  />
             </div>
             
+            <div class="w-30 sm:w-1/2">
+                <x-label class="pt-2" for="descripcion" :value="__('Descripción:')" />
+                <textarea class="w-full" rows='1' placeholder=''></textarea>
+            </div>
 
             <div class="w-30 sm:w-1/2">
                 <x-label class="pt-4 justify-center" for="categorias" :value="__('Categoria')" />
                 
-                <select name="categorias" id="categorias" class="py-1 text-sm font-semibold  mb-2 sm:text-sm  my-1 w-40  h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                <select name="categorias" id="categorias" class="py-1 text-sm font-semibold  mb-2 sm:text-sm  my-1 w-40  h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200  rounded-lg   border-gray-600  " >
                     <option value="">Todas</option>
                     <option value="">Autismo</option>
                 </select>
             </div>
 
+            <div class="flex flex-row  justify-center mt-2">
+                <x-label class="mx-30 justify-center" for="name" :value="__('PASOS')" />
+            </div>
 
             <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
                     <div class="w-30 sm:w-1/2">
-                        <x-label class="" for="name" :value="__('Paso:')" />
+                        <x-label class="" for="name" :value="__('Descripcion paso:')" />
 
                         <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus  />
                     </div>

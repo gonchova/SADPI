@@ -9,7 +9,7 @@
     </div>
   
     <div class="flex flex-row justify-center ">
-        <h3 id="mensajeResultado" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="resultado"></span>!</h3>
+        <h3 id="mensajeResultado" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="resultado"></span></h3>
       </div>
 
         <div class="container grid grid-cols-2" >
@@ -95,9 +95,9 @@ document.getElementById("resultado").innerHTML = 'UPS! VOLVE A INTENTARLO!';
 document.getElementById("mensajeResultado").removeAttribute('class');
 document.getElementById("mensajeResultado").classList.add('fuenteDivertidaMAL');
 
-document.getElementById("resultado").innerHTML = 'BIEN HECHO!';
-document.getElementById("mensajeResultado").removeAttribute('class');
-document.getElementById("mensajeResultado").classList.add('fuenteDivertidaOK');
+// document.getElementById("resultado").innerHTML = 'BIEN HECHO!';
+// document.getElementById("mensajeResultado").removeAttribute('class');
+// document.getElementById("mensajeResultado").classList.add('fuenteDivertidaOK');
 
 
 </script>

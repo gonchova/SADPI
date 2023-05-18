@@ -31,7 +31,7 @@
                     <div>Avance de la Actividad:</div>
                 </x-label>
                 <div class="mt-2 bg-gray-600 rounded-full">
-                    <div class="w-12/12 mt-2 bg-green-600 py-1 text-center rounded-full"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">100%</div></div>
+                    <div class="w-12/12 mt-2 bg-green-600 py-1 text-center rounded-full"><div class="text-white text-sm inline-block  rounded-full">100%</div></div>
                 </div>
             </div>
         </div> 

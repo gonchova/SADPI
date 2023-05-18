@@ -31,7 +31,7 @@
                         <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
                         
                         <div  class="mx-2 w-48 shrink">
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
                                 <option value="">Todas</option>
                                 <option value="">Autismo</option>
                                 
@@ -41,7 +41,7 @@
                         <x-label class="text-xs sm:text-sm hidden sm:flex ml-4 pl-4 pt-3 pb-2" for="buscaActividad" :value="__('Buscar:')" />
 
                         <div>
-                            <input id = "buscaActividad" placeholder="Buscar" class="text-xs sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full flex px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
+                            <input id = "buscaActividad" placeholder="Buscar" class="text-xs sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full flex px-3 py-1  font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
                         </div>
                         <div>
                             <button class="pt-1 h-10 mt-1" type="submit" > <svg xmlns="http://www.w3.org/2000/svg" class=" h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
@@ -58,7 +58,7 @@
             <div class="flex items-center justify-between pb-4 ">
 
                 <table class="w-full text-sm text-left text-gray-500 border-solid mx-2 border-collapse ">
-                    <thead class=" text-xs text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
+                    <thead class=" text-xs text-gray-700 uppercase bg-indigo-200  sm:text-sm ">
                         <tr>
                             <th scope="col" class="border px-6 py-2 text-xs sm:text-sm">
                                 Nombre Actividad

@@ -22,7 +22,7 @@
             <div class="flex flex-row flex-wrap px-4 justify-center">  
                 <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
                 <div  class="mx-2 w-52 shrink">
-                    <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                    <select name="categoriasFiltro" id="categoriasFiltro" class=" sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white  focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
                         <option value="">Alvarez</option>
                         <option value="">Gomez</option>
                         <option value="">Ramirez</option>
@@ -70,7 +70,7 @@
                 <div class="flex  items-center justify-between pb-4 ">
 
                     <table class="w-full text-sm text-left text-gray-500 border-solid mx-2 border-collapse ">
-                        <thead class=" text-xs text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
+                        <thead class=" text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
                             <tr>
                                 <th scope="col" class="border px-2 py-2 text-xs sm:text-sm w-1">
                                     Sel

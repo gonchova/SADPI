@@ -186,7 +186,8 @@
       <div class="flex flex-row hidden w-full md:block md:w-auto justify-between" id="navbar-dropdown">
 
         <ul class="flex flex-col justify-between font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
-          @if (auth()->user()->idrol == 1)  
+          
+           @if (auth()->user()->idrol == 1)  
           <li>
             <a href="{{route('nuevousuario')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Alta Usuarios</a>
           </li>
@@ -212,6 +213,18 @@
             <a href="{{route('actividades.dashboard')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Dashboard</a>
           </li>
 
+          @endif
+          @if (auth()->user()->idrol == 2)    
+          <li>
+            <a href="{{route('juegos')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Juegos</a>
+          </li>
+
+          <li>
+            <a href="{{route('actividadesFamilia.principal')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Actividades</a>
+          </li>
+                
+          @endif
+
           <ul class="flex flex-row   pl-20%  font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
             {{--  --}}
             <li class="mx-auto ">
@@ -219,17 +232,21 @@
               <!-- Dropdown menu -->
                <div id="dropdownNavbarUsuario" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44  ">
                   <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
-                    <li>
-                      @csrf
-                      <a href="{{route('logout')}}" onclick="event.preventDefault();this.closest('form').submit();" class="flex flex-col justify-right block px-4 py-2 hover:bg-gray-700 hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Salir</a>
-                    </li>
-                   
+                    <form method="POST" action="{{ route('logout') }}">
+                        <li>
+                        @csrf
+                        <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();" class="flex flex-col justify-right block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Salir</a>
+                        </li>
+                    </form>
+
                   </ul>
                 </div>
   
             </li>
           </ul>
-          @endif
+     
+
+
         </ul>
     
       </div>
