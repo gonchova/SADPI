@@ -9,7 +9,6 @@ use App\Http\Controllers\Familias\JuegoAnimalesController;
 use App\Http\Controllers\Familias\JuegoFichasController;
 use App\Http\Controllers\Familias\actividadesFamiliaPrincipalController;
 use Illuminate\Support\Facades\Artisan;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +57,6 @@ Route::get('/actividadesFamilia/actividadFamilia', [actividadesFamiliaPrincipalC
     
 require __DIR__.'/auth.php';
 
-require 'vendor/autoload.php';
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');
@@ -66,10 +64,4 @@ Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:cache');
 	$exitCode = Artisan::call('optimize:clear');
     return 'DONE'; //Return anything
-});
-
-Route::get('/updateapp', function()
-{
-    Artisan::call('composer dump-autoload');
-    echo 'dump-autoload complete';
 });

@@ -15,7 +15,7 @@
     </div>
 
 
-    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-10 sm:mx-40" >
+    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-4 sm:mx-20" >
 
         <div class="block mx-2">
 
@@ -86,7 +86,7 @@
                                             Correr hasta la puerta de la casa
                                         </td>
                                         <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                            <x-button class="px-2 bg-red-600" id="btnEliminar">
                                                 <a href="#" class="font-medium">Eliminar</a>
                                             </x-button>
                                         </td>
@@ -102,7 +102,7 @@
                                             Tocar la puerta con la mano derecha
                                         </td>
                                         <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                            <x-button class="px-2 bg-red-600" id="btnEliminar">
                                                 <a href="#" class="font-medium">Eliminar</a>
                                             </x-button>
                                         </td>
@@ -118,7 +118,7 @@
                                             Volver al punto de partida
                                         </td>
                                         <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                            <x-button class=" bg-red-600" id="btnEliminar">
+                                            <x-button class="px-2 bg-red-600" id="btnEliminar">
                                                 <a href="#" class="font-medium">Eliminar</a>
                                             </x-button>
                                         </td>
@@ -132,10 +132,10 @@
 
            <div class="flex justify-center mb-2">
                 <x-button class="mt-5 mx-2">
-                    <a href="#" class="font-medium">Guardar</a>
+                    <a href="#" class="px-2 font-medium">Guardar</a>
                 </x-button>
                 <x-button class="mt-5 mx-2">
-                        <a href="#" class="font-medium">Cancelar</a>
+                        <a href="#" class="px-2 font-medium">Cancelar</a>
                 </x-button>
             </div>
         </div> <!-- fin flex-row -->

@@ -1,13 +1,13 @@
 <x-guest-layout>
   
-  <div class="flex bg-white shadow-sm sm:rounded-lg mt-2  justify-center mb-4">
+  <div class="flex bg-white shadow-sm sm:rounded-lg pt-2  justify-center mb-4">
     <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Adivinar animales</h2>
   </div>
 
   <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 justify-center mx-1 sm:mx-40" >
 
-        <div class="flex flex-row justify-center mb-5 mt-2">
-          <h3 id="mensajeanimal" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="animal"></span>!</h3>
+        <div class="flex flex-row justify-center mb-5 mt-3">
+          <h3 id="mensajeanimal" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="animal"></span></h3>
         </div>
 
         <div class="flex flex-row justify-center">
@@ -17,19 +17,19 @@
         </div>
         
         <div class="flex flex-row justify-center">
-          <x-button class="mb-2 mt-4">
+          <x-button class="mb-2 mt-4  px-2">
             <a id = "nuevoIntentoAleatorio" class="font-medium " >Nuevo Intento Aleatorio</a>
           </x-button>
         </div>
 
 
         <div class="flex flex-row justify-center">
-          <x-button class="mb-2 mt-4 mx-2">
+          <x-button class="mb-2 mt-4 mx-2 px-2">
             <a id = "cambiar-camara" class="font-medium " onclick="cambiarCamara();">Cambiar Cámara</a>
           </x-button>
           
           <a href="{{ route('principal') }}">
-            <x-button type="button" id="btnSalir" class="mx-2 mb-2 mt-4">
+            <x-button type="button" id="btnSalir" class="mx-2 mb-2 mt-4  px-2">
                 {{ __('Salir') }}
             </x-button>
           </a>
@@ -73,7 +73,8 @@
           console.log("Modelo cargado...");
       })();
 
-      window.onload = function() {
+      window.onload = function() {3
+          nuevoJuegoAleatorio();
           mostrarCamara();
           aleatorio = clases[Math.floor(Math.random() * clases.length)];
           document.getElementById("animal").innerHTML = 'Mostrame un/a:'+aleatorio;
@@ -151,7 +152,7 @@
         
         document.getElementById("mensajeanimal").removeAttribute('class');
         document.getElementById("mensajeanimal").classList.add('fuenteDivertida');
-        document.getElementById("animal").innerHTML = 'Mostrame un/a:' + aleatorio;
+        document.getElementById("animal").innerHTML = 'Mostrame un/a:' + aleatorio + '!';
 
         document.getElementById("animal").value = aleatorio;
         

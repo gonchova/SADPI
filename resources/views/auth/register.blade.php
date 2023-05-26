@@ -8,9 +8,7 @@
     <x-auth-card class="mt-2">
         
         <x-slot name="logo">
-            {{-- <div class="h-30 w-12 mx-auto">
-                <x-application-logo />
-            </div> --}}
+
         </x-slot>
 
         <!-- Validation Errors -->
@@ -55,7 +53,7 @@
                 <select id="idrol" name="idrol" class="block mt-1 w-full h-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
                     
                     @foreach($roles as $rol)
-                        <option id="idroloption"class="justify-content-center" value={{$rol->idrol}}>{{$rol->descripcion}}</option>
+                        <option id="idroloption"class="justify-content-center" value="{{$rol->idrol}}"  {{ (old('idrol') == $rol->idrol) ? 'selected' : '' }}> {{$rol->descripcion}}</option>
                     @endforeach
                     
                 </select>

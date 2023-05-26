@@ -24,7 +24,7 @@
 
         <div id  = "cardFichas" class=" flex flex-col max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none ">
             <div class="h-15">
-                <img class="w-full h-full" src="/img/iconoFichas.png" alt="Colocar Fichas">
+                <img class="w-full h-full" src="/img/iconoFichasv1.png" alt="Colocar Fichas">
             </div>
             
             <div class="px-6 py-2">

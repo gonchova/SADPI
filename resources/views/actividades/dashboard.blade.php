@@ -65,7 +65,7 @@
 
             </div>
 
-            <div class="flex items-center justify-between pb-4 px-4">
+            {{-- <div class="flex items-center justify-between pb-4 px-4">
                 <table class=" min-w-full text-sm text-left text-gray-500 border-solid border-collapse">
                     <thead class=" text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
                         <tr>
@@ -125,7 +125,73 @@
                 </form>
                 </table>
                
+            </div> --}}
+
+
+            <div class="container mx-1 sm:mx-2 ">
+                    
+                <table class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
+                    <thead class="text-black w-fit">
+
+                        <tr class=" bg-indigo-200 w-fit flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                            <th class="p-3 text-left border border-solid sm:w-2/5">Nombre Actividad</th>
+                            <th class="p-3 text-left border border-solid sm:w-3/5">Avance</th>
+                            <th class="p-3 text-left border border-solid sm:w-1/5" >Acciones</th>
+                        </tr>
+                        <tr class="sm:hidden w-fit bg-indigo-200 flex flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                            <th class="p-3 text-left border border-solid">Nombre Actividad</th>
+                            <th class="p-3 text-left border border-solid">Avance</th>
+                            <th class="p-3 text-left border border-solid sm:w-110 " >Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <form method="GET" >
+
+                    <tbody class="flex-1 sm:flex-none w-fit">
+                    
+                        <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit">
+ 
+                            <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap sm:w-fit">
+                                Jugar escondidas
+                            </td>
+                            <td scope="row" class="border  p-3  font-medium whitespace-nowrap uppercase text-black">
+                                <div class=" bg-gray-600 rounded-full ">
+                                    <div class="w-8/12  bg-purple-900  text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">70%</div> - 8/12</div>
+                                </div>
+                            </td>
+                            
+                            <td class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ">
+                                <x-button class="w-30 px-1">
+                                    <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+                                </x-button>
+                            </td>
+
+                        </tr>
+
+                        <tr class="flex flex-col sm:table-row mb-2 w-fit">
+ 
+                            <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap w-fit">
+                                Saltar la cuerda
+                            </td>
+                            <td scope="row" class="border w-100 p-3  font-medium whitespace-nowrap uppercase text-black">
+                                <div class=" bg-gray-600 rounded-full">
+                                    <div class="w-12/12  bg-green-600  text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-white-700  rounded-full">100%</div>- 5/5</div>
+                                </div>
+                            </td>
+                            <td class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ">
+                                <x-button class="w-30 px-1">
+                                    <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+                                </x-button>
+                            </td>
+
+                        </tr>
+
+                        
+                    </tbody>
+                </form>
+                </table>
             </div>
+
         </div>
     
     </div> 

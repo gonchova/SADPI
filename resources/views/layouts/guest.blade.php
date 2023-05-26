@@ -8,12 +8,9 @@
         <title>{{ config('app.name', 'SADPI') }}</title>
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@400;600;700&display=swap">
-        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Luckiest+Guy&family=Nunito+Sans:ital,wght@1,600&display=swap" rel="stylesheet"> 
-
-        {{-- <link href="https://fonts.cdnfonts.com/css/bungee-spice" rel="stylesheet"> --}}
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <!-- Scripts -->
@@ -23,13 +20,9 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-           {{-- @include('layouts.navigation') --}}
-
-        
-                <main>
-                    {{ $slot }}
-                </main>
-            
+            <main>
+                {{ $slot }}
+            </main>
         </div>
     </body>
 </html>

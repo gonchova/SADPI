@@ -187,7 +187,7 @@ return [
         'time'                     => 'hora',
         'title'                    => 'título',
         'updated_at'               => 'actualizado el',
-        'username'                 => 'usuario',
+        'username'                 => 'nombre de usuario',
         'year'                     => 'año',
     ],
     'custom'               => [

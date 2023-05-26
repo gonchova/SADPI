@@ -31,17 +31,17 @@
                 </div>      
             </div>   
 
-            <div class="flex flex-row  px-4 justify-center mt-2 ">  
-                <div class="flex  flex-col border p-4 border-indigo-300 justify-center">
-                    <div class="flex flex-row w-full justify-center">
+            <div class="flex flex-row justify-center mt-2 ">  
+                <div class="flex  flex-col pb-1 px-1  justify-center ">
+                    <div class="flex flex-row w-full justify-center ">
                         <x-label class="flex pb-2 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Período de la actividad')" />    
                     </div>  
-                    <div class="flex flex-row w-full">
-                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
-                        <x-input id="iDesde" type="date"> </x-input>
+                    <div class="flex flex-row w-full gap-1">
+                        <x-label class="hidden sm:flex pt-3 pb-2 pl-1 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
+                        <x-input class="px-2" id="iDesde" type="date"> </x-input>
 
                         <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
-                        <x-input id="iHasta" type="date"> </x-input>
+                        <x-input class="mx-auto" id="iHasta" type="date"> </x-input>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
 
                 <div class="flex  items-center justify-between pb-4 ">
 
-                    <table class="w-full text-sm text-left text-gray-500 border-solid mx-2 border-collapse ">
+                    {{-- <table class="w-full text-sm text-left text-gray-500 border-solid mx-2 border-collapse ">
                         <thead class=" text-gray-700 uppercase bg-indigo-200 text-xs sm:text-sm ">
                             <tr>
                                 <th scope="col" class="border px-2 py-2 text-xs sm:text-sm w-1">
@@ -131,7 +131,7 @@
                                     </td>
                                     <td scope="row" class="w-auto border px-2 py-2 font-medium whitespace-nowrap uppercase text-black  justify-left"">
                                         <div class="flex flex-row justify-center">
-                                            <x-input type="number" min="0" class="w-20" >
+                                            <x-input type="number" min="0" class="w-20 " >
     
                                             </x-input>
                                             </div>
@@ -149,16 +149,67 @@
                             </tr>
                             
                         </tbody>
-                    </table>
-                
+                    </table> --}}
+                    <div class="container mx-1 sm:mx-2 ">
+                    
+                        <table class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
+                            <thead class="text-black ">
+    
+                                <tr class=" bg-indigo-200 flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                                    <th class="p-3 text-left border border-solid ">Sel</th>
+                                    <th class="p-3 text-left border border-solid">Nombre Actividad</th>
+                                    <th class="p-3 text-left border border-solid">Cant. por Período</th>
+                                    <th class="p-3 text-left border border-solid sm:w-110 h-15" >Acciones</th>
+                                    <th class="p-3 text-left border border-solid ">Cant. Realizado</th>
+                                </tr>
+    
+                            </thead>
+    
+                            <form method="GET" >
+
+                            <tbody class="flex-1 sm:flex-none ">
+                            
+                                <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit">
+                                    
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap justify-center">
+                                        <div class="flex flex-row justify-center py-1">
+                                        <x-input type="checkbox">
+                                        </x-input>
+                                    </div>
+                                    </td>
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap">
+                                        Jugar escondidas
+                                    </td>
+                                    <td class="gap-1  border hover:bg-gray-100 p-1.5 flex-nowrap whitespace-nowrap ">
+                                        <div class="flex flex-row justify-center">
+                                            <x-input type="number" min="0" class="w-20 h-9" >
+    
+                                            </x-input>
+                                            </div>
+                                    </td>
+                                    <td class="border-grey-light border hover:bg-gray-100 px-3 whitespace-nowrap py-2">
+                                        <x-button class="">
+                                            <a href="#" class="font-medium ">+Info</a>
+                                        </x-button>
+                                    </td>
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap">
+                                       2
+                                    </td>
+                                </tr>
+    
+                                
+                            </tbody>
+                        </form>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="mx-6 my-3">
                 <x-button class="bg-green-600 ">
-                    <a href="#" class="font-medium ">Guardar</a>
+                    <a href="#" class="px-2 font-medium ">Guardar</a>
                 </x-button>
                 <x-button class="bg-red-600 ">
-                    <a href="#" class="font-medium ">Cancelar</a>
+                    <a href="#" class="px-2 font-medium ">Cancelar</a>
                 </x-button>
             </div>
         </div> 

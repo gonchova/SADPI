@@ -1,6 +1,6 @@
 <x-app-layout>
 
-   <div class="flex flex-wrap gap-4 justify-left ml-10  mr-5">
+   <div class="flex flex-wrap gap-4 sm:justify-start ml-10 mr-5 justify-center">
        
         <div id  = "cardActividad1" class="flex flex-col max-w-60 w-60 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
   
