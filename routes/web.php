@@ -58,7 +58,7 @@ Route::get('/actividadesFamilia/actividadFamilia', [actividadesFamiliaPrincipalC
     
 require __DIR__.'/auth.php';
 
-require 'vendor/autoload.php';
+// require '../vendor/autoload.php';
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');
@@ -68,8 +68,8 @@ Route::get('/clear-cache', function() {
     return 'DONE'; //Return anything
 });
 
-Route::get('/updateapp', function()
-{
-    Artisan::call('composer dump-autoload');
-    echo 'dump-autoload complete';
-});
+// Route::get('/updateapp', function()
+// {
+//     Artisan::call('composer dump-autoload');
+//     echo 'dump-autoload complete';
+// });

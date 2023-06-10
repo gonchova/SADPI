@@ -1,6 +1,6 @@
  <nav class="bg-white border-gray-300 ">
 
-    <div class="flex flex-wrap justify-between md:justify-left md:flex-nowrap w-full p-4 ">
+    <div class="flex flex-wrap justify-between md:justify-left md:flex-nowrap w-full p-2 ">
     
       <a href="{{route('principal')}}" class="flex items-center mr-10">
           <img src="{{asset('img/Logo01-C.png')}}" class="h-10 mr-3" alt="Sadpi" />
@@ -16,6 +16,7 @@
 
             <ul class="flex flex-col  font-medium p-4 md:p-0 mt-2 border border-gray-100 rounded-lg bg-gray-50 md:flex-row  md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
             
+            {{-- Rol Coordinador --}}
             @if (auth()->user()->idrol == 1)  
             <li>
                 <a href="{{route('nuevousuario')}}" class="block px-3 py-2 whitespace-nowrap hover:text-white  rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Alta Usuarios</a>
@@ -44,15 +45,15 @@
             </li>
 
             @endif
+            {{-- Rol Familia --}}
             @if (auth()->user()->idrol == 2)    
-            <li>
-                <a href="{{route('juegos')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Juegos</a>
-            </li>
+                {{-- <li>
+                    <a href="{{route('juegos')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Juegos</a>
+                </li>
 
-            <li>
-                <a href="{{route('actividadesFamilia.principal')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Actividades</a>
-            </li>
-                    
+                <li>
+                    <a href="{{route('actividadesFamilia.principal')}}" class="block px-4 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2 " aria-current="page">Actividades</a>
+                </li> --}}
             @endif
             
             <div class="flex flex-row justify-end w-full">

@@ -64,6 +64,7 @@
       var clases = ['CABALLO', 'CERDO','GALLO','VACA'];
       var aleatorio='';
       var hayprediccion = false;
+      var detectado = false;
       
       document.getElementById("nuevoIntentoAleatorio").addEventListener("click", nuevoJuegoAleatorio);
 
@@ -73,12 +74,12 @@
           console.log("Modelo cargado...");
       })();
 
-      window.onload = function() {3
+      window.onload = function() {
           nuevoJuegoAleatorio();
           mostrarCamara();
           aleatorio = clases[Math.floor(Math.random() * clases.length)];
-          document.getElementById("animal").innerHTML = 'Mostrame un/a:'+aleatorio;
-          document.getElementById("animal").value = aleatorio;
+        //  document.getElementById("animal").innerHTML = 'Mostrame un/a:'+aleatorio;
+        //  document.getElementById("animal").value = aleatorio;
           
       }
 
@@ -156,7 +157,15 @@
 
         document.getElementById("animal").value = aleatorio;
         
+        detectado = false;
+        
+        if (aleatorio !=  null && clases.indexOf(aleatorio) != -1 )
+        {
+          var sonido = new Audio("sounds/" + aleatorio + ".mp3");
+          sonido.play();
+        }
         console.log(aleatorio);
+        console.log(clases.indexOf(aleatorio));
         
       }
 
@@ -207,8 +216,9 @@
                     console.log(clases[mayorIndice]);
                     console.log(aleatorio);
 
-                    if(clases.includes(aleatorio.toUpperCase()))
+                    if(clases.includes(aleatorio.toUpperCase()) && detectado === false)
                     { 
+                      detectado = true;
                       document.getElementById("animal").value = aleatorio;
 
                       if(clases[mayorIndice].toUpperCase() == aleatorio.toUpperCase())
@@ -217,6 +227,9 @@
                         document.getElementById("animal").innerHTML = 'BIEN HECHO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaOK');
+                        document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
+                        var sonido = new Audio("sounds/BienHecho.mp3");
+                        sonido.play();
                       }
                       else
                       {
@@ -224,6 +237,8 @@
                         document.getElementById("animal").innerHTML = 'UPS! VOLVE A INTENTARLO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
+                        var sonido = new Audio("sounds/Ups.mp3");
+                        sonido.play();
                       }
                     
 

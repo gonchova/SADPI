@@ -1,5 +1,12 @@
 <x-app-layout>
 
+    <div class="flex justify-center mt-2">
+        <a href="{{ route('principal') }}">
+            <x-button type="button" id="btnVolver" class="px-2">
+                {{ __('Volver') }}
+            </x-button>
+        </a>
+    </div>
    <div class="flex flex-wrap gap-4 justify-center ">
         <div id  = "cardAnimalesIA" class="flex flex-col max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
             <div class="bg-orange-500 h-15 rounded">
@@ -24,7 +31,7 @@
 
         <div id  = "cardFichas" class=" flex flex-col max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none ">
             <div class="h-15">
-                <img class="w-full h-full" src="/img/iconoFichasv1.png" alt="Colocar Fichas">
+                <img class="w-full h-full" src="{{asset('/img/IconoFichasv1.png')}}" alt="Colocar Fichas">
             </div>
             
             <div class="px-6 py-2">

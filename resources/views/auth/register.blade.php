@@ -1,14 +1,12 @@
 <x-app-layout>
-   
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Nuevo Usuario</h2>
     </div>
-
     
     <x-auth-card class="mt-2">
         
         <x-slot name="logo">
-
         </x-slot>
 
         <!-- Validation Errors -->
@@ -19,11 +17,9 @@
             {{Session::get('success')}}
         </div>
         @endif            
-                  
         
         <form id ="formRegister" method="POST" action="{{ route('nuevousuario') }}">
             @csrf
-
 
             <!-- Name -->
             <div>
@@ -80,25 +76,15 @@
 
             <div class="flex items-center justify-left mt-4">
                 <a href="{{ route('principal') }}">
-                    <x-button type="button" id="btnVolver">
+                    <x-button type="button" id="btnVolver" class="px-2">
                         {{ __('Volver') }}
                     </x-button>
                 </a>
-                <x-button class="ml-4">
+                <x-button class="ml-4 px-2">
                     {{ __('Registrar') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
 </x-app-layout>
-<script>
-// document.getElementById("btnVolver").onclick = function() {  
-//     document.querySelector('#name').required = false;
-//     document.querySelector('#email').required = false;
-//     document.querySelector('#username').required = false;
-//     document.querySelector('#idrol').required = false;
-//     document.querySelector('#password').required = false;
-//     document.querySelector('#password_confirmation').required = false;
-// }; 
 
-</script>

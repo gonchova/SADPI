@@ -5,18 +5,11 @@
         </h2>
     </x-slot> --}}
 
-    @php
-        $id = 4;
-    @endphp
     <!-- Main -->
 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
-        
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Actividades</h2>
-   
     </div>
-
-
 
         <div class="flex-row pt-4 mx-2">
             
@@ -24,7 +17,7 @@
             
                 <div class="flex-full items-center justify-between pb-4">
                     
-                    <form method="GET" >
+                    <form method="GEBuen diT" >
                         <div class="flex-full inline-flex flex-wrap px-2">   
 
                             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
@@ -58,7 +51,7 @@
                 <body class="flex items-center justify-center ">
 	            <div class="container mx-1 sm:mx-2 ">
                     
-                    <table class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
+                    <table class="sm:mx-2 w-full flex sm:inline-table overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
                         <thead class="text-black ">
 
                             <tr class=" bg-indigo-200 flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
@@ -132,25 +125,5 @@
         </div> 
     </div> <!-- fin flex-row -->
     
-    <style>
-
-        /* @media (min-width: 640px) {
-          table {
-            display: inline-table !important;
-          } */
-      
-          /* thead tr:not(:first-child) {
-            display: none;
-          }
-        } */
-      
-        td:not(:last-child) {
-          border-bottom: 0;
-        }
-      
-        th:not(:last-child) {
-          border-bottom: 2px solid rgba(0, 0, 0, .1);
-        }
-      </style>
 </x-app-layout>
 

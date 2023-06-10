@@ -1,6 +1,6 @@
 <x-app-layout>
 
-   <div class="flex flex-wrap justify-left ml-10 mr-4">
+   <div class="flex flex-wrap justify-left mx-4 ">
        
         <div id  = "cardAnimalesIA" class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 hover:cursor-pointer select-none">
   
@@ -111,9 +111,17 @@
                 <textarea   rows='1' placeholder=''></textarea>
 
                 <div class="flex flex-row mt-2 justify-center">
-                    <x-button>
-                        Actividad del día realizada
-                    </x-button>
+                    <div class="flex flex-col m-2 justify-center w-auto">
+                        <x-button class="my-2 px-1 mx-auto">
+                            Actividad del día realizada
+                        </x-button>
+                                                       
+                        <a href="{{ route('principal') }}" class="mx-auto">
+                            <x-button class="px-2">
+                                {{ __('Salir') }}
+                            </x-button>  
+                        </a>
+                    </div>
                 </div>
                 
             </div>

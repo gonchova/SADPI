@@ -1,26 +1,46 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production",
-        "build:css": "tailwind build public/tailwind.css -o public/style.css"
-    },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.4.0",
-        "alpinejs": "^3.4.2",
-        "autoprefixer": "^10.4.14",
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.4.21",
-        "tailwindcss": "^3.3.2"
-    },
-    "dependencies": {
-        "@vitejs/plugin-basic-ssl": "^1.0.1"
-    }
+  "private": true,
+  "scripts": {
+    "devbckp": "npm run development",
+    "dev": "tailwindcss -i ./src/styles.css -o ./public/build/styles.css --watch",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production",
+    "build:css": "tailwind build public/tailwind.css -o public/style.css"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "alpinejs": "^3.4.2",
+    "autoprefixer": "^10.4.14",
+    "axios": "^0.21",
+    "laravel-mix": "^6.0.49",
+    "lodash": "^4.17.19",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
+    "flowbite": "^1.6.5",
+    "sortablejs": "^1.15.0"
+  },
+  "name": "sadpi",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonchova/SADPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gonchova/SADPI/issues"
+  },
+  "homepage": "https://github.com/gonchova/SADPI#readme"
 }

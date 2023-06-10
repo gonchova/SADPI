@@ -1,8 +1,16 @@
 <x-app-layout>
+   
+    <div class="flex justify-center mt-2">
+        <a href="{{ route('principal') }}">
+            <x-button type="button" id="btnVolver" class="px-2">
+                {{ __('Volver') }}
+            </x-button>
+        </a>
+    </div>
 
-   <div class="flex flex-wrap gap-4 sm:justify-start ml-10 mr-5 justify-center">
-       
-        <div id  = "cardActividad1" class="flex flex-col max-w-60 w-60 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
+   <div class="flex flex-wrap gap-4 justify-center">
+
+        <div id  = "cardActividad1" class="flex flex-col  max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4  hover:cursor-pointer select-none">
   
             <div class="px-6 py-2 block ">
                 <div class="font-bold text-xl pb-2 fuenteFichas">Reconocer las letras de su nombre</div>
@@ -19,7 +27,7 @@
             </div>
         </div> 
 
-        <div id  = "cardAnimales2" class="flex flex-col  max-w-60 w-60 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
+        <div id  = "cardActividad2" class="flex flex-col  max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4  hover:cursor-pointer select-none">
   
             <div class="px-6 py-2 block ">
                 <div class="font-bold text-xl pb-2 fuenteFichas">Leer un cuento en familia</div>
@@ -37,7 +45,7 @@
         </div> 
 
         
-        <div id  = "cardAnimales2" class="flex flex-col  max-w-60 w-60 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
+        <div id  = "cardActividad3" class="flex flex-col max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 hover:cursor-pointer select-none">
   
             <div class="px-6 py-2 block ">
                 <div class="font-bold text-xl pb-2 fuenteFichas">Reconocer colores</div>
@@ -54,7 +62,7 @@
             </div>
         </div> 
 
-        <div id  = "cardAnimales2" class="flex flex-col  max-w-60 w-60 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
+        <div id  = "cardActividad4" class="flex flex-col  max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4  hover:cursor-pointer select-none">
   
             <div class="px-6 py-2 block ">
                 <div class="font-bold text-xl pb-2 fuenteFichas">Reconocer partes del cuerpo</div>
@@ -79,11 +87,11 @@
         document.getElementById("cardActividad1").onclick = function () {
             window.location.href = "{{ route('actividadesFamilia.actividadFamilia') }}";
             };
-
             
-        document.getElementById("cardFichas").onclick = function () {
-            window.location.href = "{{ route('colocarFicha') }}";
-            };
+        // document.getElementById("cardFichas").onclick = function () {
+        //     window.location.href = "{{ route('colocarFicha') }}";
+        //     };
+
 
     </script>
 </x-app-layout>

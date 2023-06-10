@@ -26,7 +26,7 @@
             </div>
             
             <div class="w-30 sm:w-1/2">
-                <x-label class="pt-2" for="descripcion" :value="__('Descripción:')" />
+                <x-label class="pt-2" for="descripcionActividad" :value="__('Descripción:')" />
                 <textarea class="w-full" rows='1' placeholder=''></textarea>
             </div>
 
@@ -45,9 +45,9 @@
 
             <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
                     <div class="w-30 sm:w-1/2">
-                        <x-label class="" for="name" :value="__('Descripcion paso:')" />
+                        <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
 
-                        <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus  />
+                        <x-input id="DescripcionPaso" class="block mt-1 w-full" type="text" name="DescripcionPaso" :value="old('DescripcionPaso')" required autofocus  />
                     </div>
 
                     <x-button class="mt-5 mb-2 w-40" id="btnAgregarPaso">
@@ -147,13 +147,19 @@
         var NroPaso = 1;
 
         $(document).ready(function(){
+            
+
 
             $('#btnAgregarPaso').on('click', AgregaPaso);
 
-        
             function AgregaPaso()
             {
-
+                var textoPaso = document.getElementById('DescripcionPaso').value;
+               
+                 var btnEliminarClass = document.getElementById('btnEliminar').className;
+                 
+                
+                 console.log(btnEliminarClass);
                 $('#tablaPasos')
                 .append(
                     $('<tr>')
@@ -167,21 +173,19 @@
 
                         $('<td>')
                         .append(
-                            'lalala'
+                            textoPaso
                         ).addClass('border font-medium uppercase text-black shrink')
                     )
-
-                   
                     
                     .append(
-                        $('<td>')
+                        $('<td>').addClass(" px-1 py-1 border uppercase  grow-0")
                         .append(
-                            $('<button>').addClass("bg-red-600").append('<a>').addClass("font-medium").append('Eliminar')
+                            $('<button "id"= "'+NroPaso+'">').addClass(btnEliminarClass).addClass("px-2 bg-red-600 ").append('<a>').addClass("font-medium").append('Eliminar')
                         )
 
                     )
                 )     
-                
+
                
               NroPaso++;
 
