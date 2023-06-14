@@ -9,11 +9,11 @@ class actividadesFamiliaPrincipalController extends Controller
 {
     public function index()
     {
-      return view('ActividadesFamilia.actividadesFamiliaPrincipal');
+      return view('actividadesFamilia.actividadesFamiliaPrincipal');
     }
 
     public function seleccionActividad()
     {
-      return view('ActividadesFamilia.actividadFamilia');
+      return view('actividadesFamilia.actividadFamilia');
     }
 }

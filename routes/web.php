@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Coordinador\ActividadesController;
 use App\Http\Controllers\Coordinador\DashboardController;
 use App\Http\Controllers\Coordinador\NuevoUsuarioController;
+use App\Http\Controllers\Coordinador\EspecialidadesController;
 use App\Http\Controllers\Familias\JuegosPrincipalController;
 use App\Http\Controllers\Familias\JuegoAnimalesController;
 use App\Http\Controllers\Familias\JuegoFichasController;
@@ -43,9 +44,13 @@ Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['aut
 Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
 Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
 Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
+Route::get('/actividades/filtrar', [ActividadesController::class,'filtrar'])->middleware(['auth'])->name('actividades.filtrar');
 Route::get('/actividades/editar', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
 Route::get('/actividades/dashboard', [ActividadesController::class,'dashboard'])->middleware(['auth'])->name('actividades.dashboard');
 Route::get('/actividades/comentarios', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
+
+Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialidades'])->middleware(['auth'])->name('getEspecialidades');
+
 
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');

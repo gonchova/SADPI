@@ -28,10 +28,11 @@
                 <form method="GET" >
                     <div class="flex-full inline-flex flex-wrap px-4">   
 
-                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
+                       
                         
-                        <div  class="mx-2 w-48 shrink">
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm  border-gray-600  " >
+                        <div  class="mx-2 w-48 shrink flex-wrap">
+                            <x-label class="sm:flex pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg border-gray-600  " >
                                 <option value="">Alvarez</option>
                                 <option value="">Gomez</option>
                                 <option value="">Rimola</option>
@@ -50,14 +51,26 @@
                                 </svg>
                             </button>
                         </div> --}}
-                        <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Periodo:')" />
-                        <div  class="mx-2 w-60">
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm  border-gray-600  " >
+                        
+                        <div  class="mx-2 w-60 shrink flex-wrap">
+                            <x-label class="pt-3 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Periodo:')" />
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
                                 <option value="">01/02/2023 - 31/02/2023</option>
                                 <option value="">18/03/2023 - 15/04/2023</option>
                                 
                             </select>
                         </div> 
+                        
+                            
+                        <div  class="mx-2 w-48 shrink flex-wrap">
+                            <x-label class=" pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
+                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
+                                <option value="" >Todas</option>
+                                {{-- @foreach ($especialidades as $esp)
+                                    <option value= {{$esp->idespecialidad}} {{(old('categoriasFiltro') == strtolower($esp->descripcion)) ? 'selected' : '' }}> {{$esp->descripcion}} </option>                      
+                                @endforeach --}}
+                            </select>
+                        </div>   
 
                     </div>  
                         
