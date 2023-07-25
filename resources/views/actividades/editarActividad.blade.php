@@ -1,199 +1,268 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Nueva Actividad') }}
-        </h2>
-    </x-slot> --}}
-
-    @php
-        $id = 4;
-    @endphp
-    <!-- Main -->
 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
-        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm ">Editar Actividad</h2>
+        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Edición de Actividad</h2>
     </div>
 
-
-    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-10 sm:mx-40" >
-                
-        <div class="block mx-2">
-           
-            <div class="w-30 sm:w-1/2 flex flex-row">
-                <x-label class="pt-2 mt-1" for="name" :value="__('Actividad:')" />
-                <x-input id="nombre" class="block ml-4 mt-1 pt-2 w-50% " type="label" name="nombre" :value="old('nombre')"  disabled value="SALTAR LA CUERDA" />
-            </div>
-            
-            <div class="w-30 sm:w-1/2">
-                <x-label class="pt-2" for="name" :value="__('Nombre Paso:')" />
-
-                <x-input id="nombre" class="in-line mt-1 " type="text" name="nombre" :value="old('paso')"  />
-            </div>
-
-            <x-button class="mt-5 mb-2" id="btnAgregarPaso">
-                <a href="#" class="font-medium">Agregar Paso</a>
-             </x-button>
-
-            <div class="">
-                <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
-            </div>
-
-            <div class="flex flex-col flex-shrink ">
-            
-                <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
-               
-                    <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
-                        <tr class="shrink">
-                            <th scope="col" class="border px-2  text-xs sm:text-sm">
-                               #
-                            </th>
-                            <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
-                               Descripcion paso
-                            </th>
-                            <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
-                               Acciones
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="">
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    1
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Correr hasta la puerta de la casa
-                                </td>
-                                <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    2
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Tocar la puerta con la mano derecha
-                                </td>
-                                <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-
-                        <tr class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                            <form method="GET" >
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    3
-                                </td>
-                                <td scope="row" class="border font-medium uppercase text-black shrink">
-                                    Volver al punto de partida
-                                </td>
-                                <td scope="row" class= " px-1 py-1 border uppercase  grow-0">
-                                    <x-button class=" bg-red-600" id="btnEliminar">
-                                        <a href="#" class="font-medium">Eliminar</a>
-                                    </x-button>
-                                </td>
-                            </form>
-                        </tr>
-                    </tbody>
-                 </table>
-
-           </div>
-
-           <div class="flex justify-center mb-2">
-                <x-button class="mt-5 mx-2">
-                    <a href="#" class="font-medium">Guardar</a>
-                </x-button>
-                <x-button class="mt-5 mx-2">
-                        <a href="#" class="font-medium">Cancelar</a>
-                </x-button>
-            </div>
-        </div> <!-- fin flex-row -->
+    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-4 sm:mx-20" >
+        @if (session('mensaje'))
+        <div class="flex flex-row justify-center ">
+            <div class="text-green-500" >{{session('mensaje')}}</div>
+        </div>
+        @endif
     
-    </div>
+        @if(count($errors)>0)
+        <div class="flex flex-row justify-center" >
+            <ul>          
+            @foreach($errors->all() as $err)
+                <li class="text-red-600 py-0 my-1" >{{$err}}</li>
+            @endforeach
+            </ul>
+        </div>  
+        @endif
+
+        <form method="POST"  id="formulario" action="{{ route('actividades.update', $actividad->idactividad) }}">
+            @method('PUT')
+            @csrf
+            <div class="block mx-2">
+    
+                <div class="w-30 sm:w-1/2">
+                    <x-label class="pt-2" for="nombre" :value="__('Nombre Actividad:')" />
+                    <x-label class="pt-2 mb-2 bg-gray-300 uppercase align-top"  name="nombre">{{$actividad->nombre}}</x-label>
+                    {{-- <input id="nombre" class="block px-1 mt-1 w-full h-10  text-gray-600" type="text" name="nombre" value="{{$actividad->nombre}}" disabled autofocus > --}}
+                </div>
+                
+                <div class="w-30 sm:w-1/2">
+                    <x-label class="pt-2 " for="descripcionActividad" :value="__('Descripción:')" />
+                    <textarea id="descripcion" name="descripcion" class= "w-full h-20 px-1" rows='1' placeholder='' >{{$actividad->descripcion}} </textarea>
+                </div>
+    
+    
+                <div class="flex flex-row  justify-center mt-2">
+                    <x-label class="mx-30 justify-center" for="name" :value="__('PASOS')" />
+                </div>
+    
+                <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
+                        <div class="w-30 sm:w-1/2">
+                            <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
+    
+                            <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
+                        </div>
+    
+                        <x-button class="mt-5 mb-2 w-40" id="btnAgregarPaso">
+                            <a href="#" class="font-medium">Agregar Paso</a>
+                        </x-button>
+    
+                        <div class="">
+                            <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
+                        </div>
+    
+                        <div class="flex flex-col flex-shrink ">
+                       
+                        
+                            <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
+                        
+                                <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
+                                    <tr class="shrink" type="input">
+                                        <th scope="col" class="border px-2  text-xs sm:text-sm">
+                                        #
+                                        </th>
+                                        <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
+                                        Descripcion paso
+                                        </th>
+                                      <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
+                                        Acciones
+                                        </th>
+                                    </tr>
+                                </thead>
+                            
+                            
+                                <tbody class="">
+                                    <tr class="hidden bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                        <td scope="row" class="border font-medium  text-black shrink"></td>
+                                        <td scope="row" class="border font-medium  text-black shrink"></td>
+                                        <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
+                                            <x-button class="px-2 bg-red-600" id="btnEliminar">
+                                                <a href="#" class="font-medium">Eliminar</a>
+                                            </x-button>
+                                        </td>
+                                    </tr>
+
+                                    @foreach($actividad->pasosactividad as $paso)
+                                        <tr id= "item-{{$paso->idpaso}}" name= "items-{{ $paso->idpaso }}" class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                            <td  name="nropaso"  class="border font-medium  text-black shrink">                                      
+                                                {{$paso->idpaso}}
+                                            </td>
+                                            <td class="border font-medium  text-black shrink">                                        
+                                                {{$paso->descripcion}}
+                                            </td>
+                                            <td name="tdEliminar"  class= "px-1 py-1 border uppercase  grow-0">
+                                                <x-button name="btnEliminar" type="button" id="btnEliminar-{{$paso->idpaso}}"  class="px-2 bg-red-600"  onclick="eliminarPaso(event)">
+                                                   Eliminar
+                                                </x-button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        
+                        </div>
+                    </div>
+    
+               <div class="flex justify-center mb-2">
+                    <x-button class="mt-5 mx-2"  id="btnGuardar">
+                        <a class="px-2 font-medium">Guardar</a>
+                    </x-button>
+                    
+                    <a href="{{route('actividades')}}" class="px-2 font-medium">
+                        <x-button class="mt-5 mx-2 px-2" type="button">
+                            Cancelar
+                        </x-button>
+                    </a> 
+                </div>
+            </div> <!-- fin flex-row -->
+            
+        </form>
+        </div>
 
     <script>
 
-        var NroPaso = 1;
+    renumerarFilas();
+            
+    $(document).ready(function(){
 
-        $(document).ready(function(){
+        var formulario= document.getElementById('formulario');
+        
+        formulario.addEventListener('submit', function(e)
+        {
+            event.preventDefault();
 
-            $('#btnAgregarPaso').on('click', AgregaPaso);
+            var tabla = document.getElementById('tablaPasos');
+            var filas = tabla.getElementsByTagName('tr');
+            var datos = [];
+            
+            for (var i = 2; i < filas.length; i++) {
+                var fila = filas[i];
+                var celdas = fila.getElementsByTagName('td');
+                var filaDatos = [];
+                
+                // Recorre las celdas de cada fila y agrega el contenido a un array
+                for (var j = 0; j < celdas.length; j++) {
+                    filaDatos.push(celdas[j].innerText);
+                }
+                
+                // Agrega la fila de datos al array principal
+                datos.push(filaDatos);
+            }
+            
+            var inputDatos = document.createElement('input');
+            inputDatos.type = 'hidden';
+            inputDatos.name = 'datosTabla';
+            inputDatos.value = JSON.stringify(datos);
+            document.getElementById('formulario').appendChild(inputDatos);
+            
+            this.submit();
+            
+        });
 
         
-            function AgregaPaso()
-            {
+        $('#btnAgregarPaso').on('click', function(event){
+            event.preventDefault();
+            
+            AgregaPaso();
+        });
 
+        
+        // $("#tablaPasos tbody tr td [name='btnEliminar']").each(function () {
+           
+            
+        //      $(this).addEventListener('click', function(event)  {
+        //          eliminarPaso(event);
+        //      })
+            
+        //     console.log(this);
+        //     //eliminarPaso
+        // })
+        
+        function AgregaPaso()
+        {   
+            var textoPaso = document.getElementById('DescripcionPaso').value;
+            
+            if (!textoPaso.trim())
+                return;
+            
+            var btnEliminarClass = document.getElementById('btnEliminar').className;
+               // console.log(btnEliminarClass);
+                //array('Nroresponsable' => '1'
                 $('#tablaPasos')
                 .append(
-                    $('<tr>')
+                $('<tr "id"= "item-'+NroPaso+'" "name"= "items-'+NroPaso+'">')
+                .append(
+                    $('<td name=nropaso>')
                     .append(
-                        $('<td>')
-                        .append(
-                            NroPaso
-                        ).addClass('border font-medium uppercase text-black shrink')
-                    )
+                        NroPaso
+                    ).addClass('border font-medium  text-black shrink')
+                )
+                .append(
+
+                    $('<td>')
                     .append(
-
-                        $('<td>')
-                        .append(
-                            'lalala'
-                        ).addClass('border font-medium uppercase text-black shrink')
-                    )
-
-                   
-                    
-                    .append(
-                        $('<td>')
-                        .append(
-                            $('<button>').addClass("bg-red-600").append('<a>').addClass("font-medium").append('Eliminar')
-                        )
-
-                    )
-                )     
+                        textoPaso
+                    ).addClass('border font-medium  text-black shrink')
+                )
                 
-               
-              NroPaso++;
+                .append(
+                    $('<td>').addClass(" px-1 py-1 border lowercase grow-0")
+                    .append(
+                        $('<button type="button" id="btnEliminar-'+NroPaso+'" onclick="eliminarPaso(event)">').addClass(btnEliminarClass).addClass("Eliminar px-2 bg-red-600 ")
+                           .append('Eliminar')
+                    )
 
-                // var tabla = document.getElementById('tablaItems');
+                )
+            )     
+
+            btnEliminar = document.getElementById('btnEliminar-'+NroPaso);
+           
+            btnEliminar.addEventListener('click', function(event)  {
+                eliminarPaso(event);
+                renumerarFilas();                
+            });
+
+            NroPaso++;    
+            
+            textoPaso="";
+    
+        }
         
-                // var fila = tabla.insertRow();
-                
-                // var celdaNumerador = fila.insertCell();
-                // celdaNumerador.innerHTML = contador++;
-                
-                // var celdaInput = fila.insertCell();
-                // var input = document.createElement('input');
-                // input.type = 'text';
-                // celdaInput.appendChild(input);
-                
-                // var celdaBoton = fila.insertCell();
-                // var boton = document.createElement('button');
-                // boton.innerHTML = 'Eliminar';
+    })
 
-                // boton.onclick = function() {
-                //     tabla.deleteRow(fila.rowIndex);
-                //     renumerarFilas();
-                // };
-                // celdaBoton.appendChild(boton);
-            }
+    function eliminarPaso(event)
+    {  
+        event.target.parentNode.parentNode.remove();
+        renumerarFilas();
+    }
 
+    
+    function renumerarFilas()
+    { 
+        let cont = 1;
 
+        let elementos = document.getElementsByName("nropaso");
 
+        elementos.forEach(elemento => {
+            //console.log(elementos);
+            elemento.innerText = cont;
+            cont++;
+        });
+        NroPaso=cont;
+        //si es el ultimo, reinicia los pasos a 1
+        if (cont==1)
+            NroPaso=1;
 
+    }
 
+    
 
-
-        })
     </script>
 
 </x-app-layout>

@@ -41,7 +41,7 @@
             </li>
         
             <li>
-                <a href="{{route('actividades.dashboard')}}" class="block px-3 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Dashboard</a>
+                <a href="{{route('dashboard')}}" class="block px-3 py-2  hover:text-white rounded-md font-medium uppercase leading-5 text-gray-900 hover:bg-indigo-300 hover:outline-2">Dashboard</a>
             </li>
 
             @endif

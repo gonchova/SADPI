@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Coordinador\ActividadesController;
+use App\Http\Controllers\Coordinador\AsignacionActividadesController;
 use App\Http\Controllers\Coordinador\DashboardController;
 use App\Http\Controllers\Coordinador\NuevoUsuarioController;
 use App\Http\Controllers\Coordinador\EspecialidadesController;
@@ -40,14 +41,21 @@ Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware
 Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
 
 Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
+Route::post('/actividades/asignacion/nueva',[AsignacionActividadesController::class,'save'])->middleware(['auth'])->name('asignacionActividades.save');
+Route::get('/actividades/asignacion/filtrar',[AsignacionActividadesController::class,'filtrar'])->middleware(['auth'])->name('asignacionActividades.filtrar');
 Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
+Route::post('/actividades/nueva',[ActividadesController::class,'save'])->middleware(['auth'])->name('actividades.save');
+Route::delete('/actividades/eliminar/{id}',[ActividadesController::class,'eliminar'])->middleware(['auth'])->name('actividades.eliminar');
 Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
 Route::get('/actividades/filtrar', [ActividadesController::class,'filtrar'])->middleware(['auth'])->name('actividades.filtrar');
-Route::get('/actividades/editar', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
-Route::get('/actividades/dashboard', [ActividadesController::class,'dashboard'])->middleware(['auth'])->name('actividades.dashboard');
+Route::get('/actividades/editar/{idactividad}', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
+Route::put('/actividades/editar/{idactividad}', [ActividadesController::class,'update'])->middleware(['auth'])->name('actividades.update');
+
 Route::get('/actividades/comentarios', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
+Route::get('/actividades/realizado/{idfamilia}/{fecdesde}/{fechasta}', [ActividadesController::class,'obtenerRealizado'])->middleware(['auth'])->name('actividades.obtenerRealizado');
 
 Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialidades'])->middleware(['auth'])->name('getEspecialidades');
 
@@ -59,7 +67,9 @@ Route::get('/colocarFicha', [JuegoFichasController::class,'index'])->middleware(
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
 
 Route::get('/actividadesFamilia/principal', [actividadesFamiliaPrincipalController::class,'index'])->middleware(['auth'])->name('actividadesFamilia.principal');
-Route::get('/actividadesFamilia/actividadFamilia', [actividadesFamiliaPrincipalController::class,'seleccionActividad'])->middleware(['auth'])->name('actividadesFamilia.actividadFamilia');
+Route::get('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'seleccionActividad'])->middleware(['auth'])->name('actividadesFamilia.actividadFamilia');
+Route::post('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'save'])->middleware(['auth'])->name('actividadesFamilia.save');
+
     
 require __DIR__.'/auth.php';
 

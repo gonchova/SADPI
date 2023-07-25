@@ -32,11 +32,11 @@
                         
                         <div  class="mx-2 w-48 shrink flex-wrap">
                             <x-label class="sm:flex pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg border-gray-600  " >
-                                <option value="">Alvarez</option>
-                                <option value="">Gomez</option>
-                                <option value="">Rimola</option>
-                                
+                            <select name="familiasFiltro" id="familiasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg border-gray-600  " >
+                                @foreach ($familias as $familia)
+                                    <option value={{$familia->id}}>{{$familia->name}}</option>
+                                @endforeach
+                              
                             </select>
                         </div>                            
 
@@ -52,15 +52,7 @@
                             </button>
                         </div> --}}
                         
-                        <div  class="mx-2 w-60 shrink flex-wrap">
-                            <x-label class="pt-3 text-xs sm:text-sm" for="categoriasFiltro" :value="__('Periodo:')" />
-                            <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
-                                <option value="">01/02/2023 - 31/02/2023</option>
-                                <option value="">18/03/2023 - 15/04/2023</option>
-                                
-                            </select>
-                        </div> 
-                        
+
                             
                         <div  class="mx-2 w-48 shrink flex-wrap">
                             <x-label class=" pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
@@ -71,6 +63,22 @@
                                 @endforeach --}}
                             </select>
                         </div>   
+
+                        <div class="flex flex-row justify-center mt-2 ">  
+                            <div class="flex  flex-col pb-1 px-1  justify-center ">
+                                <div class="flex flex-row w-full justify-center ">
+                                    <x-label class="flex pb-2 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Período de la actividad')" />    
+                                </div>  
+                                <div class="flex flex-row w-full gap-1">
+                                    <x-label class="hidden sm:flex pt-3 pb-2 pl-1 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
+                                    <x-input class="px-2" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
+                
+                                    <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
+                                    <x-input class="mx-auto" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
+                                </div>
+                            </div>
+                        </div>
+                        
 
                     </div>  
                         
@@ -142,8 +150,9 @@
 
 
             <div class="container mx-1 sm:mx-2 ">
-                    
-                <table class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
+
+                <table id = "tablaActividades" name="tablaActividades" class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">    
+                {{-- <table class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 "> --}}
                     <thead class="text-black w-fit">
 
                         <tr class=" bg-indigo-200 w-fit flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
@@ -159,49 +168,36 @@
                     </thead>
 
                     <form method="GET" >
-
-                    <tbody class="flex-1 sm:flex-none w-fit">
-                    
-                        <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit">
- 
-                            <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap sm:w-fit">
-                                Jugar escondidas
-                            </td>
-                            <td scope="row" class="border  p-3  font-medium whitespace-nowrap uppercase text-black">
-                                <div class=" bg-gray-600 rounded-full ">
-                                    <div class="w-8/12  bg-purple-900  text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">70%</div> - 8/12</div>
-                                </div>
-                            </td>
+                        @foreach ($actividadesFamilia as $act)         
+                            <tbody class="flex-1 sm:flex-none w-fit">
                             
-                            <td class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ">
-                                <x-button class="w-30 px-1">
-                                    <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
-                                </x-button>
-                            </td>
+                                <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit">
+                                    
+                                    <td name="idactividad" hidden class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap">
+                                        {{$act->idactividad}} 
+                                    </td>
 
-                        </tr>
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap sm:w-fit">
+                                        {{$act->nombre}} 
+                                    </td>
 
-                        <tr class="flex flex-col sm:table-row mb-2 w-fit">
- 
-                            <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap w-fit">
-                                Saltar la cuerda
-                            </td>
-                            <td scope="row" class="border w-100 p-3  font-medium whitespace-nowrap uppercase text-black">
-                                <div class=" bg-gray-600 rounded-full">
-                                    <div class="w-12/12  bg-green-600  text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-white-700  rounded-full">100%</div>- 5/5</div>
-                                </div>
-                            </td>
-                            <td class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ">
-                                <x-button class="w-30 px-1">
-                                    <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
-                                </x-button>
-                            </td>
+                                    <td scope="row" class="border  p-3  font-medium whitespace-nowrap uppercase text-black">
+                                        <div class=" bg-gray-600 rounded-full ">
+                                            <div class="w-8/12  bg-purple-900  text-center rounded-full text-white"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">70%</div> - 8/12</div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ">
+                                        <x-button class="w-30 px-1">
+                                            <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+                                        </x-button>
+                                    </td>
 
-                        </tr>
+                                </tr>
 
-                        
-                    </tbody>
-                </form>
+                            </tbody>
+                        @endforeach
+                    </form>
                 </table>
             </div>
 
@@ -228,6 +224,75 @@
     </li>
 </ul> --}}
 <script>
+    let valFecDesde = "";
+    let valFecHasta = "";
+    let valSelFamilia = "";
+    const fecDesde = document.getElementById('iDesde');
+    const fecHasta = document.getElementById('iHasta');
+    const selFamilia =  document.getElementById('familiasFiltro');
+
+    fecDesde.addEventListener('change', function(e){
+     
+        valFecDesde = this.value;
+        BuscarActividades();
+
+     })
+
+    fecHasta.addEventListener('change', function(e){
+
+        valFecHasta = this.value
+        BuscarActividades();
+    })
+    
+    selFamilia.addEventListener('change', function(e){
+        
+        valSelFamilia = this.value;
+
+        BuscarActividades();
+    })
+
+    const BuscarActividades = () =>
+    { 
+        if(valSelFamilia && valFecHasta && valFecDesde)
+        {
+            $.ajax({
+                url: '/dashboard/filtrar/'+ valSelFamilia + '/'  + valFecDesde + '/'+ valFecHasta ,
+                type: 'GET',
+                success: function (response) {
+
+                    console.log(response);
+                    $("#tablaActividades tbody tr").each(function () {
+                        row = $(this);
+                     
+                        idactividad= row.find('td[name="idactividad"]').text().trim();
+
+                        ColCantDias= row.find('td[name="cantRealizado"]');
+                        ColCantDias.html("-"); 
+
+                        response.forEach(item => {
+                        
+                            if(item.idactividad == idactividad)
+                            {  console.log(item);
+                                ColCantDias.html(item.cantdiasfinalizados +  ' entre ' +  item.fecdesde + '-' + item.fechasta + '' );
+                            }
+
+                        });
+                
+                    });
+
+                    //alert("Hello: " + response[0].cantdiasfinalizados + " .\nCurrent Date and Time: " + response[1].cantdiasfinalizados);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                })
+
+        }
+        
+    }
 
 </script>
 

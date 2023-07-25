@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use \Illuminate\Support\Facades\URL;
+use resources\views\vendor\pagination;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') === 'production' or env('APP_ENV') === 'test') {
             URL::forceScheme('https');
         }
+        
     }
     
 
