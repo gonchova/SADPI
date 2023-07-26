@@ -15,8 +15,10 @@ class DashboardController extends Controller
     { User::select('users.*')->join('posts', 'posts.user_id', '=', 'users.id');
         
         $familias = User::where('idrol', 2)->orderby('name')->get();
-        $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad')
+        $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad', 
+                                                         'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados')
         ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')
+        ->join('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia')
         ->where('actividadesfamilia.idusuario',$familias[0]->id)->get();
 
                                                 //->where('fecdesde','>=', Carbon::Now())
@@ -33,8 +35,10 @@ class DashboardController extends Controller
         if($fechasta == null)
             $fechasta = Carbon::Now();
 
-        $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad')
+        $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad',
+                                                         'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados')
             ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')
+            ->join('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia') 
             ->where('actividadesfamilia.idusuario',$idfamilia)
             ->where('actividadesfamilia.fecdesde', '>=', $fecdesde)
             ->where('actividadesfamilia.fechasta', '<=', $fechasta)
