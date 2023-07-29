@@ -41,7 +41,7 @@ Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware
 Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
+Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}/{categoria}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
 
 Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
 Route::post('/actividades/asignacion/nueva',[AsignacionActividadesController::class,'save'])->middleware(['auth'])->name('asignacionActividades.save');
@@ -54,7 +54,7 @@ Route::get('/actividades/filtrar', [ActividadesController::class,'filtrar'])->mi
 Route::get('/actividades/editar/{idactividad}', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
 Route::put('/actividades/editar/{idactividad}', [ActividadesController::class,'update'])->middleware(['auth'])->name('actividades.update');
 
-Route::get('/actividades/comentarios', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
+Route::get('/actividades/comentario/{idactividadfamilia}', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
 Route::get('/actividades/realizado/{idfamilia}/{fecdesde}/{fechasta}', [ActividadesController::class,'obtenerRealizado'])->middleware(['auth'])->name('actividades.obtenerRealizado');
 
 Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialidades'])->middleware(['auth'])->name('getEspecialidades');

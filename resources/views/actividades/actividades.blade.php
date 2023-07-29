@@ -180,6 +180,7 @@
                         <x-button class="bg-green-600 px-3 font-medium ">
                             Nueva Actividad
                         </x-button>
+
                     </a>
             </div>
             

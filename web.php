@@ -43,7 +43,7 @@ Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middle
 Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
 Route::get('/actividades/filtrar', [ActividadesController::class,'filtrar'])->middleware(['auth'])->name('actividades.filtrar');
 Route::get('/actividades/editar', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
-Route::get('/actividades/dashboard', [ActividadesController::class,'dashboard'])->middleware(['auth'])->name('actividades.dashboard');
+//Route::get('/actividades/dashboard', [ActividadesController::class,'dashboard'])->middleware(['auth'])->name('actividades.dashboard');
 Route::get('/actividades/comentarios', [ActividadesController::class,'comentarios'])->middleware(['auth'])->name('actividades.comentarios');
 
 /* rutas familias */

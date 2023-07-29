@@ -4,10 +4,6 @@
             {{ __('Actividades') }}
         </h2>
     </x-slot> --}}
-
-    @php
-        $id = 4;
-    @endphp
     <!-- Main -->
 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
@@ -34,7 +30,7 @@
                                 <x-label class="sm:flex pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
                                 <select name="familiasFiltro" id="familiasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg border-gray-600  " >
                                     @foreach ($familias as $familia)
-                                        <option value={{$familia->id}}>{{$familia->name}}</option>
+                                        <option value= {{$familia->id}}  {{(old('familiasFiltro') == strtolower($familia->name)) ? 'selected' : '' }}>{{$familia->name}}</option>
                                     @endforeach
                                 
                                 </select>
@@ -58,9 +54,9 @@
                                 <x-label class=" pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
                                 <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
                                     <option value="" >Todas</option>
-                                    {{-- @foreach ($especialidades as $esp)
+                                    @foreach ($especialidades as $esp)
                                         <option value= {{$esp->idespecialidad}} {{(old('categoriasFiltro') == strtolower($esp->descripcion)) ? 'selected' : '' }}> {{$esp->descripcion}} </option>                      
-                                    @endforeach --}}
+                                    @endforeach 
                                 </select>
                             </div>   
 
@@ -152,35 +148,42 @@
                 <div class="container mx-1 sm:mx-2 ">
 
                     <table id = "tablaActividades" name="tablaActividades" class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">    
-                        <thead class="text-black w-fit">
+                        <thead id="headTable" name="headTable" class="text-black w-fit">
 
-                            <tr class=" bg-indigo-200 w-fit flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                                <th class="p-3 text-left border border-solid sm:w-2/5">Nombre Actividad</th>
-                                <th class="p-3 text-left border border-solid sm:w-3/5">Avance</th>
-                                <th class="p-3 text-left border border-solid sm:w-1/5" >Acciones</th>
+                            <tr name="titulos" class="hidden sm:visible bg-indigo-200 w-fit  flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                                <th class="p-3 text-left border border-solid sm:w-1/5">Nombre Actividad</th>
+                                <th class="p-3 text-left border border-solid sm:w-1/5">Período</th>
+                                <th class="p-3 text-left border border-solid sm:w-4/5">Avance</th>
+                                <th class="p-3 text-left border border-solid sm:w-10" >Acciones</th>
                             </tr>
+{{--                             
                             <tr class="sm:hidden w-fit bg-indigo-200 flex flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                                <th class="p-3 text-left border border-solid">Nombre Actividad</th>
-                                <th class="p-3 text-left border border-solid">Avance</th>
-                                <th class="p-3 text-left border border-solid sm:w-110 " >Acciones</th>
-                            </tr>
+                                <th class="p-2 text-left border border-solid">Nombre Actividad</th>
+                                <th class="p-2 text-left border border-solid">Período</th>
+                                <th class="p-2 text-left border border-solid">Avance</th>
+                                <th class="p-2 text-left border border-solid sm:w-110 " >Acciones</th>
+                            </tr> --}}
                         </thead>
 
                         <form method="GET" >
 
                                 <tbody class="flex-1 sm:flex-none w-fit">
                                 
-                                    <tr id = "fila" class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit ">
+                                    <tr id = "fila" class="flex flex-col sm:table-row sm:mb-0 w-fit ">
                                         
-                                        <td name="idactividad" hidden class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap">
+                                        <td name="idactividad" hidden class="border-grey-light border hover:bg-gray-100 p-2 whitespace-nowrap">
                                             {{-- {{$act->idactividad}}  --}}
                                         </td>
 
-                                        <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap sm:w-fit">
+                                        <td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
                                             {{-- {{$act->nombre}}  --}}
                                         </td>
+
+                                        <td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
+                                            {{-- {{$act->fecdesde}}  --}}
+                                        </td>
                                         
-                                        <td scope="row" class="border  p-3  font-medium whitespace-nowrap uppercase text-black">
+                                        <td scope="row" class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
                                              
                                             {{-- <div class=" bg-gray-600 rounded-full ">
                                                 <div class="w-8/12  bg-purple-900  text-center rounded-full text-white">
@@ -188,14 +191,14 @@
                                             </div>  --}}
 
                                             
-                                            <div hidden  valor = "" class= "mt-2 bg-purple-900 py-1 text-center rounded-full"  style="" >
+                                            <div hidden  valor = "" class= "mt-0 bg-purple-900 py-0 text-center rounded-full"  style="" >
                                                 <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
                                                     {{-- {{ceil(($act->cantdiasfinalizados *100)/$act->cantdias). "%"}} --}}
                                                 </div>
                                             </div>
                                         </td>
 
-                                        <td hidden class="border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap">
+                                        <td hidden class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
                                             {{-- <button  class="w-30 px-1 items-center py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:bg-purple-300 focus:text-black active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"  >
                                                 <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
                                             </button> --}}
@@ -213,11 +216,11 @@
         
     </div> 
 
-    <button hidden id = "btnComentarios" class="w-30 px-1 items-center py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:bg-purple-300 focus:text-black active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"  >
-        <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a>
+    <button hidden id = "btnComentarios" class="w-30 px-1 py-0 sm:p-2 items-center bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:bg-purple-300 focus:text-black active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"  >
+        {{-- <a href="{{route('actividades.comentarios')}}" class="font-medium ">Comentarios</a> --}}
     </button>
     
-    <div hidden id = "barraProgeso" valor = "" class= "mt-2 bg-purple-900 py-1 text-center rounded-full" > 
+    <div hidden id = "barraProgeso" valor = "" class= " bg-purple-900 p-0 my-3 sm:my-0 text-center rounded-full" > 
          <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
             {{-- {{ceil(($act->cantdiasfinalizados *100)/$act->cantdias). "%"}} --}}
         </div>
@@ -231,10 +234,12 @@
     let valFecDesde = "";
     let valFecHasta = "";
     let valSelFamilia = "";
+    let valSelCategoria = 0;
 
     const fecDesde = document.getElementById('iDesde');
     const fecHasta = document.getElementById('iHasta');
     const selFamilia =  document.getElementById('familiasFiltro');
+    const selCategoria =  document.getElementById('categoriasFiltro');
 
 
     fecDesde.addEventListener('change', function(e){
@@ -247,6 +252,7 @@
     fecHasta.addEventListener('change', function(e){
 
         valFecHasta = this.value
+        
         BuscarActividades();
     })
     
@@ -257,55 +263,118 @@
         BuscarActividades();
     })
 
+    selCategoria.addEventListener('change', function(e){
+        
+        valSelCategoria = this.value;
+        
+        if (!valSelCategoria)
+            valSelCategoria = 0;
+
+        BuscarActividades();
+    })
+
     const BuscarActividades = () =>
     { 
         if(valSelFamilia && valFecHasta && valFecDesde)
-        {
+        {   
+                
             $.ajax({
-                url: '/dashboard/filtrar/'+ valSelFamilia + '/'  + valFecDesde + '/'+ valFecHasta ,
+                url: '/dashboard/filtrar/'+ valSelFamilia + '/' + valFecDesde + '/' + valFecHasta + '/' + valSelCategoria,
                 type: 'GET',
                 success: function (response) {
 
                     $('#tablaActividades tbody').empty();
                     
                     const btnComentariosClass =  document.getElementById('btnComentarios').className; 
-                    const barraProgresoClass =  document.getElementById('barraProgeso').className; 
-                    
+                    //const titulosTabla =  document.getElementById('titulos').className; 
+                    const titulos = document.getElementsByName('titulos');
+                                        
                     response.forEach(item => {
-                        
-                        $('#tablaActividades')
+                         var urlcomentarios = "/actividades/comentario/";    
+                         urlcomentarios =  urlcomentarios.concat(item.idactividadfamilia);
+
+                        if (item.cantdiasfinalizados != item.cantdias)
+                        {
+                            color = "bg-purple-900"
+                        }
+                        else
+                        {
+                            color = "bg-green-600"
+                        }
+
+                        $('#tablaActividades thead')
                         .append(
-                            $('<tr "id"= "item-'+item.idactividadfamilia+'" "name"= "items-'+item.idactividadfamilia+'" class="flex flex-col sm:table-row mb-2 sm:mb-0 w-fit">')
+                            $('<tr class="bg-indigo-200 w-full flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">')
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-1/5 sm:hidden"   >')
+                                .append(
+                                    'Actividades'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-1/5 sm:hidden"  >')
+                                .append(
+                                   'bbbbb'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-4/5 sm:hidden"  > ')
+                                
+                                .append(
+                                   'ccccc'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-10 sm:hidden"  >')
+                                .append(
+                                    
+                                  'ddddd'
+                                )
+                            )
+                        )     
+                       
+
+                        $('#tablaActividades tbody')
+                         .append(
+                            $('<tr "id"= "item-'+item.idactividadfamilia+'" "name"= "items-'+item.idactividadfamilia+'" class="flex flex-col  sm:table-row  sm:mb-0 w-fit">')
                             .append(
                                 $('<td name=itemActividad>')
                                 .append(
                                     item.nombre
-                                ).addClass('border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap sm:w-fit')
+                                ).addClass('border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit')
                             )
                             .append(
-                                $('<td>')
+                                $('<td name=periodo >')
                                 .append(
-                                    $('<div class="bg-gray-600 rounded-full">')                                    
-                                    )
+                                    item.fecdesde + " al " +  item.fechasta 
+                                ).addClass('border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit')
+                            )
+                            .append(
+                                $('<td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit"> ')
+                                
                                 .append(
-                                    $('<div>').addClass(barraProgresoClass).css("width", Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))  + "%")
+                                    $('<div>').addClass(color + " p-0 sm:my-0 text-center rounded-full").css("width", Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))  + "%")
                                     .append('<div class="w-8/12  bg-purple-900  text-center rounded-full text-white">')
-                                    .append( $('<div>').addClass('text-white text-sm inline-block bg-purple-700  rounded-full').append( Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))+ "% - " ).append(item.cantdiasfinalizados +"/"+item.cantdias))            
+                                    .append( $('<div title=' + (item.cantdiasfinalizados +"/"+item.cantdias) + '>').addClass('text-white text-sm inline-block bg-purple-700  rounded-full').append( Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))+ "%" ))            
 
                                     )
                             )
                             .append(
-                                $('<td>').addClass("border-grey-light border p-2 hover:bg-gray-100 whitespace-nowrap ")
+                                $('<td>').addClass("border-grey-light border hover:bg-gray-100 px-1 py-3 mb-2  sm:py-0 whitespace-nowrap sm:w-fit")
                                 .append(
-                                    $('<button type="button" id="btnComentarios-'+item.idactividadfamilia+'" onclick="{{route('actividades.comentarios')}}">').addClass(btnComentariosClass)
-                                    .append('Comentarios')
+                                    
+                                    $("<a href=" + urlcomentarios + "></a>")
+                                     .append(
+                                         $('<button type="button"  id="btnComentarios-'+item.idactividadfamilia+'" >').addClass(btnComentariosClass).append('Comentarios')
+                                     )
                                 )
+                                .append('<span class="inline-flex items-center justify-center px-2 text-xs font-bold leading-none text-purple-600 bg-indigo-200 rounded-full">' + item.cantcomentarios +'</span>')
                             )
                         )     
-                     
-                });
+                        
+                    });
 
-                  
+               
 
                 },
                 failure: function (response) {

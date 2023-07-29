@@ -97,6 +97,7 @@
                                     <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
                                         <x-button class="px-2 bg-red-600" id="btnEliminar">
                                             <a href="#" class="font-medium">Eliminar</a>
+                                            
                                         </x-button>
                                     </td>
                                 </tr>

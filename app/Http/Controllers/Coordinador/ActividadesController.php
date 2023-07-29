@@ -7,6 +7,7 @@ use App\Models\Especialidades;
 use Illuminate\Http\Request;
 
 use App\Models\Actividades;
+use App\Models\ActividadComentario;
 use App\Models\ActividadesAvances;
 use App\Models\ActividadesFamilia;
 use App\Models\IntentosJuego;
@@ -65,14 +66,20 @@ class ActividadesController extends Controller
     }
 
     public function dashboard()
-    { 
+    {  
+        
+
         return view("actividades.dashboard");
 
     }
 
-    public function comentarios()
-    { 
-        return view("actividades.comentarios");
+    public function comentarios($idactividadfamilia)
+    {  
+        $comentarios = Actividadcomentario::where('idactividadfamilia',$idactividadfamilia)->get();
+        $actividadFamilia = ActividadesFamilia::find($idactividadfamilia);
+        $nombreFamilia = User::where('id', $actividadFamilia->idusuario)->first('name');
+
+        return view("actividades.comentarios", compact('comentarios','actividadFamilia','nombreFamilia'));
 
     }
 
