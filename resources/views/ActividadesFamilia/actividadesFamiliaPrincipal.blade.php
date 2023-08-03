@@ -24,22 +24,32 @@
                 
                 <div class="px-6 pt-4 pb-2 mt-auto">
                     <x-label>
-                        <div>Avance de la Actividad: {{$act->intentosjuego}} aa</div>
+                        <div>Período: {{date("d/m/Y", strtotime($act->fecdesde))}} al {{date("d/m/Y", strtotime($act->fechasta))}}  </div>
                     </x-label>
+
+                    <x-label>
+                        <div>Avance de la Actividad: {{$act->intentosjuego}} </div>
+                    </x-label>
+
                     <div class="mt-2 bg-gray-600 rounded-full">
                         @php
+                            $desdeFecha = new DateTime($act->fecdesde); 
+                            $hastaFecha = new DateTime($act->fechasta);
+                            $diasActividad = $desdeFecha->diff($hastaFecha)->format("%r%a")+1;
+
                             if($act->actividadesAvances)
                             { 
                                 $cantfinalizado = $act->actividadesAvances->cantdiasfinalizados;
+                                
                             }
                             else 
                             {
                                 $cantfinalizado = 0;
                             };
                         @endphp
-                        <div name = "barraProgeso" valor = "{{ ($cantfinalizado *100)/$act->cantdias }}" class= "mt-2 bg-purple-900 py-1 text-center rounded-full"  style= {{"width:" .  ($cantfinalizado *100)/$act->cantdias  ."%" }}>
+                        <div name = "barraProgeso" valor = "{{ ($cantfinalizado *100)/$diasActividad }}" class= "mt-2 bg-purple-900 py-1 text-center rounded-full"  style= {{"width:" .  ($cantfinalizado *100)/$diasActividad  ."%" }}>
                             <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
-                                {{ceil(($cantfinalizado *100)/$act->cantdias). "%"}}
+                                {{ceil(($cantfinalizado *100)/$diasActividad)."%"}}
                             </div>
                         </div>
                     </div>

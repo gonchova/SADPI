@@ -19,11 +19,12 @@ class actividadesFamiliaPrincipalController extends Controller
     {
       $idUsuario = Auth::user()->id;
 
-      $actividadesFlia = ActividadesFamilia::where('idusuario', $idUsuario)->get();
-        // ->where('fecdesde','<=', Carbon::now())
-        // ->where('fechasta','>=', Carbon::now());
-      //dd($actividadesFlia[0]->actividades->nombre);
-      
+      $actividadesFlia = ActividadesFamilia::where('idusuario', $idUsuario)
+        ->where('fecdesde','<=', Carbon::now())
+        ->where('fechasta','>=', Carbon::now())
+        ->orderBy('fecdesde', 'ASC')->orderBy('fechasta', 'ASC')
+        ->get();
+              
       return view('actividadesFamilia.actividadesFamiliaPrincipal', compact('actividadesFlia'));
     }
 
@@ -39,20 +40,17 @@ class actividadesFamiliaPrincipalController extends Controller
     }
 
     public function save(Request $request, string $idactividadfamilia)
-    {
+    {   
         $observaciones = $request->get('observaciones');
-        // $idUsuario = Auth::user()->id;
 
         if(!$idactividadfamilia)
           return back()->withErrors('Actividad no encontrada, no se actualizan los datos'); 
-        // $rules = ['idactividad' => 'required'];
-        // $messages = ['idactividad.required' => 'no se pudo obtener un id de actividad' ];
 
         // $this->validate($request, $rules, $messages);
+        $actividadesFlia = ActividadesFamilia::find($idactividadfamilia);
 
         //verifico si no grabo hoy una activadad realizada
-        $actividadAvance = ActividadesAvances::where('idactividadfamilia',$idactividadfamilia)
-            ->first();
+        $actividadAvance = ActividadesAvances::where('idactividadfamilia',$idactividadfamilia)->first();
 
         if ($actividadAvance)
         { 
@@ -62,31 +60,51 @@ class actividadesFamiliaPrincipalController extends Controller
           { 
             if($actividadAvance->ultimodiarealizada == Carbon::now()->format('Y-m-d') )
             { 
-              return back()->withErrors('La Actividad del día ya fue realizada.'); 
-            }
-
-            $actividadesFlia = ActividadesFamilia::find($idactividadfamilia);
-
-            if ($actividadAvance->cantdiasfinalizados >= $actividadesFlia->cantdias)
-            {
-                return back()->withErrors("Ya se han realizado todas las actividades.\n Puede continuar sin confirmar la realización.");
+            
+              if($actividadAvance->estado == 'F') // Dia completado
+              {
+                  return back()->withErrors("Ya se han realizado todas los intentos del día.". "\n" . "Puede continuar sin confirmar la realización.");
+              }
             }
 
             $actividadAvance->ultimodiarealizada = Carbon::now();
-            $actividadAvance->cantdiasfinalizados += 1;
-            $actividadAvance->estado = 'A'; //Activa
-            $actividadAvance->save();
+            $actividadAvance->cantintentosdiafinalizados +=1;
+            $actividadAvance->estado = 'A'; //Activa  Nuevo dia
+            $msgCantRealizado = $actividadAvance->cantintentosdiafinalizados;
+
+            if($actividadAvance->cantintentosdiafinalizados == $actividadesFlia->cantdia)
+            { 
+              $actividadAvance->cantintentosdiafinalizados = 0;
+              $actividadAvance->cantdiasfinalizados += 1;
+              $actividadAvance->estado = 'F'; // Dia completado
+              
+            }
             
+            $actividadAvance->save();
+
           }
         }
         else  
-        {
-          //puede grabar nueva actividad
+        { 
+          $cantdiasfinalizados=0;
+          $estado = 'N';
+          
+          $msgCantRealizado = 1;
+
+          if($actividadesFlia->cantdia == 1 )
+          {
+            $cantdiasfinalizados=1;
+            $estado = 'F';
+            
+          }
+
+          //puede grabar nueva actividad avance
           $actividadAvance = ActividadesAvances::create([
             'idactividadfamilia' => $idactividadfamilia,
-            'cantdiasfinalizados' => 1,
+            'cantdiasfinalizados' => $cantdiasfinalizados,
+            'cantintentosdiafinalizados' => 1,
             'ultimodiarealizada' => Carbon::now(),
-            'estado' => 'N' //Nueva
+            'estado' => $estado 
           ]
           );
 
@@ -104,8 +122,8 @@ class actividadesFamiliaPrincipalController extends Controller
           ]);
 
       }
-
-      return back()->with('mensaje', 'Actividad del dia realizada!');
+      
+    return back()->with('mensaje', 'Actividad del dia realizada! (' . $msgCantRealizado  . ' de ' . $actividadesFlia->cantdia . ')');
     }
 
 

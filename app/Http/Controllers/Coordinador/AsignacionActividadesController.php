@@ -33,6 +33,13 @@ class AsignacionActividadesController extends Controller
         $fecHasta = $request->get('fecHasta');
         $idUsuario = $request->input('idFamilia');
 
+        if (!$idUsuario) 
+        { 
+            $dataReturn['status'] = false;
+            $dataReturn['message'] = 'Debe seleccionar una familia';
+            array_push($data,$dataReturn);
+        }
+
         if (!$ActividadesSel) 
         { 
             $dataReturn['status'] = false;
@@ -81,7 +88,6 @@ class AsignacionActividadesController extends Controller
             if($actividadSolapada)
             {
                 $dataReturn['status'] = false;
-                
             
                 $mensaje =  'Las fechas seleccionadas se solapan con las siguientes actividades asignadas previamente: ' ;
 
@@ -112,7 +118,7 @@ class AsignacionActividadesController extends Controller
                 $actividadflia->idactividad = $actflia['idactividad'];
                 $actividadflia->fecdesde = $fecDesde;
                 $actividadflia->fechasta = $fecHasta;
-                $actividadflia->cantdias = $actflia['cantidad'];
+                $actividadflia->cantdia = $actflia['cantidad'];
 
                 // DB::transaction(function () use ($actividadflia)                 { 
                 $actividadflia->save();

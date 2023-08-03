@@ -62,7 +62,9 @@ Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialid
 
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
-Route::get('/colocarFicha', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
+Route::get('/colocarFicha/{idactividadfamilia}', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
+Route::post('/colocarFicha/save/{idactividadfamilia}/{idfamilia}', [JuegoFichasController::class,'save'])->middleware(['auth'])->name('save');
+
 
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
 

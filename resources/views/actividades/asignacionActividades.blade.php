@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm ">Asignación de Actividades</h2>
     </div>
@@ -7,38 +7,38 @@
     <div class="flex flex-row justify-center" >
         <div id="mensajeOk" class="py-0 my-1" ></div>
     </div>
-
-    <div id="defaultModalerror" tabindex="-1" aria-hidden="true" class="flex rounded-lg mt-2 mb-2 justify-center align-center fixed mx-150 my-center hidden w-auto p-4  overflow-y-auto inset-0 h-[calc(100%-1rem)] ">
-        <div class="relative w-[50%] max-w-2xl max-h-full ">
+    
+    <div id="defaultModalerror" data-modal-target = "defaultModalerror" tabindex="-1" aria-hidden="true" class="rounded-lg mt-2 mb-2 justify-center align-center fixed mx-100 my-center hidden w-full overflow-y-auto inset-0 h-[calc(100%-1rem)] ">
+        <div class="relative w-full px-10 pt-10 justify-center">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow mt-10 align-center">
+            <div class="relative bg-white rounded-lg shadow mt-10  justify-center">
                 <!-- Modal header -->
-                <div class="flex flex-wrap items-start justify-center p-3 border-b rounded-t  ">
+                <div class="flex flex-wrap items-start justify-center p-3 border-b rounded-t  mx-center ">
                     <h3 class="text-xl font-semibold text-gray-900">
                         Errores al asignar actividades
                     </h3>
                 </div>
                 <!-- Modal body -->
-                <div class="flex flex-row flex-wrap p-3 space-y-4">
+                <div class="flex flex-row flex-wrap p-3 space-y-4 justify-center">
                     <p class=" text-black">
                         <div class="flex flex-row justify-center" >
                             <ul> 
-                                <li id="listaErrores" class="py-0 my-1" ></li>
+                                <li id="listaErrores" class="py-0 my-1 mx-center" ></li>
                             </ul>
                         </div> 
                     </p>
                 </div>
                 <!-- Modal footer -->
-                <div class="flex flex-row p-4 space-x-2 border-t border-gray-200 rounded-b justify-center">
+                <div class="flex flex-row p-4 space-x-2 border-t border-gray-200 rounded-b justify-center mx-center">
                     <x-button id="AceptarModalError" name="Aceptar" data-modal-hide="defaultModalerror" type="button" class="px-2" >Aceptar</x-button>
                 </div>
         
             </div>
         </div>
     </div>
-    
-    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
 
+
+    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
  
         <div class="flex flex-row flex-wrap px-4 justify-center">  
             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="familiaFiltro" :value="__('Familia:')" />
@@ -95,7 +95,7 @@
                                 <tr class="flex justify-center bg-indigo-200 flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                     <th class="p-3 text-left border border-solid ">Sel</th>
                                     <th class="p-3 text-left border border-solid">Nombre Actividad</th>
-                                    <th class="p-3 text-center border border-solid">Cant. por Período</th>
+                                    <th class="p-3 text-center border border-solid">Cant. por Día</th>
                                     <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
                                     <th class="p-3 text-left border border-solid ">Realizado</th>
                                 </tr>
@@ -110,7 +110,7 @@
                                         <tr class="flex justify-center sm:hidden bg-indigo-200  flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                             <th class="p-3 text-left border border-solid ">Sel</th>
                                             <th class="p-3 text-left border border-solid">Nombre Actividad</th>
-                                            <th class="p-3 text-center border border-solid">Cant. por Período</th>
+                                            <th class="p-3 text-center border border-solid">Cant. por Día</th>
                                             <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
                                             <th class="p-3 text-left border border-solid ">Realizado</th>
                                         </tr>

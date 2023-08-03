@@ -22,10 +22,9 @@
                 <div class="flex-full items-center justify-between pb-4">
                     
                     <form method="GET" >
+
                         <div class="flex-full inline-flex flex-wrap px-4">   
 
-                        
-                            
                             <div  class="mx-2 w-48 shrink flex-wrap">
                                 <x-label class="sm:flex pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Familia:')" />
                                 <select name="familiasFiltro" id="familiasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg border-gray-600  " >
@@ -71,11 +70,17 @@
                     
                                         <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
                                         <x-input class="mx-auto" id="iHasta" name="iHasta" type="date" min="" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
+                                        <div id="status" class = "hidden mt-1" >
+                                            <svg aria-hidden="true" class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                            </svg>
+                                        </div> 
                                     </div>
+
                                 </div>
                             </div>
-                            
-
+                                  
                         </div>  
                             
                     </form>
@@ -206,9 +211,11 @@
 
                                     </tr>
 
+
                                 </tbody>
 
                         </form>
+   
                     </table>
                 </div>
 
@@ -240,8 +247,10 @@
     const fecHasta = document.getElementById('iHasta');
     const selFamilia =  document.getElementById('familiasFiltro');
     const selCategoria =  document.getElementById('categoriasFiltro');
+    const spinner =  document.getElementById('status');
 
-
+    valSelFamilia=selFamilia.value;
+    
     fecDesde.addEventListener('change', function(e){
      
         valFecDesde = this.value;
@@ -273,11 +282,23 @@
         BuscarActividades();
     })
 
+    function formateaFecha(sFecha)
+    {   
+        if(sFecha)
+        { 
+            const date = new Date(sFecha);
+            return date.toLocaleDateString('en-GB');
+        }
+        
+        return sFecha;
+    }
+
     const BuscarActividades = () =>
     { 
         if(valSelFamilia && valFecHasta && valFecDesde)
         {   
-                
+            spinner.classList.remove('hidden');
+
             $.ajax({
                 url: '/dashboard/filtrar/'+ valSelFamilia + '/' + valFecDesde + '/' + valFecHasta + '/' + valSelCategoria,
                 type: 'GET',
@@ -292,8 +313,10 @@
                     response.forEach(item => {
                          var urlcomentarios = "/actividades/comentario/";    
                          urlcomentarios =  urlcomentarios.concat(item.idactividadfamilia);
+                         let diferencia = new Date(item.fechasta) - new Date(item.fecdesde);
+                         let cantDiasActividad = Math.ceil(diferencia / (1000 * 3600 * 24)) + 1;
 
-                        if (item.cantdiasfinalizados != item.cantdias)
+                        if (item.cantdiasfinalizados != cantDiasActividad)
                         {
                             color = "bg-purple-900"
                         }
@@ -314,21 +337,20 @@
                             .append(
                                 $('<th class="p-3 text-left border border-solid sm:w-1/5 sm:hidden"  >')
                                 .append(
-                                   'bbbbb'
+                                   'Período'
                                 )
                             )
                             .append(
                                 $('<th class="p-3 text-left border border-solid sm:w-4/5 sm:hidden"  > ')
                                 
                                 .append(
-                                   'ccccc'
+                                   'Avance'
                                 )
                             )
                             .append(
                                 $('<th class="p-3 text-left border border-solid sm:w-10 sm:hidden"  >')
                                 .append(
-                                    
-                                  'ddddd'
+                                  'Acciones'
                                 )
                             )
                         )     
@@ -346,16 +368,16 @@
                             .append(
                                 $('<td name=periodo >')
                                 .append(
-                                    item.fecdesde + " al " +  item.fechasta 
+                                    formateaFecha(item.fecdesde) + " al " + formateaFecha(item.fechasta) 
                                 ).addClass('border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit')
                             )
                             .append(
                                 $('<td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit"> ')
                                 
                                 .append(
-                                    $('<div>').addClass(color + " p-0 sm:my-0 text-center rounded-full").css("width", Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))  + "%")
+                                    $('<div>').addClass(color + " p-0 sm:my-0 text-center rounded-full").css("width", Math.ceil(((item.cantdiasfinalizados *100)/cantDiasActividad))  + "%")
                                     .append('<div class="w-8/12  bg-purple-900  text-center rounded-full text-white">')
-                                    .append( $('<div title=' + (item.cantdiasfinalizados +"/"+item.cantdias) + '>').addClass('text-white text-sm inline-block bg-purple-700  rounded-full').append( Math.ceil(((item.cantdiasfinalizados *100)/item.cantdias))+ "%" ))            
+                                    .append( $('<div title=' + (item.cantdiasfinalizados +"/"+cantDiasActividad) + '>').addClass('text-white text-sm inline-block bg-purple-700  rounded-full').append( Math.ceil(((item.cantdiasfinalizados *100)/cantDiasActividad))+ "%" ))            
 
                                     )
                             )
@@ -374,14 +396,16 @@
                         
                     });
 
-               
+                    spinner.classList.add('hidden');
 
                 },
                 failure: function (response) {
                     alert(response.responseText);
+                    spinner.classList.add('hidden');
                 },
                 error: function (response) {
                     alert(response.responseText);
+                    spinner.classList.add('hidden');
                 }
                 })
 

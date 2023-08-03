@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
         $familias = User::where('idrol', 2)->orderby('name')->get();
         $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad', 
-                                                         'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados',
+                                                         'actividadesfamilia.cantdia','actividadesavances.cantdiasfinalizados',
                                                          'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta')
         ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')
         ->join('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia')
@@ -41,7 +41,7 @@ class DashboardController extends Controller
             $fechasta = Carbon::Now();
 
         $actividadesFamilia = ActividadesFamilia::select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad',
-                                                         'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados', 
+                                                         'actividadesfamilia.cantdia','actividadesavances.cantdiasfinalizados', 
                                                          'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta',
                                                           DB::raw('count(actividadcomentario.idactividadfamilia) as cantcomentarios'))
             ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')
@@ -58,34 +58,9 @@ class DashboardController extends Controller
                 }
             )
             ->groupBy('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad',
-            'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados', 
+            'actividadesfamilia.cantdia','actividadesavances.cantdiasfinalizados', 
             'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta')
             ->get();
-
-
-                // $query = DB::table('actividadesfamilia')
-                // ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')         
-                // ->leftjoin('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia') 
-                // ->where('actividadesfamilia.idusuario',$idfamilia)
-                // ->where('actividadesfamilia.fecdesde', '>=', $fecdesde)
-                // ->where('actividadesfamilia.fechasta', '<=', $fechasta)
-                // ->where(function($query) use ($categoria)
-                // {
-                //     if($categoria != "0")
-                //         $query->where('actividades.idespecialidad', $categoria); 
-
-                // })
-
-                // ->select('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad',
-                // 'actividadesfamilia.cantdias','actividadesavances.cantdiasfinalizados', 
-                // 'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta');
-                
-                // $actividadesFamilia=$query->get();
-
-
-            // ->where('actividades.idespecialidad', $categoria == '0' ?  'actividades.idespecialidad' : $categoria)
-            // ->get();
-    
 
         return $actividadesFamilia;
 

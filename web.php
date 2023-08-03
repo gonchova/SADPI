@@ -49,6 +49,7 @@ Route::get('/actividades/comentarios', [ActividadesController::class,'comentario
 /* rutas familias */
 Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
 Route::get('/colocarFicha', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
+Route::get('/colocarFicha/{idactividadfamilia}', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
 
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
 

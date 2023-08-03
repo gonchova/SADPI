@@ -15,9 +15,9 @@
             <li class="text-red-600 py-0 my-1" >{{$err}}</li>
         @endforeach
         </ul>
-    </div>  
+    </div>
     @endif
-    
+
     <div class="flex flex-wrap justify-center mx-4 ">
     <form method="POST"  id="formulario" action="{{ route('actividadesFamilia.save',$idactividadfamilia)}}">
         @csrf
@@ -83,7 +83,7 @@
 
                 <div class="flex flex-row mt-2 justify-center">
                     <div class="flex flex-col m-2 justify-center w-auto">
-                        <x-button type="submit"  class="my-2 px-1 mx-auto">
+                        <x-button type="submit"  class="my-2 px-1 mx-auto" id="btnActividadRealizada">
                             Actividad del día realizada
                         </x-button>
                                                        

@@ -22,7 +22,7 @@ class ActividadesFamilia extends Model
         'idactividad',
         'fecdesde',
         'fecdasta',
-        'cantdias'
+        'cantdia'
     ];
     // una ActividadFamila tiene un idactividad
     public function actividades() 
