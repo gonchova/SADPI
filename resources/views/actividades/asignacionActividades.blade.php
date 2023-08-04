@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
+    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-2 sm:mx-4 ">
  
         <div class="flex flex-row flex-wrap px-4 justify-center">  
             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="familiaFiltro" :value="__('Familia:')" />
@@ -53,14 +53,15 @@
         </div>   
 
         <div class="flex flex-row justify-center mt-2 ">  
-            <div class="flex  flex-col pb-1 px-1  justify-center ">
+            <div class="flex flex-col pb-1 px-1  justify-center ">
                 <div class="flex flex-row w-full justify-center ">
                     <x-label class="flex pb-2 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Período de la actividad')" />    
                 </div>  
-                <div class="flex flex-row w-full gap-1">
+                <div class="flex flex-row flex-wrap gap-1">
                     <x-label class="hidden sm:flex pt-3 pb-2 pl-1 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
-                    <x-input class="px-2" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
-
+                    <x-input class="mx-auto" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
+               
+          
                     <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
                     <x-input class="mx-auto" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
                 </div>
@@ -71,7 +72,7 @@
         <form method="GET" action="{{route("asignacionActividades.filtrar")}}" id="formulario" name="formulario" >
         
         <div class="flex flex-col pt-4 ">
-            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
+            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2 mx-1 sm:mx-4 ">
                 <div class="flex flex-row">
                     <x-label class="text-xs sm:text-sm hidden sm:flex ml-4 pl-4 pt-3 pb-2" for="filtroActividad" :value="__('Buscar:')" />
                     <div>
@@ -85,17 +86,17 @@
                     </div>
                 </div>
 
-                <div class="flex  items-center justify-between pb-4 ">
+                <div class="flex items-center justify-between pb-4 ">
 
-                    <div class="container mx-1 sm:mx-2 ">
+                    <div class="container mx-0 sm:mx-2 ">
                     
-                        <table id = "tablaActividades" name="tablaActividades" class="sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
+                        <table id = "tablaActividades" name="tablaActividades" class=" sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
                             <thead class="text-black ">
     
                                 <tr class="flex justify-center bg-indigo-200 flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                     <th class="p-3 text-left border border-solid ">Sel</th>
-                                    <th class="p-3 text-left border border-solid">Nombre Actividad</th>
-                                    <th class="p-3 text-center border border-solid">Cant. por Día</th>
+                                    <th class="p-3 text-left sm:text-center border border-solid">Actividad</th>
+                                    <th class="p-3 text-center border border-solid">Cant. Diaria</th>
                                     <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
                                     <th class="p-3 text-left border border-solid ">Realizado</th>
                                 </tr>
@@ -109,8 +110,8 @@
                                         
                                         <tr class="flex justify-center sm:hidden bg-indigo-200  flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                             <th class="p-3 text-left border border-solid ">Sel</th>
-                                            <th class="p-3 text-left border border-solid">Nombre Actividad</th>
-                                            <th class="p-3 text-center border border-solid">Cant. por Día</th>
+                                            <th class="p-3 text-left sm:text-centert border border-solid">Actividad</th>
+                                            <th class="p-3 text-center border border-solid">Cant. Diaria</th>
                                             <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
                                             <th class="p-3 text-left border border-solid ">Realizado</th>
                                         </tr>
@@ -123,7 +124,7 @@
                             <tbody class="flex-1 sm:flex-none" >
                             
                                 @foreach ($actividades as $act)                            
-                                    <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-60 md:w-fit">
+                                    <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-50 md:w-fit">
                                         <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap justify-center">
                                             <div class="flex flex-row justify-center py-1">
                                                 <x-input type="checkbox" name="chkItem" id="chkItem" ></x-input>
@@ -187,6 +188,9 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="flex flex-row mx-4 pb-1">
+                <a href="">{{ $actividades->links('vendor.pagination.tailwind') }}</a> 
             </div>
         </form> 
             <div class="mx-6 my-3">
@@ -264,7 +268,7 @@ $(document).ready(function(){
                         ColCantDias.html("-"); 
                         response.forEach(item => {
                           
-                            if(item.idactividad == idactividad)
+                            if(item.idactividad == idactividad && item.cantdiasfinalizados != 0)
                             {  console.log(item);
                                ColCantDias.html(item.cantdiasfinalizados +  ' entre ' +  item.fecdesde + '-' + item.fechasta + '' );
                             }
@@ -273,7 +277,6 @@ $(document).ready(function(){
                 
                     });
 
-                    //alert("Hello: " + response[0].cantdiasfinalizados + " .\nCurrent Date and Time: " + response[1].cantdiasfinalizados);
                     },
                     failure: function (response) {
                         alert(response.responseText);

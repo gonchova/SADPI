@@ -62,7 +62,7 @@ class Actividades extends Model
         $query->leftjoin('especialidades', 'especialidades.idespecialidad','=','actividades.idespecialidad');
         //$query->leftjoin('especialidades', 'especialidades.idespecialidad','=','actividades.idespecialidad');
         
-        return $query->paginate(4, ['actividades.idactividad AS idactividad','actividades.descripcion AS descripcion', 'actividades.nombre AS nombre', 'especialidades.descripcion AS esp_desc']);
+        return $query->paginate(10, ['actividades.idactividad AS idactividad','actividades.descripcion AS descripcion', 'actividades.nombre AS nombre', 'especialidades.descripcion AS esp_desc']);
         //return $query->get();
         //return $query->get( ['actividades.descripcion', 'especialidades.descripcion AS esp_desc']);
     }

@@ -48,7 +48,7 @@ Route::post('/actividades/asignacion/nueva',[AsignacionActividadesController::cl
 Route::get('/actividades/asignacion/filtrar',[AsignacionActividadesController::class,'filtrar'])->middleware(['auth'])->name('asignacionActividades.filtrar');
 Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
 Route::post('/actividades/nueva',[ActividadesController::class,'save'])->middleware(['auth'])->name('actividades.save');
-Route::delete('/actividades/eliminar/{id}',[ActividadesController::class,'eliminar'])->middleware(['auth'])->name('actividades.eliminar');
+Route::delete('/actividades/eliminar/{id}/{confirmaeliminacion}',[ActividadesController::class,'eliminar'])->middleware(['auth'])->name('actividades.eliminar');
 Route::get('/actividades', [ActividadesController::class,'index'])->middleware(['auth'])->name('actividades');
 Route::get('/actividades/filtrar', [ActividadesController::class,'filtrar'])->middleware(['auth'])->name('actividades.filtrar');
 Route::get('/actividades/editar/{idactividad}', [ActividadesController::class,'editar'])->middleware(['auth'])->name('actividades.editar');
@@ -61,9 +61,11 @@ Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialid
 
 
 /* rutas familias */
-Route::get('/animalesIA', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
+Route::get('/animalesIA/{idactividadfamilia}', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
+Route::post('/animalesIA/save/{idactividadfamilia}/{idfamilia}', [JuegoAnimalesController::class,'save'])->middleware(['auth'])->name('saveAnimales');
+
 Route::get('/colocarFicha/{idactividadfamilia}', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
-Route::post('/colocarFicha/save/{idactividadfamilia}/{idfamilia}', [JuegoFichasController::class,'save'])->middleware(['auth'])->name('save');
+Route::post('/colocarFicha/save/{idactividadfamilia}/{idfamilia}', [JuegoFichasController::class,'save'])->middleware(['auth'])->name('saveFichas');
 
 
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');

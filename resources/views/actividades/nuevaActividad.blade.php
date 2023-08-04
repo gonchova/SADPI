@@ -35,7 +35,7 @@
                 <x-input id="nombre" class="block mt-1 w-full h-10" type="text" name="nombre" :value="old('nombre')" required autofocus  />
             </div>
             
-            <div class="w-30 sm:w-1/2">
+            <div class="w-full">
                 <x-label class="pt-2 " for="descripcionActividad" :value="__('Descripción:')" />
                 <textarea id="descripcion" name="descripcion" class="w-full  h-10" rows='1' placeholder='' >{{old('descripcion')}}</textarea>
             </div>
@@ -108,13 +108,13 @@
             </div>
 
            <div class="flex justify-center mb-2">
-                <x-button class="mt-5 mx-2"  id="btnGuardar">
+                <x-button class="bg-green-600 mt-5 mx-2"  id="btnGuardar">
                     <a class="px-2 font-medium">Guardar</a>
                 </x-button>
                 
                     <a href="{{route('actividades')}}" class="px-2 font-medium">
                         <x-button type="button" class="mt-5 mx-2 px-2 font-medium">        
-                        Cancelar
+                        Volver
                         </x-button>
                     </a> 
             </div>
@@ -215,7 +215,7 @@
 
                 NroPaso++;    
                 
-                textoPaso="";
+                textoPaso.value="";
        
             }
             

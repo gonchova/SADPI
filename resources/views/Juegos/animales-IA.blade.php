@@ -5,6 +5,13 @@
   </div>
 
   <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 justify-center mx-1 sm:mx-40" >
+        
+        <input hidden id="idActividadFamilia" value ="{{$actividadfamilia[0]->idactividadfamilia}}">
+        <input hidden id="idFamilia" value ="{{Auth::user()->id}}">
+        
+        <div class="flex flex-row justify-center ">
+          <label  id="mensaje" class="text-green-500" ></label>
+        </div>
 
         <div class="flex flex-row justify-center mb-5 mt-3">
           <h3 id="mensajeanimal" class="fuenteDivertida text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm"> <span id="animal"></span></h3>
@@ -47,6 +54,46 @@
   
   </div>
 
+    <script> 
+      
+      const grabar = () =>
+      { 
+          idactividadFamilia = document.getElementById('idActividadFamilia').value;
+          idFamilia = document.getElementById('idFamilia').value;
+        
+          $.ajax({
+              url: '/animalesIA/save/' + idactividadFamilia + '/' + idFamilia,
+                  data: JSON.stringify({
+                      '_token': "{{ csrf_token() }}"
+                  }),
+              type: 'POST',
+              contentType: 'application/json; charset=utf-8',
+
+          }).done(function (data) {
+            
+              if (data['status'] == true && data['message'])
+              {   
+                  console.log(data);
+                  console.log($("#mensaje").text());
+                  
+                  $("#mensaje").text(data['message']);
+
+              }   
+              else if(data['status'] == false)
+              {  
+                  $("#mensaje").val(data['message']);                 
+          
+              }
+          }).fail(function (jqxhr, textStatus, error) {
+              console.log('ERROR AL GRABAR');
+              console.log('Error al grabar: ' + jqxhr.responseText);
+              var response = JSON.parse(jqxhr.responseText);
+          });
+      
+      }
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 
     <script type="text/javascript">
@@ -70,7 +117,7 @@
 
       (async () => {
           console.log("Cargando modelo...");
-          modelo = await tf.loadLayersModel("modeloIA/model.json");
+          modelo = await tf.loadLayersModel("/modeloIA/model.json");
           console.log("Modelo cargado...");
       })();
 
@@ -161,7 +208,7 @@
         
         if (aleatorio !=  null && clases.indexOf(aleatorio) != -1 )
         {
-          var sonido = new Audio("sounds/" + aleatorio + ".mp3");
+          var sonido = new Audio("/sounds/" + aleatorio + ".mp3");
           sonido.play();
         }
         console.log(aleatorio);
@@ -222,13 +269,13 @@
                       document.getElementById("animal").value = aleatorio;
 
                       if(clases[mayorIndice].toUpperCase() == aleatorio.toUpperCase())
-                      {
+                      { grabar();
                         console.log("BIEN HECHO!");
                         document.getElementById("animal").innerHTML = 'BIEN HECHO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaOK');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
-                        var sonido = new Audio("sounds/BienHecho.mp3");
+                        var sonido = new Audio("/sounds/BienHecho.mp3");
                         sonido.play();
                       }
                       else
@@ -237,7 +284,7 @@
                         document.getElementById("animal").innerHTML = 'UPS! VOLVE A INTENTARLO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
-                        var sonido = new Audio("sounds/Ups.mp3");
+                        var sonido = new Audio("/sounds/Ups.mp3");
                         sonido.play();
                       }
                     

@@ -1,5 +1,9 @@
 <x-app-layout>
 
+    <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
+        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Actividades</h2>
+    </div>
+
     @if (session('mensaje'))
     <div class="flex flex-row justify-center ">
         <div class="text-green-500" >{{session('mensaje')}}</div>
@@ -16,9 +20,41 @@
     </div>  
     @endif
 
-    <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
-        <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Actividades</h2>
-    </div>
+    @if(session('status'))
+
+        <form name="form-elimina-actividad" action="{{route('actividades.eliminar', [ Session::get('idactividad') , 'true'])}}" method="POST">
+            @method('DELETE')
+            @csrf    
+            <!-- Main modal -->
+            <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-center left-center right-center z-center  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative mx-auto w-fit  max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                Eliminación de actividad
+                            </h3>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <p class=" text-black">
+                               {{ session('status')}}
+                            </p>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex flex-row p-6 space-x-2 border-t border-gray-200 rounded-b justify-center">
+                            <x-button name="ConfirmaEliminar" data-modal-hide="defaultModal" type="submit" class="px-2" >Aceptar</x-button>
+                            <x-button name="CancelaEliminar"  data-modal-hide="defaultModal" type="submit" class="px-2">Cancelar</x-button>
+                            <input type="hidden" value="" name="idactividad"/>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </form>
+       
+    @endif
 
         <div class="flex-row pt-4 mx-2">
 
@@ -119,7 +155,7 @@
                                             <a class="btn btn-sm btn-danger" name = "btnEliminartext"  id = "btnEliminartext"  data-bs-toggle="modal" data-bs-target="#ModalEliminacion">Eliminar</a>
                                         </x-button>
                                         
-                                        <form name="form-elimina-actividad" action="{{route('actividades.eliminar', 'IDACT')}}" method="POST">
+                                        <form name="form-elimina-actividad" action="{{route('actividades.eliminar', ['IDACT', 'false'])}}" method="POST">
                                             @method('DELETE')
                                             @csrf    
                                             <!-- Main modal -->

@@ -16,9 +16,9 @@
         <div class="text-gray-700 uppercase antialiased  font-bold text-sm bg-white">
             <div class="flex flex-row">
                 <x-label class="pt-2 mt-1  mx-1" for="periodo" :value="__('Período:')" />
-                <x-input id="periodoD" class="w-20 pt-3  " type="label" name="periodo"  disabled value="{{$actividadFamilia->fecdesde}}" />
+                <input id="periodoD" class="w-20 pt-3  " type="label" name="periodo"  disabled value="{{date("d/m/Y", strtotime($actividadFamilia->fecdesde))}}" />
                   <x-label class="pt-2 mt-1  mx-1 lowercase"  value=" al " />
-                <x-input id="periodoH" class="w-20 pt-3  " type="label" name="periodo"  disabled value="{{$actividadFamilia->fechasta}}" />
+                <input id="periodoH" class="w-20 pt-3  " type="label" name="periodo"  disabled value="{{date("d/m/Y", strtotime($actividadFamilia->fechasta))}}" />
             </div>
         </div>
 
@@ -41,6 +41,9 @@
                     <th scope="col" class="border px-1 py-2 h-2 text-xs sm:text-sm">
                         Comentario
                     </th>
+                    <th scope="col" class="border px-1 py-2 h-2 text-xs sm:text-sm">
+                        Fecha
+                    </th>
                 </tr>
             </thead>
            
@@ -55,6 +58,10 @@
                     
                         <td scope="row" class=" border px-4 py-2 font-medium italic text-black">
                             <p class="flex flex-col text-justify text-wrap " > {{$com->comentario}} </p>
+                        </td>
+
+                        <td scope="row" class=" border px-4 py-2 font-medium italic text-black">
+                            <p class="flex flex-col text-justify text-wrap " > {{date("d/m/Y", strtotime($com->fecha))}} </p>
                         </td>
                         
                     </tr>

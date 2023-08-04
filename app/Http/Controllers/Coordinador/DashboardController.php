@@ -24,7 +24,10 @@ class DashboardController extends Controller
                                                          'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta')
         ->join('actividades', 'actividades.idactividad', '=', 'actividadesfamilia.idactividad')
         ->join('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia')
-        ->where('actividadesfamilia.idusuario',$familias[0]->id)->get();
+        ->where('actividadesfamilia.idusuario',$familias[0]->id)
+        ->orderBy('actividadesfamilia.fecdesde', 'ASC')
+        ->orderby('actividadesfamilia.fechasta', 'ASC')
+        ->get();
 
                                                 //->where('fecdesde','>=', Carbon::Now())
 
@@ -60,6 +63,8 @@ class DashboardController extends Controller
             ->groupBy('actividadesfamilia.idactividadfamilia', 'actividades.nombre','actividades.idactividad',
             'actividadesfamilia.cantdia','actividadesavances.cantdiasfinalizados', 
             'actividadesfamilia.fecdesde', 'actividadesfamilia.fechasta')
+            ->orderBy('actividadesfamilia.fecdesde', 'ASC')
+            ->orderby('actividadesfamilia.fechasta', 'ASC')
             ->get();
 
         return $actividadesFamilia;

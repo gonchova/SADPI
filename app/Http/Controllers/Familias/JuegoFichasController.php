@@ -24,8 +24,6 @@ class JuegoFichasController extends Controller
     
     }
 
-   
-
     public function save( string $idactividadfamilia, string $idfamilia)
     {
         $data['status'] = true;
@@ -58,7 +56,7 @@ class JuegoFichasController extends Controller
               if($actividadAvance->estado == 'F') // Dia completado
               {
                 $data['status'] = true; 
-                $data['message'] ='Actividades del día completadas, puede continuar jugando.'; 
+                $data['message'] ='Actividades del día completadas!. Puede continuar jugando.'; 
                 return $data;
               }
             }
@@ -113,9 +111,10 @@ class JuegoFichasController extends Controller
       if(!isset($data['message']))
       {
         if ($msgCantRealizado == $actividadesFlia->cantdia)
-          $data['message'] = 'Intento '. $msgCantRealizado . ' de ' . $actividadesFlia->cantdia;
+          $data['message'] = 'Actividades del día completadas!. Puede continuar jugando.';
         else
-          $data['message'] = 'Actividades del día completadas, puede continuar jugando.';
+          $data['message'] = 'Intento '. $msgCantRealizado . ' de ' . $actividadesFlia->cantdia;
+          
       }
 
 

@@ -14,7 +14,7 @@ class AsignacionActividadesController extends Controller
     {   
         $valorActividad = $request->get('filtroActividad');
 
-        $actividades = Actividades::buscar($valorActividad);
+        $actividades = Actividades::buscar($valorActividad, null, null);
         
         $familias = User::where('idrol', 2)->get();
 

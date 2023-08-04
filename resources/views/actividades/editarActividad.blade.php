@@ -28,11 +28,11 @@
     
                 <div class="w-30 sm:w-1/2">
                     <x-label class="pt-2" for="nombre" :value="__('Nombre Actividad:')" />
-                    <x-label class="pt-2 mb-2 bg-gray-300 uppercase align-top"  name="nombre">{{$actividad->nombre}}</x-label>
+                    <x-label class="py-1 mb-2 pl-1 bg-gray-300 uppercase align-top"  name="nombre">{{$actividad->nombre}}</x-label>
                     {{-- <input id="nombre" class="block px-1 mt-1 w-full h-10  text-gray-600" type="text" name="nombre" value="{{$actividad->nombre}}" disabled autofocus > --}}
                 </div>
                 
-                <div class="w-30 sm:w-1/2">
+                <div class="w-full">
                     <x-label class="pt-2 " for="descripcionActividad" :value="__('Descripción:')" />
                     <textarea id="descripcion" name="descripcion" class= "w-full h-20 px-1" rows='1' placeholder='' >{{$actividad->descripcion}} </textarea>
                 </div>
@@ -64,13 +64,13 @@
                         
                                 <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
                                     <tr class="shrink" type="input">
-                                        <th scope="col" class="border px-2  text-xs sm:text-sm">
+                                        <th scope="col" class=" border w-10 px-3 justify-center text-xs sm:text-sm">
                                         #
                                         </th>
-                                        <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
+                                        <th scope="col" class=" border w-fit px-2  h-1 text-xs sm:text-sm">
                                         Descripcion paso
                                         </th>
-                                      <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
+                                      <th scope="col" class=" border w-fit px-2  text-xs sm:text-sm ">
                                         Acciones
                                         </th>
                                     </tr>
@@ -89,12 +89,12 @@
                                     </tr>
 
                                     @foreach($actividad->pasosactividad as $paso)
-                                        <tr id= "item-{{$paso->idpaso}}" name= "items-{{ $paso->idpaso }}" class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                                            <td  name="nropaso"  class="border font-medium  text-black shrink">                                      
-                                                {{$paso->idpaso}}
+                                        <tr id= "item-{{$paso->idpaso}}" name= "items-{{ $paso->idpaso }}" class=" bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                            <td  name="nropaso"  class="w-10 px-3 border mx-2 justify-center font-medium  text-black shrink">                                      
+                                                 {{$paso->idpaso}}
                                             </td>
-                                            <td class="border font-medium  text-black shrink">                                        
-                                                {{$paso->descripcion}}
+                                            <td class="w-fit px-3  border font-medium  text-black shrink">                                        
+                                                {{$paso->descripcion}} 
                                             </td>
                                             <td name="tdEliminar"  class= "px-1 py-1 border uppercase  grow-0">
                                                 <x-button name="btnEliminar" type="button" id="btnEliminar-{{$paso->idpaso}}"  class="px-2 bg-red-600"  onclick="eliminarPaso(event)">
@@ -110,13 +110,13 @@
                     </div>
     
                <div class="flex justify-center mb-2">
-                    <x-button class="mt-5 mx-2"  id="btnGuardar">
+                    <x-button class="bg-green-600 mt-5 mx-2"  id="btnGuardar">
                         <a class="px-2 font-medium">Guardar</a>
                     </x-button>
                     
                     <a href="{{route('actividades')}}" class="px-2 font-medium">
                         <x-button class="mt-5 mx-2 px-2" type="button">
-                            Cancelar
+                            Volver
                         </x-button>
                     </a> 
                 </div>
@@ -186,36 +186,38 @@
         
         function AgregaPaso()
         {   
-            var textoPaso = document.getElementById('DescripcionPaso').value;
+            var textoPaso = document.getElementById('DescripcionPaso');
             
-            if (!textoPaso.trim())
+            if (!textoPaso.value.trim())
                 return;
-            
+
+            console.log(textoPaso.value);
+
             var btnEliminarClass = document.getElementById('btnEliminar').className;
                // console.log(btnEliminarClass);
                 //array('Nroresponsable' => '1'
-                $('#tablaPasos')
-                .append(
+            $('#tablaPasos')
+            .append(
                 $('<tr "id"= "item-'+NroPaso+'" "name"= "items-'+NroPaso+'">')
                 .append(
                     $('<td name=nropaso>')
                     .append(
                         NroPaso
-                    ).addClass('border font-medium  text-black shrink')
+                    ).addClass('w-10 px-3  border font-medium justify-center text-black shrink')
                 )
                 .append(
 
                     $('<td>')
                     .append(
-                        textoPaso
-                    ).addClass('border font-medium  text-black shrink')
+                        textoPaso.value
+                    ).addClass('w-fit px-3 border font-medium  text-black shrink')
                 )
                 
                 .append(
                     $('<td>').addClass(" px-1 py-1 border lowercase grow-0")
                     .append(
                         $('<button type="button" id="btnEliminar-'+NroPaso+'" onclick="eliminarPaso(event)">').addClass(btnEliminarClass).addClass("Eliminar px-2 bg-red-600 ")
-                           .append('Eliminar')
+                            .append('Eliminar')
                     )
 
                 )
@@ -230,7 +232,8 @@
 
             NroPaso++;    
             
-            textoPaso="";
+            textoPaso.value= '';
+            console.log(textoPaso.value);
     
         }
         

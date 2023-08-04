@@ -13,6 +13,7 @@ use App\Models\ActividadesFamilia;
 use App\Models\IntentosJuego;
 use App\Models\PasosActividad;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -54,24 +55,62 @@ class ActividadesController extends Controller
 
     }
 
-    public function eliminar($idactividad)
-    {   
-         $actividad  = Actividades::find($idactividad);
-
-         $actividad->pasosactividad()->delete();
-         $actividad->delete();
-        
-        return back();
-
-    }
-
-    public function dashboard()
+    public function eliminar(Request $request, $idactividad, $confirmaEliminacion = "false")
     {  
-        
+        if(isset($_POST['CancelaEliminar']))
+        {
+            return back()->with(['status' => '', 
+            'idactividad' => ''
+            ]);
+        }
 
-        return view("actividades.dashboard");
+        //valido si la actividad no esta activa para alguna familia
+        $actividadVigente = ActividadesFamilia::where('idactividad', $idactividad)
+                                    //->where('fecdesde','<=', Carbon::now())
+                                    //->where('fechasta','>=', Carbon::now())
+                                    ->first();
+
+        if($actividadVigente && $confirmaEliminacion=="false")
+        {
+            if($actividadVigente->fecdesde <= Carbon::now() && $actividadVigente->fechasta>=Carbon::now())
+            {
+                return back()->withErrors('Existen familias con la actividad vigente. No se puede eliminar');
+            }
+            else
+            {   
+                return back()->with(['status' => 'Existen familias con historial de realizacion de la actividad.'. "\n" . '¿Desea eliminar la actividad y el historial?', 
+                                     'idactividad' => $idactividad
+                                       ]);
+            }
+
+        } 
+
+        if (!$actividadVigente || ($actividadVigente && $confirmaEliminacion == "true"))
+        {
+            $actividad  = Actividades::find($idactividad);
+            
+            if($confirmaEliminacion == "true")
+            {
+                $actividad->actividadesfamilia()->delete();
+            }
+
+            $actividad->pasosactividad()->delete();
+            $actividad->delete();
+        }
+
+        return back()->with(['status' => '', 
+                            'idactividad' => ''
+                            ]);;
 
     }
+
+    // public function dashboard()
+    // {  
+        
+
+    //     return view("actividades.dashboard");
+
+    // }
 
     public function comentarios($idactividadfamilia)
     {  
@@ -86,7 +125,7 @@ class ActividadesController extends Controller
     public function asignacionActividades()
     { 
         $familias = User::where('idrol', 2)->get();
-        $actividades = Actividades::all();
+        $actividades = Actividades::paginate(10);
      
         return view("actividades.asignacionActividades", compact('familias','actividades'));
 
@@ -167,17 +206,6 @@ class ActividadesController extends Controller
         array_push($bindings, $fechasta);
         array_push($bindings, $idfamilia);
    
-
-       // $actividadesFamilia = ActividadesFamilia::where('idusuario', $idfamilia)->all();
-        // $result = DB::table('actividadesfamilia a')
-        // ->join('actividadesavances b', 'a.idactividadfamilia','=','b.idactividadfamilia')
-        // ->where('a.fecdesde','>=',$fecdesde)
-        // ->where('a.fechasta','<=',$fechasta)
-        // ->where('a.idusuario',$idfamilia )
-        // ->select('a.idactividad, b.cantdiasfinalizados')
-        // ->orderBy('a.idactividad')
-        // ->get();
-
         $sql = "SELECT a.idactividad, b.cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta 
                 FROM actividadesfamilia a
                 INNER JOIN actividadesavances b ON a.idactividadfamilia = b.idactividadfamilia

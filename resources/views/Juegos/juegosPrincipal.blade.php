@@ -100,8 +100,9 @@ $(document).ready(function(){
     if(juegoAnimales)
     {
         juegoAnimales.onclick = function () {
-            
-        window.location.href = "{{ route('animalesIA', " + idActividadFamilia1 + ") }}";
+            console.log(idActividadFamilia2);
+            window.location.href ="/animalesIA/"+idActividadFamilia1;      
+            //window.location.href = "{{ route('animalesIA', " + idActividadFamilia1 + ") }}";
         };
     }
         
