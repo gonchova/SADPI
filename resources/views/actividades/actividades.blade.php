@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <div class="flex flex-col mb-4">
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Actividades</h2>
     </div>
@@ -68,7 +68,7 @@
                             
                             <div  class="mx-2 w-48 shrink flex-wrap">
                                 <x-label class=" sm:flex pt-3  text-xs sm:text-sm" for="categoriasFiltro" :value="__('Categorias')" />
-                                <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
+                                <select name="categoriasFiltro" id="categoriasFiltro" class="text-xs sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white bg-gray-800 focus:outline-none focus:bg-purple-300 focus:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg  border-gray-600  " >
                                     <option value="" >Todas</option>
                                     @foreach ($especialidades as $esp)
                                         <option value= {{$esp->idespecialidad}} {{(old('categoriasFiltro') == strtolower($esp->descripcion)) ? 'selected' : '' }}> {{$esp->descripcion}} </option>                      
@@ -77,9 +77,9 @@
                             </div>                            
                             
                             <div class="mx-2 w-48 shrink flex-wrap">
-                                <x-label class="text-xs sm:text-sm  sm:flex pl-3 pt-3 " for="buscaActividad" :value="__('Buscar:')" />    
+                                <x-label class="text-xs sm:text-sm sm:flex sm:pl-3 pt-3 " for="buscaActividad" :value="__('Buscar:')" />    
                                 <div class="flex flex-row">
-                                    <input name = "buscaActividad" id = "buscaActividad" placeholder="Buscar actividad" class="text-xs sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full  px-3 py-1  font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
+                                    <input name = "buscaActividad" id = "buscaActividad" placeholder="Buscar actividad" class="text-xs sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full  px-3 py-1  font-semibold text-gray-700 mr-2 mb-2  sm:ml-2"> 
                                     <button class="pt-0 h-10 mt-1 " type="submit " > <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
@@ -212,7 +212,7 @@
 
             <div class="mx-6 my-3">
                
-                    <a href="{{route('actividades.nueva')}}" class=" ">
+                    <a href="{{route('actividades.nueva')}}" class="">
                         <x-button class="bg-green-600 px-3 font-medium ">
                             Nueva Actividad
                         </x-button>
@@ -221,8 +221,7 @@
             </div>
             
         </div> 
-
-    </div> <!-- fin flex-row -->
+    </div>
 
 <script>
 

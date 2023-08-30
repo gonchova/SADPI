@@ -40,7 +40,10 @@ class actividadesFamiliaPrincipalController extends Controller
     }
 
     public function save(Request $request, string $idactividadfamilia)
-    {   
+    {     
+        $intentoObservacion=0;
+        $diasObservacion=0;
+
         $observaciones = $request->get('observaciones');
 
         if(!$idactividadfamilia)
@@ -71,6 +74,9 @@ class actividadesFamiliaPrincipalController extends Controller
             $actividadAvance->cantintentosdiafinalizados +=1;
             $actividadAvance->estado = 'A'; //Activa  Nuevo dia
             $msgCantRealizado = $actividadAvance->cantintentosdiafinalizados;
+            
+            $intentoObservacion=$actividadAvance->cantintentosdiafinalizados;
+            $diasObservacion= $actividadAvance->cantdiasfinalizados;
 
             if($actividadAvance->cantintentosdiafinalizados == $actividadesFlia->cantdia)
             { 
@@ -88,7 +94,8 @@ class actividadesFamiliaPrincipalController extends Controller
         { 
           $cantdiasfinalizados=0;
           $estado = 'N';
-          
+          $intentoObservacion=1;
+          $diasObservacion=0;
           $msgCantRealizado = 1;
 
           if($actividadesFlia->cantdia == 1 )
@@ -114,18 +121,20 @@ class actividadesFamiliaPrincipalController extends Controller
 
       if($observaciones != "")  
       {
-        $actividadComentario = ActividadComentario::create([
-          'idactividadfamilia' => $idactividadfamilia,
-          'idnumerodia' => $actividadAvance->cantdiasfinalizados,
-          'comentario' => $observaciones,
-          'fecha' => Carbon::now(),
-          ]);
-
+          $actividadComentarioNew = ActividadComentario::create([
+            'idactividadfamilia' => $idactividadfamilia,
+            'idnumerodia' => $diasObservacion,
+            'intentodia' => $intentoObservacion,
+            'comentario' => $observaciones,
+            'fecha' => Carbon::now(),
+            ]);
+          
       }
       
     return back()->with('mensaje', 'Actividad del dia realizada! (' . $msgCantRealizado  . ' de ' . $actividadesFlia->cantdia . ')');
     }
 
-
+    
+ 
 
 }//fin clase

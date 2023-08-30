@@ -173,7 +173,7 @@
            
             function AgregaPaso()
             {   
-                var textoPaso = document.getElementById('DescripcionPaso').value;
+                let textoPaso = document.getElementById('DescripcionPaso').value;
                
                 if (!textoPaso.trim())
                     return;
@@ -215,8 +215,8 @@
 
                 NroPaso++;    
                 
-                textoPaso.value="";
-       
+                $("#DescripcionPaso").val("");
+             
             }
             
         })
@@ -228,7 +228,7 @@
             let elementos = document.getElementsByName("nropaso");
 
             elementos.forEach(elemento => {
-                console.log(elementos);
+               
                 elemento.innerText = cont;
                 cont++;
             });

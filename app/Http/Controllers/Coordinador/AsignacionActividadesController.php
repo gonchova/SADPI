@@ -5,6 +5,8 @@ use App\Models\Actividades;
 use App\Models\ActividadesFamilia;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\ActividadesAvances;
+use App\Models\ActividadComentario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -109,35 +111,62 @@ class AsignacionActividadesController extends Controller
         //Si no hay errores, realiza insercion
         if(!$data)
         {
-        
-            foreach($ActividadesSel as $actflia)
-            {   
-                $actividadflia = new ActividadesFamilia();
+            DB::transaction(function () use ($idUsuario,$ActividadesSel,$fecDesde,$fecHasta)
+            {
+                foreach($ActividadesSel as $actflia)
+                {   
+                    $actividadflia = new ActividadesFamilia();
 
-                $actividadflia->idusuario = $idUsuario;
-                $actividadflia->idactividad = $actflia['idactividad'];
-                $actividadflia->fecdesde = $fecDesde;
-                $actividadflia->fechasta = $fecHasta;
-                $actividadflia->cantdia = $actflia['cantidad'];
+                    $actividadflia->idusuario = $idUsuario;
+                    $actividadflia->idactividad = $actflia['idactividad'];
+                    $actividadflia->fecdesde = $fecDesde;
+                    $actividadflia->fechasta = $fecHasta;
+                    $actividadflia->cantdia = $actflia['cantidad'];
 
-                // DB::transaction(function () use ($actividadflia)                 { 
-                $actividadflia->save();
-                $actflia=null;
-                // });
-                
-            }
-        
+                    $actividadflia->save();
+                    $actflia=null;
+
+                    
+                }
+            });
         
             $dataReturn['status'] = true;
             $dataReturn['message'] = 'Actividades asignadas correctamente!';
             array_push($data,$dataReturn);
         }   
 
-
-
-
         return  $data;
 
     }
 
+    public function eliminar( string $idactividadfamilia)
+    {   
+        $dataReturn=[];
+        $data=[];
+  
+        if(!$idactividadfamilia)
+          {
+            $dataReturn['status'] = false; 
+            $dataReturn['message'] ='Error al crear avance de juego.'; 
+            array_push($data,$dataReturn);
+
+            return $data;
+          }
+        
+        DB::transaction(function () use ($idactividadfamilia,$data,$dataReturn)
+        {
+           $actividadesAvancesFlia = ActividadesAvances::find($idactividadfamilia);
+           $actividadesAvancesFlia->delete();
+
+           $actividadesComentariosFlia = ActividadComentario::where('idactividadfamilia', $idactividadfamilia);
+           $actividadesComentariosFlia->delete();
+            
+        });
+        
+        $dataReturn['status'] = true;
+        $dataReturn['message'] = 'Avances de actividad eliminados correctamente.';
+        array_push($data,$dataReturn);
+
+         return $data;
+    }
 }

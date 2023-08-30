@@ -43,7 +43,7 @@
         <div class="flex flex-row flex-wrap px-4 justify-center">  
             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="familiaFiltro" :value="__('Familia:')" />
             <div  class="mx-2 w-52 shrink">
-                <select name="familiaFiltro" id="familiaFiltro" class=" sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white  focus:outline-none hover:bg-purple-300 hover:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
+                <select name="familiaFiltro" id="familiaFiltro" class=" sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white  focus:outline-none focus:bg-purple-300 focus:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
                     <option name="idFamilia" id="idFamilia" value= ""> Seleccione Familia </option>                      
                     @foreach ($familias as $fam)
                         <option name="idFamilia" id="idFamilia" value= {{$fam->id}} {{(old('familiaFiltro') == strtolower($fam->name)) ? 'selected' : '' }}> {{$fam->name}} </option>                      
@@ -59,11 +59,11 @@
                 </div>  
                 <div class="flex flex-row flex-wrap gap-1">
                     <x-label class="hidden sm:flex pt-3 pb-2 pl-1 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
-                    <x-input class="mx-auto" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
+                    <x-input class="mx-auto h-10" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
                
           
                     <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
-                    <x-input class="mx-auto" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
+                    <x-input class="mx-auto h-10" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="flex flex-col pt-4 ">
             <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2 mx-1 sm:mx-4 ">
                 <div class="flex flex-row">
-                    <x-label class="text-xs sm:text-sm hidden sm:flex ml-4 pl-4 pt-3 pb-2" for="filtroActividad" :value="__('Buscar:')" />
+                    <x-label class="text-xs sm:text-sm hidden sm:flex sm:ml-4 pl-4 pt-3 pb-2" for="filtroActividad" :value="__('Buscar:')" />
                     <div>
                         <input id = "filtroActividad" name = "filtroActividad"  placeholder="Nombre Actividad" class="sm:text-sm focus:outline-none hover:border-purple-300 focus:ring-2 focus:ring-purple-200 mt-2 bg-gray-200 rounded-full flex px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ml-2"> 
                     </div>
@@ -96,9 +96,9 @@
                                 <tr class="flex justify-center bg-indigo-200 flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                     <th class="p-3 text-left border border-solid ">Sel</th>
                                     <th class="p-3 text-left sm:text-center border border-solid">Actividad</th>
-                                    <th class="p-3 text-center border border-solid">Cant. Diaria</th>
+                                    <th class="p-3 text-left sm:text-center border border-solid">Cant. Diaria</th>
                                     <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
-                                    <th class="p-3 text-left border border-solid ">Realizado</th>
+                                    <th class="p-3 text-left border border-solid ">Avance Act. vigente</th>
                                 </tr>
 
                                 @php $cont = 0 @endphp
@@ -113,7 +113,7 @@
                                             <th class="p-3 text-left sm:text-centert border border-solid">Actividad</th>
                                             <th class="p-3 text-center border border-solid">Cant. Diaria</th>
                                             <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
-                                            <th class="p-3 text-left border border-solid ">Realizado</th>
+                                            <th class="p-3 text-left border border-solid ">Avance Act. vigente</th>
                                         </tr>
                                         
                                     @endif
@@ -150,7 +150,7 @@
                                                 <a class="px-2 font-medium" >+Info</a>
                                             </x-button>
                                            
-                                            <div id="defaultModal-{{$act->idactividad}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-auto p-4  overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
+                                            <div id="defaultModal-{{$act->idactividad}}"  data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-auto p-4  overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
                                                 <div class="relative w-[50%] max-w-2xl max-h-full ">
                                                     <!-- Modal content -->
                                                     <div class="relative bg-white rounded-lg shadow">
@@ -180,6 +180,34 @@
                                         <td name="cantRealizado" class="flex justify-left border-grey-light border hover:bg-gray-100 py-3 px-1 whitespace-nowrap">
                                            -
                                         </td>
+                                                                                   
+                                        <div id="defaultModalEliminar-{{$act->idactividad}}" tabindex="-1" aria-hidden="true" class="flex fixed top-0 left-0 right-0 z-50 w-auto p-4 overflow-y-auto md:inset-0 h-[calc(100%-1rem)] justify-center items-center hidden">
+                                            <div class="relative w-[50%] max-w-2xl max-h-full">
+                                                <!-- Modal content -->
+                                                <div class="relative bg-white rounded-lg shadow">
+                                                    <!-- Modal header -->
+                                                    <div class="flex items-start justify-between p-4 border-b rounded-t">
+                                                        <h3 class="text-xl font-semibold text-gray-900">
+                                                            Eliminación de actividad
+                                                        </h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="p-6 space-y-6">
+                                                        <p class=" text-black">
+                                                            Desea eliminar los avances realizados de la actividad seleccionada?
+                                                        </p>
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="flex flex-row p-6 space-x-2 border-t border-gray-200 rounded-b justify-center">
+                                                        <x-button data-idactividad="{{$act->idactividad}}" data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="ConfirmaEliminar" data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2" id="ConfirmaEliminar-{{$act->idactividad}}">Aceptar</x-button>
+                                                        <x-button data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="CancelaEliminar"  data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2">Cancelar</x-button>
+                                                        <input type="hidden" name="idactividad"/>
+                                                    </div>
+                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
                                     </tr>
 
                                 @endforeach
@@ -193,18 +221,20 @@
                 <a href="">{{ $actividades->links('vendor.pagination.tailwind') }}</a> 
             </div>
         </form> 
-            <div class="mx-6 my-3">
-                <x-button class="bg-green-600" id="btnGuardar" type="button">
-                    <a  class="px-2 font-medium ">Guardar</a>
-                </x-button>
-                <x-button class="bg-red-600 ">
-                    <a href = "{{route('principal')}}" class="px-2 font-medium ">Cancelar</a>
-                </x-button>
-            </div>
-        </div> 
-   
+            
+        <div class="mx-6 my-3">
+            <x-button class="bg-green-600" id="btnGuardar" type="button">
+                <a  class="px-2 font-medium ">Guardar</a>
+            </x-button>
+            <x-button class="bg-red-600 ">
+                <a href = "{{route('principal')}}" class="px-2 font-medium ">Cancelar</a>
+            </x-button>
+        </div>
+         
  
 </div> 
+<button hidden id = "btnEliminarVigente" title="Eliminar Actividad Vigente" class="w-10 ml-1 px-1 py-0 items-center bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widestfocus:text-gray-200 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 active:bg-purple-300  disabled:opacity-25 transition ease-in-out duration-150"  >
+</button>
 <script>
 
 $(document).ready(function(){
@@ -218,14 +248,19 @@ $(document).ready(function(){
     const fecHasta = document.getElementById('iHasta');
     const selFamilia =  document.getElementById('familiaFiltro');
     const botonAceptarModalError = document.getElementById('AceptarModalError'); 
-            
-    botonAceptarModalError.addEventListener('click', function(e){
-        //e.preventDefault();
-        $('#defaultModalerror').addClass('hidden');
+    const defaultModal = document.getElementById('defaultModal'); 
+
+    $("[name='ConfirmaEliminar']").each(function () {
+
+          this.addEventListener('click', function(e){
+          eliminarActFamilia($(this).data("idactividadfamilia"));
+
+     })
     })
+
         
     boton.addEventListener('click', function(e){
-        //e.preventDefault();
+        
         grabar();
     })
 
@@ -245,32 +280,49 @@ $(document).ready(function(){
     selFamilia.addEventListener('change', function(e){
        
         valSelFamilia = this.value;
-
         BuscarRealizados();
      })
 
+     
+    function eliminarActFamilia(idActividadFamilia)
+    {  
+        eliminar(idActividadFamilia);
+        
+    }
+
     const BuscarRealizados = () =>
     { 
-        if(valSelFamilia && valFecHasta && valFecDesde)
+        if( valSelFamilia && valFecHasta && valFecDesde )
         {
             $.ajax({
                 url: '/actividades/realizado/'+ valSelFamilia + '/'  + valFecDesde + '/'+ valFecHasta ,
                 type: 'GET',
                 success: function (response) {
 
-
                     $("#tablaActividades tbody tr").each(function () {
                         row = $(this);
                     
                         idactividad= row.find('td[name="idactividad"]').text().trim();
-
+                        const btnEliminarVigenteClass =  document.getElementById('btnEliminarVigente').className; 
                         ColCantDias= row.find('td[name="cantRealizado"]');
                         ColCantDias.html("-"); 
                         response.forEach(item => {
                           
-                            if(item.idactividad == idactividad && item.cantdiasfinalizados != 0)
-                            {  console.log(item);
+                            if(item.idactividad == idactividad) // && item.cantdiasfinalizados != 0
+                            { 
                                ColCantDias.html(item.cantdiasfinalizados +  ' entre ' +  item.fecdesde + '-' + item.fechasta + '' );
+                               ColCantDias.append(
+                                    $('<button data-idactividadfamilia='+item.idactividadfamilia+' name="btnEliminaActFamilia" type="button" data-modal-target="defaultModalEliminar-'+item.idactividad+'" data-modal-toggle="defaultModalEliminar-'+item.idactividad + '"  title="Eliminar Actividad Vigente" id="btnEliminar-'+item.idactividadfamilia+'" >').addClass(btnEliminarVigenteClass).append('X')
+                                )
+                                        
+                                
+                                $(document).on("click", "#" + "btnEliminar-"+item.idactividadfamilia, function(){
+                                    $('#defaultModalEliminar-'+item.idactividad).removeClass('hidden'); 
+                                    $('#defaultModalEliminar-'+item.idactividad).addClass('flex'); 
+                                    $('#ConfirmaEliminar-'+item.idactividad).attr('data-idactividadfamilia', item.idactividadfamilia);
+
+                                });
+                            
                             }
 
                         });
@@ -289,6 +341,7 @@ $(document).ready(function(){
         }
        
     }
+
 
     const grabar = () =>
     { 
@@ -330,7 +383,6 @@ $(document).ready(function(){
                 if (data[0]['status'] == true)
                 {   
                     $("#filtroActividad").val("");
-//                    location.reload();
                     $('#mensajeOk').removeClass();
                     $('#mensajeOk').addClass("text-green-500");
                     $("#mensajeOk div").remove();
@@ -343,10 +395,11 @@ $(document).ready(function(){
                     $("#listaErrores div").remove();
                    
                     $.each(data, function(i, item){
-                        
+
                         $('#listaErrores').removeClass();
                         $('#listaErrores').addClass("text-red-600");
                         $('#listaErrores').append('<div>' + item['message'] + '<br></div>');
+                    
                     })
 
                     
@@ -361,6 +414,55 @@ $(document).ready(function(){
             });
     
     }
+
+
+    const eliminar = (idActividadFamilia) =>
+      { 
+            
+          $.ajax({
+              url: '/actividadesFamilia/asignacion/eliminar/' + idActividadFamilia,
+                  data: JSON.stringify({
+                      '_token': "{{ csrf_token() }}"
+                  }),
+              type: 'POST',
+              contentType: 'application/json; charset=utf-8',
+
+          }).done(function (data) {
+                         
+            if (data[0]['status'] == true)
+            {
+                    $("#filtroActividad").val("");
+                    $('#mensajeOk').removeClass();
+                    $('#mensajeOk').addClass("text-green-500");
+                    $("#mensajeOk div").remove();
+                    $('#mensajeOk').append('<div>' + data[0]['message'] + '</div>');
+
+                    BuscarRealizados();
+            }   
+            else
+            {                       
+                $("#listaErrores div").remove();
+                
+                $.each(data, function(i, item){
+                    
+                    if(item['message'] != null)
+                    {
+                        $('#listaErrores').removeClass();
+                        $('#listaErrores').addClass("text-red-600");
+                        $('#listaErrores').append('<div>' + item['message'] + '<br></div>');
+                    }
+                })
+
+                $('#defaultModalerror').removeClass('hidden');
+        
+            }
+          }).fail(function (jqxhr, textStatus, error) {
+              console.log('ERROR AL GRABAR');
+              console.log('Error al grabar: ' + jqxhr.responseText);
+              var response = JSON.parse(jqxhr.responseText);
+          });
+      
+      }
 
 
 

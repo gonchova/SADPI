@@ -1791,6 +1791,11 @@ video {
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
+.focus\:text-gray-200:focus {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
 .focus\:text-indigo-800:focus {
   --tw-text-opacity: 1;
   color: rgb(55 48 163 / var(--tw-text-opacity));
@@ -1841,6 +1846,11 @@ video {
 .active\:bg-gray-900:active {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
+.active\:bg-purple-300:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 180 254 / var(--tw-border-opacity));
 }
 
 .disabled\:opacity-25:disabled {

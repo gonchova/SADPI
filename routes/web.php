@@ -43,9 +43,12 @@ Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middlewar
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}/{categoria}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
 
+
 Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
 Route::post('/actividades/asignacion/nueva',[AsignacionActividadesController::class,'save'])->middleware(['auth'])->name('asignacionActividades.save');
 Route::get('/actividades/asignacion/filtrar',[AsignacionActividadesController::class,'filtrar'])->middleware(['auth'])->name('asignacionActividades.filtrar');
+Route::post('/actividadesFamilia/asignacion/eliminar/{idactividadfamilia}', [AsignacionActividadesController::class,'eliminar'])->middleware(['auth'])->name('asignacionActividades.eliminar');
+
 Route::get('/actividades/nueva', [ActividadesController::class,'nueva'])->middleware(['auth'])->name('actividades.nueva');
 Route::post('/actividades/nueva',[ActividadesController::class,'save'])->middleware(['auth'])->name('actividades.save');
 Route::delete('/actividades/eliminar/{id}/{confirmaeliminacion}',[ActividadesController::class,'eliminar'])->middleware(['auth'])->name('actividades.eliminar');
@@ -73,6 +76,7 @@ Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['
 Route::get('/actividadesFamilia/principal', [actividadesFamiliaPrincipalController::class,'index'])->middleware(['auth'])->name('actividadesFamilia.principal');
 Route::get('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'seleccionActividad'])->middleware(['auth'])->name('actividadesFamilia.actividadFamilia');
 Route::post('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'save'])->middleware(['auth'])->name('actividadesFamilia.save');
+
 
     
 require __DIR__.'/auth.php';

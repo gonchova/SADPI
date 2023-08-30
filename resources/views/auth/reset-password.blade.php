@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card class="pt-40">
         <x-slot name="logo">
             <div class="h-30 w-12 mx-auto">
                 <x-application-logo />
@@ -39,14 +39,16 @@
                                     name="password_confirmation" required />
             </div>
             
-            <div>
-                <x-button  onclick="{{ route('login') }}">
-                    {{ __('Volver') }}
-                </x-button>
-            </div>
             
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+           
+                <a href="{{route('login')}}">
+                    <x-button type="button" class="px-2" >        
+                    Volver
+                    </x-button>
+                </a> 
+
+                <x-button class="px-2 ml-3">
                     {{ __('Reset Password') }}
                 </x-button>
             </div>

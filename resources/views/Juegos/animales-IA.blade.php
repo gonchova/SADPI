@@ -112,6 +112,7 @@
       var aleatorio='';
       var hayprediccion = false;
       var detectado = false;
+      var correcto = false;
       
       document.getElementById("nuevoIntentoAleatorio").addEventListener("click", nuevoJuegoAleatorio);
 
@@ -125,8 +126,6 @@
           nuevoJuegoAleatorio();
           mostrarCamara();
           aleatorio = clases[Math.floor(Math.random() * clases.length)];
-        //  document.getElementById("animal").innerHTML = 'Mostrame un/a:'+aleatorio;
-        //  document.getElementById("animal").value = aleatorio;
           
       }
 
@@ -147,7 +146,7 @@
                       
                       procesarCamara();
                       predecir();
-
+                     
                   })
                   .catch(function(err) {
                       alert("No se pudo utilizar la camara :(");
@@ -210,15 +209,19 @@
         {
           var sonido = new Audio("/sounds/" + aleatorio + ".mp3");
           sonido.play();
+          predecir();
         }
+
+
         console.log(aleatorio);
         console.log(clases.indexOf(aleatorio));
         
       }
 
-      function predecir() {
-        //console.log(modelo);
-         
+      function predecir() 
+      {
+        console.log("Predecir");
+          correcto = false;
           if (modelo != null) {
               //Pasar canvas a version 224x224
               resample_single(canvas, 224, 224, othercanvas);
@@ -239,37 +242,34 @@
                   }
               }
 
-              arr = [arr]; //Meter el arreglo en otro arreglo por que si no tio tensorflow se enoja >:(
-              //Nah basicamente Debe estar en un arreglo nuevo en el indice 0, por ser un tensor4d en forma 1, 224, 224, 1
+              arr = [arr]; //Meter el arreglo en otro arreglo por que si no tensorflow no funciona. Debe estar en un arreglo nuevo en el indice 0, por ser un tensor4d en forma 1, 224, 224, 1
+              
               var tensor4 = tf.tensor4d(arr);
               var resultados = modelo.predict(tensor4).dataSync();
               var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
               tf.dispose([tensor4]);
 
-      //        console.log(resultados[mayorIndice]);
               // Si tiene una prediccion > 4 por  10 vueltas, lo toma como valido.
               
               if (resultados[mayorIndice] > 4.5) 
               {
-                  
                   cantDetecciones++;
 
                   //Si detecte 5 veces la misma figura, se toma como deteccion cierta
                   if (cantDetecciones > 5)
                   {
                     document.getElementById("resultado").innerHTML = clases[mayorIndice];
-                    
-                    console.log(clases[mayorIndice]);
-                    console.log(aleatorio);
-
+                    //console.log(clases[mayorIndice]);
+                    //console.log(aleatorio);
                     if(clases.includes(aleatorio.toUpperCase()) && detectado === false)
                     { 
                       detectado = true;
                       document.getElementById("animal").value = aleatorio;
 
                       if(clases[mayorIndice].toUpperCase() == aleatorio.toUpperCase())
-                      { grabar();
+                      { 
+                        grabar();
                         console.log("BIEN HECHO!");
                         document.getElementById("animal").innerHTML = 'BIEN HECHO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
@@ -277,6 +277,7 @@
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
                         var sonido = new Audio("/sounds/BienHecho.mp3");
                         sonido.play();
+                        
                       }
                       else
                       {
@@ -286,6 +287,7 @@
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
                         var sonido = new Audio("/sounds/Ups.mp3");
                         sonido.play();
+                        
                       }
                     
 
@@ -318,8 +320,17 @@
               }
               
           }
-
-          setTimeout(predecir, 150);
+          
+          if (!detectado)
+          { 
+            setTimeout(predecir, 150);
+          }
+          else
+          {
+            document.getElementById("progressBar").style.width = 50+"%"
+            document.getElementById("progressBar").classList.remove('bg-green-600');
+            document.getElementById("progressBar").classList.add('bg-blue-600');
+          }
           
       }
 
@@ -332,15 +343,6 @@
           setTimeout(procesarCamara, 20);
       }
 
-      /**
-       * Hermite resize - fast image resize/resample using Hermite filter. 1 cpu version!
-       * 
-       * @param {HtmlElement} canvas
-       * @param {int} width
-       * @param {int} height
-       * @param {boolean} resize_canvas if true, canvas will be resized. Optional.
-       * Cambiado por RT, resize canvas ahora es donde se pone el chiqitillllllo
-       */
       function resample_single(canvas, width, height, resize_canvas) {
           var width_source = canvas.width;
           var height_source = canvas.height;

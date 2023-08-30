@@ -12,7 +12,7 @@ class ActividadComentario extends BaseModel
     use MultiPrimaryKey;
 
     protected $table = 'actividadcomentario';
-    protected $primaryKey = ['idactividadfamilia','idnumerodia'];
+    protected $primaryKey = ['idactividadfamilia','idnumerodia','intentodia'];
     
     public $timestamps = ["created_at"]; 
     const UPDATED_AT = null; 
@@ -21,6 +21,7 @@ class ActividadComentario extends BaseModel
     protected $fillable = [
         'idactividadfamilia',
         'idnumerodia',
+        'intentodia',
         'comentario',
         'fecha'
     ];

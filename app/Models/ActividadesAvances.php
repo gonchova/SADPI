@@ -21,7 +21,7 @@ class ActividadesAvances extends Model
         'cantdiasfinalizados',
         'estado',
         'ultimodiarealizada',
-        'cantintentosdiarealizados'
+        'cantintentosdiafinalizados'
     ];
 
     public function actividadesFamilia() 

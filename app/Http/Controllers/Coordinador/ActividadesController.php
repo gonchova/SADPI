@@ -104,13 +104,6 @@ class ActividadesController extends Controller
 
     }
 
-    // public function dashboard()
-    // {  
-        
-
-    //     return view("actividades.dashboard");
-
-    // }
 
     public function comentarios($idactividadfamilia)
     {  
@@ -202,19 +195,22 @@ class ActividadesController extends Controller
         if(!($idfamilia && $fecdesde && $fechasta))
             return $result;
             
-        array_push($bindings, $fecdesde);
-        array_push($bindings, $fechasta);
+        // array_push($bindings, $fecdesde);
+        // array_push($bindings, $fechasta);
+        array_push($bindings, Carbon::now());
+        array_push($bindings, Carbon::now());
         array_push($bindings, $idfamilia);
    
-        $sql = "SELECT a.idactividad, b.cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta 
+        $sql = "SELECT a.idactividad, b.cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta ,
+                a.idactividadfamilia
                 FROM actividadesfamilia a
                 INNER JOIN actividadesavances b ON a.idactividadfamilia = b.idactividadfamilia
-                WHERE a.fecdesde >= ? AND a.fechasta <= ?
+                WHERE a.fecdesde <= ? AND a.fechasta >= ?
                 AND a.idusuario = ? ";
 
         $result = DB::select($sql, $bindings);
 
-        $actividadesRealizados= collect($result);
+       // $actividadesRealizados= collect($result);
         
         // $actividadesRealizados=[
         //     'idactividad' => null,
