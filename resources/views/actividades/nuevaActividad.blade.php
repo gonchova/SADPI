@@ -32,7 +32,7 @@
             <div class="w-30 sm:w-1/2">
                 <x-label class="pt-2" for="name" :value="__('Nombre Actividad:')" />
     
-                <x-input id="nombre" class="block mt-1 w-full h-10" type="text" name="nombre" :value="old('nombre')" required autofocus  />
+                <x-input maxlength="30" id="nombre" class="block mt-1 w-full h-10" type="text" name="nombre" :value="old('nombre')" required autofocus  />
             </div>
             
             <div class="w-full">
@@ -62,7 +62,7 @@
                         <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
                     </div>
 
-                    <x-button class="mt-5 mb-2 w-40" id="btnAgregarPaso">
+                    <x-button class="mt-5 mb-2 w-40 py-2" id="btnAgregarPaso">
                         <a href="#" class="font-medium">Agregar Paso</a>
                     </x-button>
 
@@ -95,7 +95,7 @@
                                     <td scope="row" class="border font-medium  text-black shrink">                                        
                                     </td>
                                     <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                        <x-button class="px-2 bg-red-600" id="btnEliminar">
+                                        <x-button class="px-2 bg-red-600 py-2" id="btnEliminar">
                                             <a href="#" class="font-medium">Eliminar</a>
                                             
                                         </x-button>
@@ -108,12 +108,12 @@
             </div>
 
            <div class="flex justify-center mb-2">
-                <x-button class="bg-green-600 mt-5 mx-2"  id="btnGuardar">
+                <x-button class="bg-green-600 mt-5 mx-2 py-2"  id="btnGuardar">
                     <a class="px-2 font-medium">Guardar</a>
                 </x-button>
                 
                     <a href="{{route('actividades')}}" class="px-2 font-medium">
-                        <x-button type="button" class="mt-5 mx-2 px-2 font-medium">        
+                        <x-button type="button" class="mt-5 mx-2 px-2 font-medium py-2">        
                         Volver
                         </x-button>
                     </a> 

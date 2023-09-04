@@ -24,19 +24,19 @@
         </div>
         
         <div class="flex flex-row justify-center">
-          <x-button class="mb-2 mt-4  px-2">
+          <x-button class="mb-2 mt-4 py-2 px-2">
             <a id = "nuevoIntentoAleatorio" class="font-medium " >Nuevo Intento Aleatorio</a>
           </x-button>
         </div>
 
 
         <div class="flex flex-row justify-center">
-          <x-button class="mb-2 mt-4 mx-2 px-2">
+          <x-button class="mb-2 mt-4 mx-2 px-2 py-2">
             <a id = "cambiar-camara" class="font-medium " onclick="cambiarCamara();">Cambiar Cámara</a>
           </x-button>
           
           <a href="{{ route('principal') }}">
-            <x-button type="button" id="btnSalir" class="mx-2 mb-2 mt-4  px-2">
+            <x-button type="button" id="btnSalir" class="mx-2 mb-2 mt-4 py-2 px-2">
                 {{ __('Salir') }}
             </x-button>
           </a>
@@ -73,7 +73,6 @@
             
               if (data['status'] == true && data['message'])
               {   
-                  console.log(data);
                   console.log($("#mensaje").text());
                   
                   $("#mensaje").text(data['message']);
@@ -213,14 +212,11 @@
         }
 
 
-        console.log(aleatorio);
-        console.log(clases.indexOf(aleatorio));
         
       }
 
       function predecir() 
       {
-        console.log("Predecir");
           correcto = false;
           if (modelo != null) {
               //Pasar canvas a version 224x224
@@ -231,6 +227,7 @@
               var imgData = ctx2.getImageData(0,0,224,224);
               var arr = []; //El arreglo completo
               var arr224 = []; //Al llegar a arr224 posiciones se pone en 'arr' como un nuevo indice
+              
               for (var p=0, i=0; p < imgData.data.length; p+=4) {
                   var red = imgData.data[p]/255;
                   var green = imgData.data[p+1]/255;
@@ -270,18 +267,17 @@
                       if(clases[mayorIndice].toUpperCase() == aleatorio.toUpperCase())
                       { 
                         grabar();
-                        console.log("BIEN HECHO!");
+
                         document.getElementById("animal").innerHTML = 'BIEN HECHO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaOK');
-                        document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
                         var sonido = new Audio("/sounds/BienHecho.mp3");
                         sonido.play();
                         
                       }
                       else
                       {
-                        console.log("UPS! VOLVE A INTENTARLO!");
+                       
                         document.getElementById("animal").innerHTML = 'UPS! VOLVE A INTENTARLO!';
                         document.getElementById("mensajeanimal").removeAttribute('class');
                         document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');

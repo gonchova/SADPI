@@ -82,7 +82,7 @@
     <div class="flex items-center justify-left ml-2">
         <a  onclick="window.history.back();" >
         {{-- <a href="{{ route('dashboard.filtrarVista',['idfamilia' => 14, 'fecdesde' => '2023-08-01','fechasta' =>'2023-08-31','categoria' => 1] ) }}"  >   --}}
-            <x-button type="button" id="btnVolver" class="px-2">
+            <x-button type="button" id="btnVolver" class="px-2 py-2">
                 {{ __('Volver') }}
             </x-button>
         </a>

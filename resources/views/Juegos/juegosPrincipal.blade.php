@@ -18,7 +18,7 @@
 
     <div class="flex justify-center mt-2">
         <a href="{{ route('principal') }}">
-            <x-button type="button" id="btnVolver" class="px-2">
+            <x-button type="button" id="btnVolver" class="px-2 py-2">
                 {{ __('Volver') }}
             </x-button>
         </a>
@@ -27,7 +27,7 @@
    <div class="flex flex-wrap gap-4 justify-center ">
 
     @foreach ($juegos as $juego)
-        
+
         @if($juego->idactividad == 1)
             <input hidden type="text" name="idActividadFamilia1" id="idActividadFamilia1" value={{$juego->idactividadfamilia}}>
             <div id  = "cardAnimalesIA" class="flex flex-col max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 mx-2 hover:cursor-pointer select-none">
@@ -49,9 +49,31 @@
                     <x-label>
                         <div>Avance de la Actividad:</div>
                     </x-label>
+
                     <div class="mt-2 bg-gray-600 rounded-full">
-                        <div class="w-8/12 mt-2 bg-purple-900 py-1 text-center rounded-full"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">75%</div></div>
+                        @php
+                            $desdeFecha = new DateTime($juego->fecdesde); 
+                            $hastaFecha = new DateTime($juego->fechasta);
+                            $diasActividad = $desdeFecha->diff($hastaFecha)->format("%r%a")+1;
+
+                            if($juego->cantdiasfinalizados)
+                            { 
+                                $cantfinalizado = $juego->cantdiasfinalizados;
+                                
+                            }
+                            else 
+                            {
+                                $cantfinalizado = 0;
+                            };
+                                                
+                        @endphp
+                        <div name = "barraProgesoAnimales" valor = "{{ ($cantfinalizado *100)/$diasActividad }}" class= "mt-2 bg-purple-900 py-1 text-center rounded-full"  style= {{"width:" .  ($cantfinalizado *100)/$diasActividad  ."%" }}>
+                            <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
+                                {{ceil(($cantfinalizado *100)/$diasActividad)."%"}}
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div> 
         @endif  
@@ -77,9 +99,32 @@
                     <x-label>
                         <div>Avance de la Actividad:</div>
                     </x-label>
+
                     <div class="mt-2 bg-gray-600 rounded-full">
-                        <div class="w-3/12 mt-2 bg-purple-900 py-1 text-center rounded-full"><div class="text-white text-sm inline-block bg-purple-700  rounded-full">35%</div></div>
+                        @php
+                            $desdeFecha = new DateTime($juego->fecdesde); 
+                            $hastaFecha = new DateTime($juego->fechasta);
+                            $diasActividad = $desdeFecha->diff($hastaFecha)->format("%r%a")+1;
+
+                            if($juego->cantdiasfinalizados)
+                            { 
+                                $cantfinalizado = $juego->cantdiasfinalizados;
+                                
+                            }
+                            else 
+                            {
+                                $cantfinalizado = 0;
+                            };
+                        @endphp
+                        <div name = "barraProgesoFichas" valor = "{{ ($cantfinalizado *100)/$diasActividad }}" class= "mt-2 bg-purple-900 py-1 text-center rounded-full"  style= {{"width:" .  ($cantfinalizado *100)/$diasActividad  ."%" }}>
+                            <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
+                                {{ceil(($cantfinalizado *100)/$diasActividad)."%"}}
+                            </div>
+                        </div>
                     </div>
+
+
+
                 </div>
 
             </div> 
@@ -92,28 +137,35 @@
 $(document).ready(function(){
         
     let juegoAnimales = document.getElementById("cardAnimalesIA");
-    let idActividadFamilia1 = document.getElementById("idActividadFamilia1").value;
-    let idActividadFamilia2 = document.getElementById("idActividadFamilia2").value;
+    let juegoFichas = document.getElementById("cardFichas");
 
-    console.log(idActividadFamilia2);
-
-    if(juegoAnimales)
+    if(document.getElementById("idActividadFamilia1")!=null)
+    { 
+        let idActividadFamilia1 = document.getElementById("idActividadFamilia1");
+    }
+   
+    
+    if(document.getElementById("idActividadFamilia2")!=null)
     {
+         let idActividadFamilia2 = document.getElementById("idActividadFamilia2");
+    }
+
+    //Si existe la ficha en la pagina, le asigno el click
+    if(juegoAnimales)
+    {  
         juegoAnimales.onclick = function () {
-            console.log(idActividadFamilia2);
-            window.location.href ="/animalesIA/"+idActividadFamilia1;      
+            window.location.href ="/animalesIA/"+idActividadFamilia1.value;      
             //window.location.href = "{{ route('animalesIA', " + idActividadFamilia1 + ") }}";
+            
         };
     }
         
-    let juegoFichas = document.getElementById("cardFichas");
-
     if(juegoFichas)
-    {
+    {   
         juegoFichas.onclick = function () {
+               
+        window.location.href ="/colocarFicha/"+idActividadFamilia2.value;  
         
-        console.log(idActividadFamilia2);
-        window.location.href ="/colocarFicha/"+idActividadFamilia2;  
         
         };
     }

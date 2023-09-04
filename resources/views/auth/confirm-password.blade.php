@@ -27,7 +27,7 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-button>
+                <x-button class="py-2">
                     {{ __('Confirm') }}
                 </x-button>
             </div>

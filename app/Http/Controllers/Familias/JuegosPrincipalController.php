@@ -15,11 +15,14 @@ class JuegosPrincipalController extends Controller
 
       $juegos =  Actividades::where('tipoactividad', 'J')
               ->join('actividadesfamilia', 'actividadesfamilia.idactividad', '=', 'actividades.idactividad')
+              ->leftjoin('actividadesavances', 'actividadesavances.idactividadfamilia', '=', 'actividadesfamilia.idactividadfamilia')
               ->where('actividadesfamilia.idusuario', '=',$idfamilia )
               ->where('actividadesfamilia.fecdesde', '<=', Carbon::Now() )
               ->where('actividadesfamilia.fechasta', '>=', Carbon::Now() )
               ->distinct('actividades.idactividad', 'actividadesfamilia.idactividadfamilia')
-              ->select( 'actividadesfamilia.idactividadfamilia','actividades.idactividad','actividadesfamilia.fecdesde','actividadesfamilia.fechasta')->get();
+              ->select( 'actividadesfamilia.idactividadfamilia','actividades.idactividad','actividadesfamilia.fecdesde','actividadesfamilia.fechasta',
+                        'actividadesavances.cantdiasfinalizados')
+              ->get();
       
       if (!$juegos)
       {

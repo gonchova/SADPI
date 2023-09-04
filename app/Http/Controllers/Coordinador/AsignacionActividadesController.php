@@ -29,7 +29,8 @@ class AsignacionActividadesController extends Controller
         $data=[];
         $bindings=[];
         $mensaje="";
-        
+        $verificar= true;
+
         $ActividadesSel = $request->get('itemSel');
         $fecDesde = $request->get('fecDesde');
         $fecHasta = $request->get('fecHasta');
@@ -58,11 +59,12 @@ class AsignacionActividadesController extends Controller
         
         foreach($ActividadesSel as $act )
         {   
-            if(!$act['cantidad'])
+            if(!$act['cantidad'] && $verificar)
             {  
                $dataReturn['status'] = false;
                $dataReturn['message'] = 'Debe ingresar cantidad válida en todas las actividades seleccionadas';
                array_push($data,$dataReturn);
+               $verificar=false;
             }
 
 

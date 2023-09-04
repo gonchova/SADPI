@@ -26,9 +26,9 @@
             @csrf
             <div class="block mx-2">
     
-                <div class="w-30 sm:w-1/2">
-                    <x-label class="pt-2" for="nombre" :value="__('Nombre Actividad:')" />
-                    <x-label class="py-1 mb-2 pl-1 bg-gray-300 uppercase align-top"  name="nombre">{{$actividad->nombre}}</x-label>
+                <div class="w-full">
+                    <x-label class="pt-2 " for="nombre" :value="__('Nombre Actividad:')" />
+                    <x-label class="py-1 mb-2 pl-1 bg-gray-300 uppercase align-top border rounded-md"  name="nombre">{{$actividad->nombre}}</x-label>
                     {{-- <input id="nombre" class="block px-1 mt-1 w-full h-10  text-gray-600" type="text" name="nombre" value="{{$actividad->nombre}}" disabled autofocus > --}}
                 </div>
                 
@@ -49,7 +49,7 @@
                             <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
                         </div>
     
-                        <x-button class="mt-5 mb-2 w-40" id="btnAgregarPaso">
+                        <x-button class="mt-5 mb-2 w-40 py-2" id="btnAgregarPaso">
                             <a href="#" class="font-medium">Agregar Paso</a>
                         </x-button>
     
@@ -82,7 +82,7 @@
                                         <td scope="row" class="border font-medium  text-black shrink"></td>
                                         <td scope="row" class="border font-medium  text-black shrink"></td>
                                         <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                            <x-button class="px-2 bg-red-600" id="btnEliminar">
+                                            <x-button class="px-2 bg-red-600 py-2" id="btnEliminar">
                                                 <a href="#" class="font-medium">Eliminar</a>
                                             </x-button>
                                         </td>
@@ -97,7 +97,7 @@
                                                 {{$paso->descripcion}} 
                                             </td>
                                             <td name="tdEliminar"  class= "px-1 py-1 border uppercase  grow-0">
-                                                <x-button name="btnEliminar" type="button" id="btnEliminar-{{$paso->idpaso}}"  class="px-2 bg-red-600"  onclick="eliminarPaso(event)">
+                                                <x-button name="btnEliminar" type="button" id="btnEliminar-{{$paso->idpaso}}"  class="px-2 bg-red-600 py-2"  onclick="eliminarPaso(event)">
                                                    Eliminar
                                                 </x-button>
                                             </td>
@@ -110,12 +110,12 @@
                     </div>
     
                <div class="flex justify-center mb-2">
-                    <x-button class="bg-green-600 mt-5 mx-2"  id="btnGuardar">
+                    <x-button class="bg-green-600 mt-5 mx-2 py-2"  id="btnGuardar">
                         <a class="px-2 font-medium">Guardar</a>
                     </x-button>
                     
                     <a href="{{route('actividades')}}" class="px-2 font-medium">
-                        <x-button class="mt-5 mx-2 px-2" type="button">
+                        <x-button class="mt-5 mx-2 px-2 py-2" type="button">
                             Volver
                         </x-button>
                     </a> 

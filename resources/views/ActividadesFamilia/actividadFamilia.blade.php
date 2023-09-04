@@ -83,12 +83,12 @@
 
                 <div class="flex flex-row mt-2 justify-center">
                     <div class="flex flex-col m-2 justify-center w-auto">
-                        <x-button type="submit"  class="my-2 px-1 mx-auto" id="btnActividadRealizada">
+                        <x-button type="submit"  class="my-2 px-1 mx-auto py-2" id="btnActividadRealizada">
                             Actividad del día realizada
                         </x-button>
                                                        
                         <a href="{{ route('actividadesFamilia.principal') }}" class="mx-auto">
-                            <x-button class="px-2" type="button" >
+                            <x-button class="px-2 py-2" type="button" >
                                 {{ __('Salir') }}
                             </x-button>  
                         </a>

@@ -21,13 +21,13 @@
                 @csrf
 
                 <div>
-                    <x-button>
+                    <x-button class="py-2">
                         {{ __('Resend Verification Email') }}
                     </x-button>
                 </div>
 
                 <div>
-                    <x-button  onclick="{{ route('login') }}">
+                    <x-button class="py-2" onclick="{{ route('login') }}">
                         {{ __('Volver') }}
                     </x-button>
                 </div>

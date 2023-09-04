@@ -78,7 +78,7 @@ class actividadesFamiliaPrincipalController extends Controller
             $intentoObservacion=$actividadAvance->cantintentosdiafinalizados;
             $diasObservacion= $actividadAvance->cantdiasfinalizados;
 
-            if($actividadAvance->cantintentosdiafinalizados == $actividadesFlia->cantdia)
+            if($actividadAvance->cantintentosdiafinalizados >= $actividadesFlia->cantdia)
             { 
               $actividadAvance->cantintentosdiafinalizados = 0;
               $actividadAvance->cantdiasfinalizados += 1;

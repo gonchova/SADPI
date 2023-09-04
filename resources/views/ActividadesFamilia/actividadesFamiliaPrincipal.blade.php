@@ -2,21 +2,21 @@
    
     <div class="flex justify-center mt-2">
         <a href="{{ route('principal') }}">
-            <x-button type="button" id="btnVolver" class="px-2">
+            <x-button type="button" id="btnVolver" class="px-2 py-2">
                 {{ __('Volver') }}
             </x-button>
         </a>
     </div>
 
-    <div class="flex flex-wrap gap-4 justify-center w-full" id="container">
-    
+    <div class="flex flex-wrap gap-4 mx-auto justify-center inline-flex w-full" id="container">
+        <div class="flex-row w-full gap-4 mx-10 inline-flex flex-wrap" >
         @foreach ($actividadesFlia as $act)
         {{-- no debe traer juegos en esta pagina --}}
         @if($act->actividades->tipoactividad == 'A')
 
         <a href="{{ route('actividadesFamilia.actividadFamilia',['idactividadfamilia' => $act->idactividadfamilia])}}">
         {{-- <form method="GET" id = "formulario" action="{{route('actividadesFamilia.actividadFamilia',$act->idactividadfamilia)}}"> --}}
-            <div id= "{{$act->idactividadfamilia}}" name="cardActividad" class="flex flex-col  max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4  hover:cursor-pointer select-none">
+            <div id= "{{$act->idactividadfamilia}}" name="cardActividad" class="flex flex-col h-50 max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-3  hover:cursor-pointer select-none">
                 
                 <div class="flex px-6 py-2  justify-center">
                     <div class="font-bold text-xl pb-2 fuenteFichas">{{$act->actividades->nombre }} </div>
@@ -59,6 +59,7 @@
         @endif
         @endforeach
     </a>
+    </div>
     </div>
 
 

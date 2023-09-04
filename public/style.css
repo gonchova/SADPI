@@ -786,6 +786,10 @@ video {
   height: 5rem;
 }
 
+.h-50 {
+  height: 13rem;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -805,6 +809,8 @@ video {
 .h-9 {
   height: 2.25rem;
 }
+
+
 
 .h-auto {
   height: auto;
@@ -850,9 +856,20 @@ video {
   width: 1rem;
 }
 
+.w-25 {
+  width: 6rem;
+}
+
+
+.w-30 {
+  width: 8.5rem;
+}
+
+
 .w-40 {
   width: 10rem;
 }
+
 
 .w-44 {
   width: 11rem;
@@ -1572,6 +1589,19 @@ video {
 
 .opacity-0 {
   opacity: 0;
+}
+
+.opacity-25 {
+  opacity: 0.25;
+}
+
+.opacity-30 {
+  opacity: 0.30;
+}
+
+
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .opacity-100 {

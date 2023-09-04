@@ -30,11 +30,11 @@
 
                  <div class="flex-row"> 
 
-                    <x-button class="px-2" >
+                    <x-button class="px-2 py-2" >
                         {{ __('Enviar Email con Link') }}
                     </x-button>
                     
-                    <x-button type="button" class="px-2 mt-1 sm:mt-4" onclick=" window.location='{{ url('login') }}' ">
+                    <x-button type="button" class="px-2 mt-1 sm:mt-4 py-2" onclick=" window.location='{{ url('login') }}' ">
                         {{ __('Volver') }}
                     </x-button>
 

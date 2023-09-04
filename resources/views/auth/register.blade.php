@@ -1,9 +1,11 @@
 <x-app-layout>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
     <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Nuevo Usuario</h2>
     </div>
-    
+
+  
     <x-auth-card class="mt-2">
         
         <x-slot name="logo">
@@ -25,21 +27,21 @@
             <div>
                 <x-label for="name" :value="__('Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" maxlength="20" name="name" :value="old('name')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email"  maxlength="30"  name="email" :value="old('email')" required />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="username" :value="__('Nombre de Usuario')" />
 
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
+                <x-input id="username" class="block mt-1 w-full" type="text"  maxlength="15"  name="username" :value="old('username')" required />
             </div>
 
             <!-- Rol Usuario -->
@@ -76,15 +78,17 @@
 
             <div class="flex items-center justify-left mt-4">
                 <a href="{{ route('principal') }}">
-                    <x-button type="button" id="btnVolver" class="px-2">
+                    <x-button type="button" id="btnVolver" class="px-2 py-2">
                         {{ __('Volver') }}
                     </x-button>
                 </a>
-                <x-button class="ml-4 px-2">
+                <x-button class="ml-4 px-2 py-2">
                     {{ __('Registrar') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
+
+
 </x-app-layout>
 

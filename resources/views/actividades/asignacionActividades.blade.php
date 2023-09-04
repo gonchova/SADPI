@@ -1,6 +1,6 @@
 <x-app-layout>
     
-    <div class="flex bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center ">
+    <div class="flex bg-white shadow-sm sm:rounded-lg mt-2  justify-center ">
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm ">Asignación de Actividades</h2>
     </div>
     
@@ -30,7 +30,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="flex flex-row p-4 space-x-2 border-t border-gray-200 rounded-b justify-center mx-center">
-                    <x-button id="AceptarModalError" name="Aceptar" data-modal-hide="defaultModalerror" type="button" class="px-2" >Aceptar</x-button>
+                    <x-button id="AceptarModalError" name="Aceptar" data-modal-hide="defaultModalerror" type="button" class="px-2 py-2" >Aceptar</x-button>
                 </div>
         
             </div>
@@ -38,9 +38,9 @@
     </div>
 
 
-    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-2 sm:mx-4 ">
+    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
  
-        <div class="flex flex-row flex-wrap px-4 justify-center">  
+        <div class="flex flex-row flex-wrap px-4 justify-center pt-2">  
             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="familiaFiltro" :value="__('Familia:')" />
             <div  class="mx-2 w-52 shrink">
                 <select name="familiaFiltro" id="familiaFiltro" class=" sm:text-sm inline-flex items-center my-1 py-2 px-3 w-full h-auto text-white  focus:outline-none focus:bg-purple-300 focus:text-black focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm bg-gray-800  border-gray-600  " >
@@ -68,11 +68,12 @@
             </div>
         </div>
     
-    
+    </div>
+        
         <form method="GET" action="{{route("asignacionActividades.filtrar")}}" id="formulario" name="formulario" >
         
-        <div class="flex flex-col pt-4 ">
-            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2 mx-1 sm:mx-4 ">
+        <div class="flex flex-col pt-2 ">
+            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2  mx-4  ">
                 <div class="flex flex-row">
                     <x-label class="text-xs sm:text-sm hidden sm:flex sm:ml-4 pl-4 pt-3 pb-2" for="filtroActividad" :value="__('Buscar:')" />
                     <div>
@@ -86,14 +87,14 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between pb-4 ">
+                <div class="flex items-center justify-between pb-2 ">
 
                     <div class="container mx-0 sm:mx-2 ">
                     
                         <table id = "tablaActividades" name="tablaActividades" class=" sm:mx-2 w-full flex sm:inline-table  overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg my-5 ">
                             <thead class="text-black ">
     
-                                <tr class="flex justify-center bg-indigo-200 flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                                <tr class="flex justify-center text-xs sm:text-sm bg-indigo-200 flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                     <th class="p-3 text-left border border-solid ">Sel</th>
                                     <th class="p-3 text-left sm:text-center border border-solid">Actividad</th>
                                     <th class="p-3 text-left sm:text-center border border-solid">Cant. Diaria</th>
@@ -108,10 +109,10 @@
                                     @endphp
                                     @if ($cont > 1)
                                         
-                                        <tr class="flex justify-center sm:hidden bg-indigo-200  flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                                        <tr class="flex justify-center  text-xs sm:text-sm sm:hidden bg-indigo-200  flex-col flex-nowrap whitespace-nowrap rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                                             <th class="p-3 text-left border border-solid ">Sel</th>
                                             <th class="p-3 text-left sm:text-centert border border-solid">Actividad</th>
-                                            <th class="p-3 text-center border border-solid">Cant. Diaria</th>
+                                            <th class="p-3 text-left border border-solid">Cant. Diaria</th>
                                             <th class="p-3 text-left sm:text-center border border-solid sm:w-110 h-15" >Info</th>
                                             <th class="p-3 text-left border border-solid ">Avance Act. vigente</th>
                                         </tr>
@@ -124,9 +125,9 @@
                             <tbody class="flex-1 sm:flex-none" >
                             
                                 @foreach ($actividades as $act)                            
-                                    <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 w-50 md:w-fit">
+                                    <tr class="flex flex-col  text-xs sm:text-sm sm:table-row mb-2 sm:mb-0 w-50 md:w-fit">
                                         <td class="border-grey-light border hover:bg-gray-100 p-3 whitespace-nowrap justify-center">
-                                            <div class="flex flex-row justify-center py-1">
+                                            <div class="flex flex-row justify-center py-0 sm:py-1 text-xs sm:text-sm">
                                                 <x-input type="checkbox" name="chkItem" id="chkItem" ></x-input>
                                             </div>
                                         </td>
@@ -141,13 +142,13 @@
 
                                         <td class="gap-1  border hover:bg-gray-100 p-1.5 flex-nowrap whitespace-nowrap ">
                                             <div class="flex flex-row justify-center">
-                                                <x-input type="number" min="0" class="w-20 h-9"></x-input>
+                                                <x-input type="number" min="0" max="50" class="w-20 h-7"></x-input>
                                             </div>
                                         </td>
                                         
                                         <td class="border-grey-light border hover:bg-gray-100 px-2 py-2">
-                                            <x-button class="h-8 whitespace-nowrap " data-modal-target="defaultModal-{{$act->idactividad}}" data-modal-toggle="defaultModal-{{$act->idactividad}}" type="button">
-                                                <a class="px-2 font-medium" >+Info</a>
+                                            <x-button class="py-0 whitespace-nowrap h-6 " data-modal-target="defaultModal-{{$act->idactividad}}" data-modal-toggle="defaultModal-{{$act->idactividad}}" type="button">
+                                                <a class="px-2 my-0 font-medium" >+Info</a>
                                             </x-button>
                                            
                                             <div id="defaultModal-{{$act->idactividad}}"  data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-auto p-4  overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
@@ -168,7 +169,7 @@
                                                         </div>
                                                         <!-- Modal footer -->
                                                         <div class="flex flex-row p-6 space-x-2 border-t border-gray-200 rounded-b justify-center">
-                                                            <x-button name="Aceptar" data-modal-hide="defaultModal-{{$act->idactividad}}" type="button" class="px-2" >Aceptar</x-button>
+                                                            <x-button name="Aceptar" data-modal-hide="defaultModal-{{$act->idactividad}}" type="button" class="px-2 py-2" >Aceptar</x-button>
                                                         </div>
                                                 
                                                     </div>
@@ -199,8 +200,8 @@
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class="flex flex-row p-6 space-x-2 border-t border-gray-200 rounded-b justify-center">
-                                                        <x-button data-idactividad="{{$act->idactividad}}" data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="ConfirmaEliminar" data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2" id="ConfirmaEliminar-{{$act->idactividad}}">Aceptar</x-button>
-                                                        <x-button data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="CancelaEliminar"  data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2">Cancelar</x-button>
+                                                        <x-button data-idactividad="{{$act->idactividad}}" data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="ConfirmaEliminar" data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2 py-2" id="ConfirmaEliminar-{{$act->idactividad}}">Aceptar</x-button>
+                                                        <x-button data-modal-target="defaultModalEliminar-{{$act->idactividad}}"  name="CancelaEliminar"  data-modal-hide="defaultModalEliminar-{{$act->idactividad}}" type="button" class="px-2 py-2">Cancelar</x-button>
                                                         <input type="hidden" name="idactividad"/>
                                                     </div>
                                             
@@ -223,16 +224,15 @@
         </form> 
             
         <div class="mx-6 my-3">
-            <x-button class="bg-green-600" id="btnGuardar" type="button">
+            <x-button class="bg-green-600 py-2" id="btnGuardar" type="button">
                 <a  class="px-2 font-medium ">Guardar</a>
             </x-button>
-            <x-button class="bg-red-600 ">
+            <x-button class="bg-red-600 py-2">
                 <a href = "{{route('principal')}}" class="px-2 font-medium ">Cancelar</a>
             </x-button>
         </div>
-         
- 
-</div> 
+
+
 <button hidden id = "btnEliminarVigente" title="Eliminar Actividad Vigente" class="w-10 ml-1 px-1 py-0 items-center bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widestfocus:text-gray-200 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 active:bg-purple-300  disabled:opacity-25 transition ease-in-out duration-150"  >
 </button>
 <script>
@@ -351,8 +351,6 @@ $(document).ready(function(){
         
         $("#tablaActividades tr td div input[type='checkbox']:checked").each(function () {
             row = $(this).closest('tr');
-            
-            console.log(row.find('td:eq(3)').find('input').val());
             
             seleccion.push({
                 idactividad: row.find('td:eq(1)').text().trim(),

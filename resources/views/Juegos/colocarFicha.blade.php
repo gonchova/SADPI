@@ -8,8 +8,8 @@
 
     <div class="flex flex-row justify-between bg-white shadow-sm sm:rounded-lg  mb-2 ">
           
-        <a href="{{ route('colocarFicha',19) }}" class="mx-auto my-20 justify-center">
-            <x-button class="px-2 justify-center my-1">
+        <a href="{{ route('colocarFicha',$actividadfamilia[0]->idactividadfamilia) }}" class="mx-auto my-20 justify-center">
+            <x-button class="px-2 justify-center my-1 py-2 ">
                 {{ __('Reintentar') }}
             </x-button>  
         </a>
@@ -20,7 +20,7 @@
         <h2 class="text-gray-700  my-1 uppercase antialiased text-lg font-bold sm:text-sm ">"Colocar Fichas"</h2>      
         
         <a href="{{ route('principal') }}" class="mx-auto justify-center my-1">
-            <x-button class="px-2 justify-center">
+            <x-button class="px-2 justify-center py-2">
                 {{ __('Salir') }}
             </x-button>  
         </a>

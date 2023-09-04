@@ -43,12 +43,12 @@
             <div class="flex items-center justify-end mt-4">
            
                 <a href="{{route('login')}}">
-                    <x-button type="button" class="px-2" >        
+                    <x-button type="button" class="px-2 py-2" >        
                     Volver
                     </x-button>
                 </a> 
 
-                <x-button class="px-2 ml-3">
+                <x-button class="px-2 ml-3 py-2">
                     {{ __('Reset Password') }}
                 </x-button>
             </div>
