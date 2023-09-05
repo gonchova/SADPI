@@ -45,7 +45,9 @@
                     <x-label>
                         <div>Período: {{date("d/m/Y", strtotime($juego->fecdesde))}} al {{date("d/m/Y", strtotime($juego->fechasta))}}  </div>
                     </x-label>
-
+                    <x-label>
+                        <div>Cantidad diaria: {{$juego->cantdia}} </div>
+                    </x-label>
                     <x-label>
                         <div>Avance de la Actividad:</div>
                     </x-label>
@@ -97,7 +99,10 @@
                         <div>Período: {{date("d/m/Y", strtotime($juego->fecdesde))}} al {{date("d/m/Y", strtotime($juego->fechasta))}}  </div>
                     </x-label>
                     <x-label>
-                        <div>Avance de la Actividad:</div>
+                        <div>Cantidad diaria: {{$juego->cantdia}} </div>
+                    </x-label>
+                    <x-label>
+                        <div>Avance en días de la Actividad:</div>
                     </x-label>
 
                     <div class="mt-2 bg-gray-600 rounded-full">

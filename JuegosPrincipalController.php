@@ -21,7 +21,7 @@ class JuegosPrincipalController extends Controller
               ->where('actividadesfamilia.fechasta', '>=', Carbon::Now() )
               ->distinct('actividades.idactividad', 'actividadesfamilia.idactividadfamilia')
               ->select( 'actividadesfamilia.idactividadfamilia','actividades.idactividad','actividadesfamilia.fecdesde','actividadesfamilia.fechasta',
-                        'actividadesavances.cantdiasfinalizados','actividadesfamilia.cantdia')
+                        'actividadesavances.cantdiasfinalizados')
               ->get();
       
       if (!$juegos)

@@ -24,11 +24,7 @@
                 
                 <div class="px-6 pt-4 pb-2 mt-auto">
                     <x-label>
-                        <div>Período: {{date("d/m/Y", strtotime($act->fecdesde))}} al {{date("d/m/Y", strtotime($act->fechasta))}} </div>
-                    </x-label>
-
-                    <x-label>
-                        <div>Cantidad diaria: {{$act->cantdia}} </div>
+                        <div>Período: {{date("d/m/Y", strtotime($act->fecdesde))}} al {{date("d/m/Y", strtotime($act->fechasta))}}  </div>
                     </x-label>
 
                     <x-label>

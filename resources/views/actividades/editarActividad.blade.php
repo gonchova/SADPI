@@ -34,7 +34,7 @@
                 
                 <div class="w-full">
                     <x-label class="pt-2 " for="descripcionActividad" :value="__('Descripción:')" />
-                    <textarea id="descripcion" name="descripcion" class= "w-full h-20 px-1" rows='1' placeholder='' >{{$actividad->descripcion}} </textarea>
+                    <textarea id="descripcion" name="descripcion" class= "w-full h-20 px-1 overflow-auto" rows='1' placeholder='' >{{$actividad->descripcion}} </textarea>
                 </div>
     
     
@@ -67,7 +67,7 @@
                                         <th scope="col" class=" border w-10 px-3 justify-center text-xs sm:text-sm">
                                         #
                                         </th>
-                                        <th scope="col" class=" border w-fit px-2  h-1 text-xs sm:text-sm">
+                                        <th scope="col" class="border w-fit px-2  h-1 text-xs sm:text-sm ">
                                         Descripcion paso
                                         </th>
                                       <th scope="col" class=" border w-fit px-2  text-xs sm:text-sm ">
@@ -198,7 +198,7 @@
                 //array('Nroresponsable' => '1'
             $('#tablaPasos')
             .append(
-                $('<tr "id"= "item-'+NroPaso+'" "name"= "items-'+NroPaso+'">')
+                $('<tr "id"= "item-'+NroPaso+'" "name"= "items-'+NroPaso+'" class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink" >')
                 .append(
                     $('<td name=nropaso>')
                     .append(
@@ -221,7 +221,7 @@
                     )
 
                 )
-            )     
+            )
 
             btnEliminar = document.getElementById('btnEliminar-'+NroPaso);
            

@@ -201,24 +201,17 @@ class ActividadesController extends Controller
         array_push($bindings, Carbon::now());
         array_push($bindings, $idfamilia);
    
-        $sql = "SELECT a.idactividad, b.cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta ,
+        $sql = "SELECT a.idactividad, IFNULL(b.cantdiasfinalizados,0) cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta ,
                 a.idactividadfamilia
                 FROM actividadesfamilia a
-                INNER JOIN actividadesavances b ON a.idactividadfamilia = b.idactividadfamilia
+                LEFT JOIN actividadesavances b ON a.idactividadfamilia = b.idactividadfamilia
                 WHERE a.fecdesde <= ? AND a.fechasta >= ?
                 AND a.idusuario = ? ";
 
         $result = DB::select($sql, $bindings);
 
-       // $actividadesRealizados= collect($result);
-        
-        // $actividadesRealizados=[
-        //     'idactividad' => null,
-        //     'cantrealizado' => $actividadesAvances->cantdiasfinalizados
-        // ];
-
         return $result;
-      //return view('actividades.actividadFamilia', compact('actividadFamilia','pasosActividad','idactividadfamilia'));
+
     }
 
     public function update(Request $request, $idActividad)

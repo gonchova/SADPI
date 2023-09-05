@@ -49,6 +49,7 @@ class actividadesFamiliaPrincipalController extends Controller
         if(!$idactividadfamilia)
           return back()->withErrors('Actividad no encontrada, no se actualizan los datos'); 
 
+        // $this->validate($request, $rules, $messages);
         $actividadesFlia = ActividadesFamilia::find($idactividadfamilia);
 
         //verifico si no grabo hoy una activadad realizada
@@ -65,7 +66,7 @@ class actividadesFamiliaPrincipalController extends Controller
             
               if($actividadAvance->estado == 'F') // Dia completado
               {
-                  return back()->with('mensaje',"Actividades del día completadas!.". "\n" . "Puede continuar sin confirmar la realización.");
+                  return back()->withErrors("Ya se han realizado todas los intentos del día.". "\n" . "Puede continuar sin confirmar la realización.");
               }
             }
 

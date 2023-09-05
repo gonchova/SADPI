@@ -20,16 +20,13 @@
     </div>  
     @endif
     
-
-
     <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-4 sm:mx-20" >
-     
 
     <form method="POST"  id="formulario" action="{{ route('actividades.save') }}">
         @csrf
         <div class="block mx-2">
 
-            <div class="w-30 sm:w-1/2">
+            <div class="w-full sm:w-1/2">
                 <x-label class="pt-2" for="name" :value="__('Nombre Actividad:')" />
     
                 <x-input maxlength="30" id="nombre" class="block mt-1 w-full h-10" type="text" name="nombre" :value="old('nombre')" required autofocus  />
@@ -37,7 +34,7 @@
             
             <div class="w-full">
                 <x-label class="pt-2 " for="descripcionActividad" :value="__('Descripción:')" />
-                <textarea id="descripcion" name="descripcion" class="w-full  h-10" rows='1' placeholder='' >{{old('descripcion')}}</textarea>
+                <textarea id="descripcion" name="descripcion" class="w-full h-10 overflow-auto " rows='1' placeholder='' >{{old('descripcion')}}</textarea>
             </div>
 
             <div class="w-30 sm:w-1/2">
@@ -56,7 +53,7 @@
             </div>
 
             <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
-                    <div class="w-30 sm:w-1/2">
+                    <div class="w-full sm:w-1/2">
                         <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
 
                         <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
@@ -103,7 +100,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
                 </div>
             </div>
 

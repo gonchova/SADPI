@@ -251,7 +251,6 @@ $(document).ready(function(){
     const defaultModal = document.getElementById('defaultModal'); 
 
     $("[name='ConfirmaEliminar']").each(function () {
-
           this.addEventListener('click', function(e){
           eliminarActFamilia($(this).data("idactividadfamilia"));
 
@@ -262,6 +261,8 @@ $(document).ready(function(){
     boton.addEventListener('click', function(e){
         
         grabar();
+        setTimeout("$('#formulario').submit()", 2500)
+        
     })
 
     fecDesde.addEventListener('change', function(e){
@@ -379,14 +380,16 @@ $(document).ready(function(){
             }).done(function (data, filtroact) {
 
                 if (data[0]['status'] == true)
-                {   
+                { 
                     $("#filtroActividad").val("");
                     $('#mensajeOk').removeClass();
                     $('#mensajeOk').addClass("text-green-500");
                     $("#mensajeOk div").remove();
                     $('#mensajeOk').append('<div>' + data[0]['message'] + '</div>');
+                    
+                    //$('#formulario').refresh();                    
+                    //BuscarRealizados();
 
-                    $('#formulario').submit();
                 }   
                  else
                 {                       
@@ -415,7 +418,7 @@ $(document).ready(function(){
 
 
     const eliminar = (idActividadFamilia) =>
-      { 
+      { console.log(idActividadFamilia);
             
           $.ajax({
               url: '/actividadesFamilia/asignacion/eliminar/' + idActividadFamilia,

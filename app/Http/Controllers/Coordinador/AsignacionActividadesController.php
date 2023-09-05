@@ -70,8 +70,8 @@ class AsignacionActividadesController extends Controller
 
             //Verifica si la familia ya tiene asignadas actividades dentro del rango seleccionado
             $sql = "SELECT a.idactividad, b.nombre, a.fecdesde, a.fechasta
-            FROM ActividadesFamilia a
-            INNER JOIN Actividades b ON a.idActividad = b.idActividad
+            FROM actividadesfamilia a
+            INNER JOIN actividades b ON a.idActividad = b.idActividad
             WHERE a.idUsuario = ?
             AND a.idActividad = ?
             AND ((a.fecdesde <= ? AND a.fechasta >= ?) 
@@ -155,15 +155,21 @@ class AsignacionActividadesController extends Controller
             return $data;
           }
         
-        DB::transaction(function () use ($idactividadfamilia,$data,$dataReturn)
-        {
+        // DB::transaction(function () use ($idactividadfamilia,$data,$dataReturn)
+        // {
            $actividadesAvancesFlia = ActividadesAvances::find($idactividadfamilia);
-           $actividadesAvancesFlia->delete();
+           if($actividadesAvancesFlia)
+                $actividadesAvancesFlia->delete();
 
            $actividadesComentariosFlia = ActividadComentario::where('idactividadfamilia', $idactividadfamilia);
-           $actividadesComentariosFlia->delete();
+           if($actividadesComentariosFlia)
+                $actividadesComentariosFlia->delete();
+
+           $actividadesFlia = ActividadesFamilia::where('idactividadfamilia', $idactividadfamilia);
+           if($actividadesFlia)
+               $actividadesFlia->delete();
             
-        });
+        // });
         
         $dataReturn['status'] = true;
         $dataReturn['message'] = 'Avances de actividad eliminados correctamente.';
