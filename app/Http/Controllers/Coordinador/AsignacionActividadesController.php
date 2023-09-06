@@ -18,7 +18,7 @@ class AsignacionActividadesController extends Controller
 
         $actividades = Actividades::buscar($valorActividad, null, null);
         
-        $familias = User::where('idrol', 2)->get();
+        $familias = User::where('idrol', 2)->orderBy('name')->get();
 
         return view("actividades.asignacionActividades", compact('familias','actividades'));
     }
@@ -109,7 +109,6 @@ class AsignacionActividadesController extends Controller
         }
         
 
-
         //Si no hay errores, realiza insercion
         if(!$data)
         {
@@ -127,7 +126,6 @@ class AsignacionActividadesController extends Controller
 
                     $actividadflia->save();
                     $actflia=null;
-
                     
                 }
             });
@@ -155,8 +153,8 @@ class AsignacionActividadesController extends Controller
             return $data;
           }
         
-        // DB::transaction(function () use ($idactividadfamilia,$data,$dataReturn)
-        // {
+        DB::transaction(function () use ($idactividadfamilia,$data,$dataReturn)
+        {
            $actividadesAvancesFlia = ActividadesAvances::find($idactividadfamilia);
            if($actividadesAvancesFlia)
                 $actividadesAvancesFlia->delete();
@@ -169,7 +167,7 @@ class AsignacionActividadesController extends Controller
            if($actividadesFlia)
                $actividadesFlia->delete();
             
-        // });
+        });
         
         $dataReturn['status'] = true;
         $dataReturn['message'] = 'Avances de actividad eliminados correctamente.';

@@ -34,14 +34,14 @@
             <div class="mt-2">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email"  maxlength="30"  name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email"  maxlength="30"  name="email" :value="old('email')" required autofocus/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-2">
                 <x-label for="username" :value="__('Nombre de Usuario')" />
 
-                <x-input id="username" class="block mt-1 w-full" type="text"  maxlength="15"  name="username" :value="old('username')" required />
+                <x-input id="username" class="block mt-1 w-full" type="text"  maxlength="15"  name="username" :value="old('username')" required autofocus/>
             </div>
 
             <!-- Rol Usuario -->

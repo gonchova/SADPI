@@ -47,7 +47,7 @@
   
   @else
     <div class="flex min-h-screen w-full justify-center rounded" >
-      <img class="pt-10 align-middle h-screen w-screen opacity-30 " src="{{asset('img/Logo01-FONDO.png')}}" alt="Mostrar el animal correcto">
+      <img class="pt-10 align-middle h-screen w-screen opacity-30 py-20" src="{{asset('img/Logo01-FONDO.png')}}" alt="Mostrar el animal correcto">
     </div>
   @endif
   

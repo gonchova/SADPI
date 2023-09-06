@@ -23,26 +23,16 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->middleware(['auth'])->name('login');
-
-// Route::get('/', function () {
-//     return view('auth.login');
-// })->middleware(['auth'])->name('login');
 
 Route::get('/', function () {
     return view('principal');
 })->middleware(['auth'])->name('principal');
-
-
 
 Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
 Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}/{categoria}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
-
 
 Route::get('/actividades/asignacion', [ActividadesController::class,'asignacionActividades'])->middleware(['auth'])->name('actividades.asignacion');
 Route::post('/actividades/asignacion/nueva',[AsignacionActividadesController::class,'save'])->middleware(['auth'])->name('asignacionActividades.save');
@@ -62,7 +52,6 @@ Route::get('/actividades/realizado/{idfamilia}/{fecdesde}/{fechasta}', [Activida
 
 Route::get('/getEspecialidades', [EspecialidadesController::class,'getEspecialidades'])->middleware(['auth'])->name('getEspecialidades');
 
-
 /* rutas familias */
 Route::get('/animalesIA/{idactividadfamilia}', [JuegoAnimalesController::class,'index'])->middleware(['auth'])->name('animalesIA');
 Route::post('/animalesIA/save/{idactividadfamilia}/{idfamilia}', [JuegoAnimalesController::class,'save'])->middleware(['auth'])->name('saveAnimales');
@@ -70,18 +59,14 @@ Route::post('/animalesIA/save/{idactividadfamilia}/{idfamilia}', [JuegoAnimalesC
 Route::get('/colocarFicha/{idactividadfamilia}', [JuegoFichasController::class,'index'])->middleware(['auth'])->name('colocarFicha');
 Route::post('/colocarFicha/save/{idactividadfamilia}/{idfamilia}', [JuegoFichasController::class,'save'])->middleware(['auth'])->name('saveFichas');
 
-
 Route::get('/Juegos', [JuegosPrincipalController::class,'index'])->middleware(['auth'])->name('juegos');
 
 Route::get('/actividadesFamilia/principal', [actividadesFamiliaPrincipalController::class,'index'])->middleware(['auth'])->name('actividadesFamilia.principal');
 Route::get('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'seleccionActividad'])->middleware(['auth'])->name('actividadesFamilia.actividadFamilia');
 Route::post('/actividadesFamilia/actividadFamilia/{idactividadfamilia}', [actividadesFamiliaPrincipalController::class,'save'])->middleware(['auth'])->name('actividadesFamilia.save');
 
-
     
 require __DIR__.'/auth.php';
-
-// require '../vendor/autoload.php';
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');
@@ -91,8 +76,3 @@ Route::get('/clear-cache', function() {
     return 'DONE'; //Return anything
 });
 
-// Route::get('/updateapp', function()
-// {
-//     Artisan::call('composer dump-autoload');
-//     echo 'dump-autoload complete';
-// });

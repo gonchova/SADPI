@@ -24,7 +24,7 @@
 
     <form method="POST"  id="formulario" action="{{ route('actividades.save') }}">
         @csrf
-        <div class="block mx-2">
+        <div class="block mx-1 sm:mx-2">
 
             <div class="w-full sm:w-1/2">
                 <x-label class="pt-2" for="name" :value="__('Nombre Actividad:')" />
@@ -76,7 +76,7 @@
                                     <th scope="col" class="border px-2  text-xs sm:text-sm">
                                     #
                                     </th>
-                                    <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
+                                    <th scope="col" class="border w-full px-2  h-1 text-xs sm:text-sm">
                                     Descripcion paso
                                     </th>
                                   <th scope="col" class="border px-2  h-1 text-xs sm:text-sm ">
@@ -91,7 +91,7 @@
                                     </td>
                                     <td scope="row" class="border font-medium  text-black shrink">                                        
                                     </td>
-                                    <td scope="row" class= "border px-2  h-1 text-xs sm:text-sm ">
+                                    <td scope="row" class= "border px-2 w-full h-1 text-xs sm:text-sm ">
                                         <x-button class="px-2 bg-red-600 py-2 " id="btnEliminar">
                                             <a href="#" class="font-medium">Eliminar</a>
                                             
@@ -194,9 +194,9 @@
                     )
                     
                     .append(
-                        $('<td>').addClass("px-1 py-1 border lowercase grow-0 w-30 justify-center")
+                        $('<td>').addClass("px-1 py-1 border uppercase grow-0")
                         .append(
-                            $('<button id="btnEliminar-'+NroPaso+'" >').addClass(btnEliminarClass).addClass("Eliminar justify-center py-0 px-2 bg-red-600 ").append('<a>').addClass("font-medium justify-center").append('Eliminar')
+                            $('<button id="btnEliminar-'+NroPaso+'" >').addClass(btnEliminarClass).addClass("Eliminar justify-center py-2 px-2 bg-red-600 ").append('<a>').addClass("font-medium justify-center").append('Eliminar')
                         )
 
                     )

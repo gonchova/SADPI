@@ -43,9 +43,6 @@ class NuevoUsuarioController extends Controller
 
         event(new Registered($user));
 
-        //Auth::login($user);
-
-        //return redirect(RouteServiceProvider::HOME);
         return back()->with('success', 'Usuario generado!');
     }
 

@@ -24,7 +24,7 @@
         <form method="POST"  id="formulario" action="{{ route('actividades.update', $actividad->idactividad) }}">
             @method('PUT')
             @csrf
-            <div class="block mx-2">
+            <div class="block  mx-1 sm:mx-2">
     
                 <div class="w-full">
                     <x-label class="pt-2 " for="nombre" :value="__('Nombre Actividad:')" />
@@ -43,7 +43,7 @@
                 </div>
     
                 <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
-                        <div class="w-30 sm:w-1/2">
+                        <div class="w-full sm:w-1/2">
                             <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
     
                             <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
@@ -173,17 +173,7 @@
         });
 
         
-        // $("#tablaPasos tbody tr td [name='btnEliminar']").each(function () {
-           
-            
-        //      $(this).addEventListener('click', function(event)  {
-        //          eliminarPaso(event);
-        //      })
-            
-        //     console.log(this);
-        //     //eliminarPaso
-        // })
-        
+       
         function AgregaPaso()
         {   
             var textoPaso = document.getElementById('DescripcionPaso');
@@ -194,8 +184,7 @@
             console.log(textoPaso.value);
 
             var btnEliminarClass = document.getElementById('btnEliminar').className;
-               // console.log(btnEliminarClass);
-                //array('Nroresponsable' => '1'
+
             $('#tablaPasos')
             .append(
                 $('<tr "id"= "item-'+NroPaso+'" "name"= "items-'+NroPaso+'" class="bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink" >')

@@ -183,7 +183,7 @@
                                         </td>
                                                                                    
                                         <div id="defaultModalEliminar-{{$act->idactividad}}" tabindex="-1" aria-hidden="true" class="flex fixed top-0 left-0 right-0 z-50 w-auto p-4 overflow-y-auto md:inset-0 h-[calc(100%-1rem)] justify-center items-center hidden">
-                                            <div class="relative w-[50%] max-w-2xl max-h-full">
+                                            <div class="relative w-[50%] max-w-2xl max-h-full border-2 border-gray-500 rounded-lg">
                                                 <!-- Modal content -->
                                                 <div class="relative bg-white rounded-lg shadow">
                                                     <!-- Modal header -->

@@ -91,20 +91,15 @@
                                 <tr id = "fila" class="flex flex-col sm:table-row sm:mb-0 w-fit ">
                                     
                                     <td name="idactividad" hidden class=" border-grey-light border hover:bg-gray-100 p-2 whitespace-nowrap">
-    
                                     </td>
 
                                     <td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-50 ">
-                                
                                     </td>
 
                                     <td class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
-                                    
                                     </td>
                                     
                                     <td scope="row" class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
-                                        
-                                        
                                         <div hidden  valor = "" class= "mt-0 bg-purple-900 py-0 text-center rounded-full"  style="" >
                                             <div class="text-white text-sm inline-block bg-purple-700  rounded-full ">
                                             
@@ -113,7 +108,6 @@
                                     </td>
 
                                     <td hidden class="border-grey-light border hover:bg-gray-100 px-1 py-3 sm:py-0 whitespace-nowrap sm:w-fit">
-
                                     </td>
 
                                 </tr>
@@ -212,7 +206,6 @@ $(document).ready(function(){
     { 
         if(valSelFamilia && valFecHasta && valFecDesde)
         {   spinner.style.visibility = "visible";
-            //spinner.classList.remove('visibility:hidden');
 
             $.ajax({
                 url: '/dashboard/filtrar/'+ valSelFamilia + '/' + valFecDesde + '/' + valFecHasta + '/' + valSelCategoria,
@@ -220,12 +213,42 @@ $(document).ready(function(){
                 success: function (response) {
 
                     $('#tablaActividades tbody').empty();
-                    
+                    $('#tablaActividades thead').empty();  
+
+                    $('#tablaActividades thead')
+                        .append(
+                            $('<tr class="hidden sm:visible bg-indigo-200 w-full flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">')
+                            .append(
+                                $('<th class="p-3 truncate text-left border border-solid sm:w-1/5 ">')
+                                .append(
+                                    'Actividades'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-1/5"  >')
+                                .append(
+                                   'Período'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-4/5 "  > ')
+                                
+                                .append(
+                                   'Avance'
+                                )
+                            )
+                            .append(
+                                $('<th class="p-3 text-left border border-solid sm:w-10 "  >')
+                                .append(
+                                  'Acciones'
+                                )
+                            )
+                        )     
                     
                     const btnComentariosClass =  document.getElementById('btnComentarios').className; 
                     //const titulosTabla =  document.getElementById('titulos').className; 
                     const titulos = document.getElementsByName('titulos');
-                                        
+                    
                     response.forEach(item => {
                          var urlcomentarios = "/actividades/comentario/";    
                          urlcomentarios =  urlcomentarios.concat(item.idactividadfamilia);
@@ -240,10 +263,11 @@ $(document).ready(function(){
                         {
                             color = "bg-green-600"
                         }
-                        $('#tablaActividades thead').empty();
+                        
+  
                         $('#tablaActividades thead')
                         .append(
-                            $('<tr class="bg-indigo-200 w-full flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">')
+                            $('<tr class="visible sm:hidden bg-indigo-200 w-screen sm:w-fit mr-2 flex flex-col flex-nowrap whitespace-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">')
                             .append(
                                 $('<th class="p-3 truncate text-left border border-solid sm:w-1/5 ">')
                                 .append(
@@ -274,7 +298,7 @@ $(document).ready(function(){
 
                         $('#tablaActividades tbody')
                          .append(
-                            $('<tr "id"= "item-'+item.idactividadfamilia+'" "name"= "items-'+item.idactividadfamilia+'" class="flex flex-col  sm:table-row  sm:mb-0 w-fit">')
+                            $('<tr "id"= "item-'+item.idactividadfamilia+'" "name"= "items-'+item.idactividadfamilia+'" class="flex flex-col  sm:table-row  sm:mb-0 w-screen sm:w-fit mr-2">')
                             .append(
                                 $('<td name=itemActividad>')
                                 .append(

@@ -117,7 +117,7 @@ class ActividadesController extends Controller
 
     public function asignacionActividades()
     { 
-        $familias = User::where('idrol', 2)->get();
+        $familias = User::where('idrol', 2)->orderBy('name')->get();
         $actividades = Actividades::paginate(10);
      
         return view("actividades.asignacionActividades", compact('familias','actividades'));
@@ -195,8 +195,6 @@ class ActividadesController extends Controller
         if(!($idfamilia && $fecdesde && $fechasta))
             return $result;
             
-        // array_push($bindings, $fecdesde);
-        // array_push($bindings, $fechasta);
         array_push($bindings, Carbon::now());
         array_push($bindings, Carbon::now());
         array_push($bindings, $idfamilia);

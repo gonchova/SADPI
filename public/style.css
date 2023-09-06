@@ -824,6 +824,10 @@ video {
   min-height: 25%;
 }
 
+.min-h-screen-50 {
+  min-height: 50vh;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1048,6 +1052,14 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .gap-1 {
@@ -1366,6 +1378,12 @@ video {
 .pb-4 {
   padding-bottom: 1rem;
 }
+
+.py-20 {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
 
 .pl-1 {
   padding-left: 0.25rem;

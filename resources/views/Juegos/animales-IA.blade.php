@@ -19,7 +19,7 @@
 
         <div class="flex flex-row justify-center">
           <video id="video" playsinline autoplay style="width: 1px;"></video> 
-          <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
+          <canvas id="canvas"  class = "rounded-lg border-2 border-purple-700" width="400" height="400" style="max-width: 100%;"></canvas>
           <canvas id="othercanvas" width="224" height="224" style="display: none"></canvas>
         </div>
         

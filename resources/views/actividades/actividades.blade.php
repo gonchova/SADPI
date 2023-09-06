@@ -26,10 +26,10 @@
                 @method('DELETE')
                 @csrf    
                 <!-- Main modal -->
-                <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-center left-center right-center z-center  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative mx-auto w-fit  max-h-full">
+                <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed  top-center left-center right-center z-center  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative mx-auto w-fit  max-h-full border-2 border-gray-500 rounded-lg">
                         <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow">
+                        <div class="relative bg-white rounded-lg shadow ">
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-4 border-b rounded-t">
                                 <h3 class="text-xl font-semibold text-gray-900">
@@ -123,7 +123,6 @@
 
                         </thead>
 
-                        {{-- <form method="GET" > --}}
                         <tbody class="flex-1 sm:flex-none ">
                     
                             @foreach($actividades as $act)
@@ -155,7 +154,7 @@
                                             @csrf    
                                             <!-- Main modal -->
                                             <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                                <div class="relative w-[50%] max-w-2xl max-h-full">
+                                                <div class="relative w-[50%] max-w-2xl max-h-full border-2 border-gray-500 rounded-lg">
                                                     <!-- Modal content -->
                                                     <div class="relative bg-white rounded-lg shadow">
                                                         <!-- Modal header -->
@@ -190,9 +189,7 @@
                             @endforeach
                 
                         </tbody>
-                        
-                    {{-- </form> --}}
-                
+  
                     </table>
                 
                 </div>
@@ -203,25 +200,23 @@
             </div>
             
 
-            </div>
+        </div>
 
+        <div class="mx-6 my-3 ">
+        
+                <a href="{{route('actividades.nueva')}}" class="">
+                    <x-button class="bg-green-600 px-3 font-medium py-2">
+                        Nueva Actividad
+                    </x-button>
 
-            <div class="mx-6 my-3 ">
-            
-                    <a href="{{route('actividades.nueva')}}" class="">
-                        <x-button class="bg-green-600 px-3 font-medium py-2">
-                            Nueva Actividad
-                        </x-button>
-
-                    </a>
-            </div>
+                </a>
+        </div>
        
     </div>
 
 <script>
 
 $(document).ready(function(){  
-    
 
     $('#categoriasFiltro' ).on('change',function() {
         
@@ -241,7 +236,6 @@ $(document).ready(function(){
            var form = $('[name=form-elimina-actividad]');
            form.attr('action', form.attr('action').replace('IDACT', idactividad));
             
-         
        });
 
 });
