@@ -17,7 +17,7 @@
         <input hidden id="idActividadFamilia" value ="{{$actividadfamilia[0]->idactividadfamilia}}">
         <input hidden id="idFamilia" value ="{{Auth::user()->id}}">
 
-        <h2 class="text-gray-700  my-1 uppercase antialiased text-lg font-bold sm:text-sm ">"Colocar Fichas"</h2>      
+        <h2 class="text-gray-700  my-1 uppercase antialiased text-lg font-bold sm:text-sm ">Colocar Fichas</h2>      
         
         <a href="{{ route('principal') }}" class="mx-auto justify-center my-1">
             <x-button class="px-2 justify-center py-2">

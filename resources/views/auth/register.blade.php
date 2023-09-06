@@ -31,21 +31,21 @@
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email"  maxlength="30"  name="email" :value="old('email')" required />
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="username" :value="__('Nombre de Usuario')" />
 
                 <x-input id="username" class="block mt-1 w-full" type="text"  maxlength="15"  name="username" :value="old('username')" required />
             </div>
 
             <!-- Rol Usuario -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="rol" :value="__('Rol de Usuario')" />
                 
                 <select id="idrol" name="idrol" class="block mt-1 w-full h-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
@@ -58,7 +58,7 @@
             </div>     
             
             <!-- Password -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full"
@@ -68,7 +68,7 @@
             </div>
 
             <!-- Confirm Password -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
@@ -76,7 +76,7 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-left mt-4">
+            <div class="flex items-center justify-center gap-2 mt-2">
                 <a href="{{ route('principal') }}">
                     <x-button type="button" id="btnVolver" class="px-2 py-2">
                         {{ __('Volver') }}

@@ -71,7 +71,7 @@
                     
                         <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
                     
-                            <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
+                            <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm >
                                 <tr class="shrink" type="input">
                                     <th scope="col" class="border px-2  text-xs sm:text-sm">
                                     #
@@ -79,7 +79,7 @@
                                     <th scope="col" class="border px-2  h-1 text-xs sm:text-sm">
                                     Descripcion paso
                                     </th>
-                                  <th scope="col" class="border px-2  text-xs sm:text-sm  w-auto">
+                                  <th scope="col" class="border px-2  h-1 text-xs sm:text-sm ">
                                     Acciones
                                     </th>
                                 </tr>
@@ -91,8 +91,8 @@
                                     </td>
                                     <td scope="row" class="border font-medium  text-black shrink">                                        
                                     </td>
-                                    <td scope="row" class= "px-1 py-1 border uppercase  grow-0">
-                                        <x-button class="px-2 bg-red-600 py-2" id="btnEliminar">
+                                    <td scope="row" class= "border px-2  h-1 text-xs sm:text-sm ">
+                                        <x-button class="px-2 bg-red-600 py-2 " id="btnEliminar">
                                             <a href="#" class="font-medium">Eliminar</a>
                                             
                                         </x-button>
@@ -194,9 +194,9 @@
                     )
                     
                     .append(
-                        $('<td>').addClass(" px-1 py-1 border lowercase grow-0")
+                        $('<td>').addClass("px-1 py-1 border lowercase grow-0 w-30 justify-center")
                         .append(
-                            $('<button id="btnEliminar-'+NroPaso+'" >').addClass(btnEliminarClass).addClass("Eliminar px-2 bg-red-600 ").append('<a>').addClass("font-medium").append('Eliminar')
+                            $('<button id="btnEliminar-'+NroPaso+'" >').addClass(btnEliminarClass).addClass("Eliminar justify-center py-0 px-2 bg-red-600 ").append('<a>').addClass("font-medium justify-center").append('Eliminar')
                         )
 
                     )
