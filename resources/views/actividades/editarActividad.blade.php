@@ -4,7 +4,7 @@
         <h2 class="text-gray-700 uppercase antialiased text-lg font-bold sm:text-sm">Edición de Actividad</h2>
     </div>
 
-    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-4 sm:mx-20" >
+    <div class="flex flex-col bg-white shadow-sm sm:rounded-lg mt-2 mb-2 justify-center mx-2 sm:mx-20" >
         @if (session('mensaje'))
         <div class="flex flex-row justify-center ">
             <div class="text-green-500" >{{session('mensaje')}}</div>

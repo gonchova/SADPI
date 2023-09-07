@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-4 ">
+    <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-2 sm:mx-4 ">
  
         <div class="flex flex-row flex-wrap px-4 justify-center pt-2">  
             <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm" for="familiaFiltro" :value="__('Familia:')" />
@@ -59,11 +59,18 @@
                 </div>  
                 <div class="flex flex-row flex-wrap gap-1">
                     <x-label class="hidden sm:flex pt-3 pb-2 pl-1 text-xs sm:text-sm mr-4" for="iDesde" :value="__('Desde:')" />
-                    <x-input class="mx-auto h-10" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
-               
+                   
+                    <div class="flex flex-row w-full justify-around sm:hidden">
+                        <x-label class="flex flex-col pb-1 text-xs sm:text-sm " for="iDesde" :value="__('Desde')" />    
+                        
+                        <x-label class="flex flex-col pb-1 text-xs sm:text-sm " for="iDesde" :value="__('Hasta')" />    
+                    </div>  
+
+                    <x-input placeholder="Desde" class="mx-auto h-10 w-30 px-2" id="iDesde" name="iDesde" type="date" min="{{date('Y-m-d')}}" value="{{old('iDesde')}}">{{old('iDesde')}} </x-input>
           
                     <x-label class="hidden sm:flex pt-3 pb-2 text-xs sm:text-sm ml-4  mr-4" for="iHasta" :value="__('Hasta:')" />
-                    <x-input class="mx-auto h-10" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
+ 
+                    <x-input placeholder="Hasta" class="mx-auto h-10 w-30 px-2" id="iHasta" name="iHasta" type="date" min="{{date('Y-m-d')}}" value="{{old('iHasta')}}"> "{{old('iHasta')}} </x-input>
                 </div>
             </div>
         </div>
@@ -73,7 +80,7 @@
         <form method="GET" action="{{route("asignacionActividades.filtrar")}}" id="formulario" name="formulario" >
         
         <div class="flex flex-col pt-2 ">
-            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2  mx-4  ">
+            <div class="flex flex-col bg-white shadow-sm sm:rounded-lg pb-2  mx-2 sm:mx-4  ">
                 <div class="flex flex-row">
                     <x-label class="text-xs sm:text-sm hidden sm:flex sm:ml-4 pl-4 pt-3 pb-2" for="filtroActividad" :value="__('Buscar:')" />
                     <div>
