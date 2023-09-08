@@ -72,7 +72,7 @@ class ActividadesController extends Controller
 
         if($actividadVigente && $confirmaEliminacion=="false")
         {
-            if($actividadVigente->fecdesde <= Carbon::now() && $actividadVigente->fechasta>=Carbon::now())
+            if($actividadVigente->fecdesde <= Carbon::now()->format('Y-m-d') && $actividadVigente->fechasta>=Carbon::now()->format('Y-m-d'))
             {
                 return back()->withErrors('Existen familias con la actividad vigente. No se puede eliminar');
             }
@@ -195,8 +195,8 @@ class ActividadesController extends Controller
         if(!($idfamilia && $fecdesde && $fechasta))
             return $result;
             
-        array_push($bindings, Carbon::now());
-        array_push($bindings, Carbon::now());
+        array_push($bindings, Carbon::now()->format('Y-m-d'));
+        array_push($bindings, Carbon::now()->format('Y-m-d'));
         array_push($bindings, $idfamilia);
    
         $sql = "SELECT a.idactividad, IFNULL(b.cantdiasfinalizados,0) cantdiasfinalizados, DATE_FORMAT(a.fecdesde, '%d/%m/%Y') fecdesde, DATE_FORMAT(a.fechasta, '%d/%m/%Y') fechasta ,

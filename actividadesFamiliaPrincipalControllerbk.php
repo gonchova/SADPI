@@ -20,8 +20,8 @@ class actividadesFamiliaPrincipalController extends Controller
       $idUsuario = Auth::user()->id;
 
       $actividadesFlia = ActividadesFamilia::where('idusuario', $idUsuario)
-        ->where('fecdesde','<=', Carbon::now())
-        ->where('fechasta','>=', Carbon::now())
+        ->where('fecdesde','<=', Carbon::now()->format('Y-m-d'))
+        ->where('fechasta','>=', Carbon::now()->format('Y-m-d'))
         ->orderBy('fecdesde', 'ASC')->orderBy('fechasta', 'ASC')
         ->get();
               
@@ -70,7 +70,7 @@ class actividadesFamiliaPrincipalController extends Controller
               }
             }
 
-            $actividadAvance->ultimodiarealizada = Carbon::now();
+            $actividadAvance->ultimodiarealizada = Carbon::now()->format('Y-m-d');
             $actividadAvance->cantintentosdiafinalizados +=1;
             $actividadAvance->estado = 'A'; //Activa  Nuevo dia
             $msgCantRealizado = $actividadAvance->cantintentosdiafinalizados;
@@ -110,7 +110,7 @@ class actividadesFamiliaPrincipalController extends Controller
             'idactividadfamilia' => $idactividadfamilia,
             'cantdiasfinalizados' => $cantdiasfinalizados,
             'cantintentosdiafinalizados' => 1,
-            'ultimodiarealizada' => Carbon::now(),
+            'ultimodiarealizada' => Carbon::now()->format('Y-m-d'),
             'estado' => $estado 
           ]
           );
@@ -126,7 +126,7 @@ class actividadesFamiliaPrincipalController extends Controller
             'idnumerodia' => $diasObservacion,
             'intentodia' => $intentoObservacion,
             'comentario' => $observaciones,
-            'fecha' => Carbon::now(),
+            'fecha' => Carbon::now()->format('Y-m-d'),
             ]);
           
       }

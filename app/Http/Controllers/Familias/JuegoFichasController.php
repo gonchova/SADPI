@@ -61,7 +61,7 @@ class JuegoFichasController extends Controller
               }
             }
 
-            $actividadAvance->ultimodiarealizada = Carbon::now();
+            $actividadAvance->ultimodiarealizada =Carbon::now()->format('Y-m-d');
             $actividadAvance->cantintentosdiafinalizados +=1;
             $actividadAvance->estado = 'A'; //Activa  Nuevo dia
             $msgCantRealizado = $actividadAvance->cantintentosdiafinalizados;
@@ -96,7 +96,7 @@ class JuegoFichasController extends Controller
             'idactividadfamilia' => $idactividadfamilia,
             'cantdiasfinalizados' => $cantdiasfinalizados,
             'cantintentosdiafinalizados' => 1,
-            'ultimodiarealizada' => Carbon::now(),
+            'ultimodiarealizada' => Carbon::now()->format('Y-m-d'),
             'estado' => $estado 
           ]
           );
