@@ -15,7 +15,7 @@
         @if($act->actividades->tipoactividad == 'A')
 
         <a href="{{ route('actividadesFamilia.actividadFamilia',['idactividadfamilia' => $act->idactividadfamilia])}}">
-        {{-- <form method="GET" id = "formulario" action="{{route('actividadesFamilia.actividadFamilia',$act->idactividadfamilia)}}"> --}}
+       
             <div id= "{{$act->idactividadfamilia}}" name="cardActividad" class="flex flex-col h-50 max-w-80 w-80 rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-3  hover:cursor-pointer select-none">
                 
                 <div class="flex px-6 py-2  justify-center">
@@ -59,13 +59,12 @@
                     </div>
                 </div>
             </div> 
-        {{-- </form> --}}
+        
         @endif
         @endforeach
     </a>
     </div>
     </div>
-
 
  <script>
 
@@ -89,6 +88,5 @@ $(document).ready(function(){
 
 });
 
-
-    </script> 
+</script> 
 </x-app-layout>

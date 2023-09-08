@@ -59,7 +59,6 @@
     
                         <div class="flex flex-col flex-shrink ">
                        
-                        
                             <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
                         
                                 <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm ">
@@ -75,7 +74,6 @@
                                         </th>
                                     </tr>
                                 </thead>
-                            
                             
                                 <tbody class="">
                                     <tr class="hidden bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
@@ -172,7 +170,6 @@
             AgregaPaso();
         });
 
-        
        
         function AgregaPaso()
         {   
@@ -180,8 +177,6 @@
             
             if (!textoPaso.value.trim())
                 return;
-
-            console.log(textoPaso.value);
 
             var btnEliminarClass = document.getElementById('btnEliminar').className;
 
@@ -253,7 +248,6 @@
 
     }
 
-    
 
     </script>
 

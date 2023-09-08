@@ -53,53 +53,53 @@
             </div>
 
             <div class="flex flex-col border p-3 border-indigo-400 rounded-md">
-                    <div class="w-full sm:w-1/2">
-                        <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
+                <div class="w-full sm:w-1/2">
+                    <x-label class="" for="DescripcionPaso" :value="__('Descripcion paso:')" />
 
-                        <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
-                    </div>
+                    <x-input id="DescripcionPaso" class="block mt-1 w-full h-10" type="text" name="DescripcionPaso"  autofocus  />
+                </div>
 
-                    <x-button class="mt-5 mb-2 w-40 py-2" id="btnAgregarPaso">
-                        <a href="#" class="font-medium">Agregar Paso</a>
-                    </x-button>
+                <x-button class="mt-5 mb-2 w-40 py-2" id="btnAgregarPaso">
+                    <a href="#" class="font-medium">Agregar Paso</a>
+                </x-button>
 
-                    <div class="">
-                        <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
-                    </div>
+                <div class="">
+                    <x-label class="pt-2 mb-2" for="nombre">Pasos de la Actividad:</x-label>
+                </div>
 
-                    <div class="flex flex-col flex-shrink ">
-                    
-                        <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
-                    
-                            <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm >
-                                <tr class="shrink" type="input">
-                                    <th scope="col" class="border px-2  text-xs sm:text-sm">
-                                    #
-                                    </th>
-                                    <th scope="col" class="border w-full px-2  h-1 text-xs sm:text-sm">
-                                    Descripcion paso
-                                    </th>
-                                  <th scope="col" class="border px-2  h-1 text-xs sm:text-sm ">
-                                    Acciones
-                                    </th>
-                                </tr>
-                            </thead>
+                <div class="flex flex-col flex-shrink ">
+                
+                    <table id="tablaPasos" class="text-sm text-left text-gray-500 border-solid border-collapse ">
+                
+                        <thead class="text-xs text-gray-700 uppercase bg-indigo-200 sm:text-sm >
+                            <tr class="shrink" type="input">
+                                <th scope="col" class="border px-2  text-xs sm:text-sm">
+                                #
+                                </th>
+                                <th scope="col" class="border w-full px-2  h-1 text-xs sm:text-sm">
+                                Descripcion paso
+                                </th>
+                                <th scope="col" class="border px-2  h-1 text-xs sm:text-sm ">
+                                Acciones
+                                </th>
+                            </tr>
+                        </thead>
 
-                            <tbody class="">
-                                <tr class="hidden bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
-                                    <td scope="row" class="border font-medium  text-black shrink">                                      
-                                    </td>
-                                    <td scope="row" class="border font-medium  text-black shrink">                                        
-                                    </td>
-                                    <td scope="row" class= "border px-2 w-full h-1 text-xs sm:text-sm ">
-                                        <x-button class="px-2 bg-red-600 py-2 " id="btnEliminar">
-                                            <a href="#" class="font-medium">Eliminar</a>
-                                            
-                                        </x-button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <tbody class="">
+                            <tr class="hidden bg-white border-b hover:bg-gray-200 text-xs sm:text-sm shrink">
+                                <td scope="row" class="border font-medium  text-black shrink">                                      
+                                </td>
+                                <td scope="row" class="border font-medium  text-black shrink">                                        
+                                </td>
+                                <td scope="row" class= "border px-2 w-full h-1 text-xs sm:text-sm ">
+                                    <x-button class="px-2 bg-red-600 py-2 " id="btnEliminar">
+                                        <a href="#" class="font-medium">Eliminar</a>
+                                        
+                                    </x-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -107,12 +107,12 @@
                 <x-button class="bg-green-600 mt-5 mx-2 py-2"  id="btnGuardar">
                     <a class="px-2 font-medium">Guardar</a>
                 </x-button>
-                
-                    <a href="{{route('actividades')}}" class="px-2 font-medium">
-                        <x-button type="button" class="mt-5 mx-2 px-2 font-medium py-2">        
-                        Volver
-                        </x-button>
-                    </a> 
+            
+                <a href="{{route('actividades')}}" class="px-2 font-medium">
+                    <x-button type="button" class="mt-5 mx-2 px-2 font-medium py-2">        
+                    Volver
+                    </x-button>
+                </a> 
             </div>
         </div> <!-- fin flex-row -->
         
@@ -232,7 +232,6 @@
             //si es el ultimo, reinicia los pasos a 1
             if (cont==1)
                 NroPaso=1;
-
         }
     
     </script>

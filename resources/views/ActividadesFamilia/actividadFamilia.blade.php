@@ -24,10 +24,8 @@
         <div id  = "cardAnimalesIA" class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-200 pt-4 mt-4 hover:cursor-pointer select-none">
             
             <div class="px-6 block py-auto align-middle text-center">
-                
                 <div class="font-bold text-xl pb-2 fuenteFichas align-middle">{{$actividadFamilia->actividades->nombre}}</div>
-                
-           </div>
+            </div>
              
             <div class="px-6 pt-4 pb-2 mt-auto">
                 <x-label>
@@ -79,6 +77,7 @@
                 <x-label class="mt-4 mb-2">
                     <div>Observaciones durante la actividad:</div>
                 </x-label>
+
                 <textarea name ="observaciones"  rows='1' placeholder=''></textarea>
 
                 <div class="flex flex-row mt-2 justify-center">
@@ -102,7 +101,6 @@
 
     </div>
 
-
 <script>
 
 var textarea = document.querySelector('textarea');
@@ -116,5 +114,6 @@ function autosize(){
     el.style.cssText = 'height:' + el.scrollHeight + 'px';
   },0);
 }
-    </script>
+
+</script>
 </x-app-layout>

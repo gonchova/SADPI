@@ -239,7 +239,6 @@
             </x-button>
         </div>
 
-
 <button hidden id = "btnEliminarVigente" title="Eliminar Actividad Vigente" class="w-10 ml-1 px-1 py-0 items-center bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widestfocus:text-gray-200 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 active:bg-purple-300  disabled:opacity-25 transition ease-in-out duration-150"  >
 </button>
 <script>
@@ -263,7 +262,6 @@ $(document).ready(function(){
 
      })
     })
-
         
     boton.addEventListener('click', function(e){
         
@@ -323,7 +321,6 @@ $(document).ready(function(){
                                     $('<button data-idactividadfamilia='+item.idactividadfamilia+' name="btnEliminaActFamilia" type="button" data-modal-target="defaultModalEliminar-'+item.idactividad+'" data-modal-toggle="defaultModalEliminar-'+item.idactividad + '"  title="Eliminar Actividad Vigente" id="btnEliminar-'+item.idactividadfamilia+'" >').addClass(btnEliminarVigenteClass).append('X')
                                 )
                                         
-                                
                                 $(document).on("click", "#" + "btnEliminar-"+item.idactividadfamilia, function(){
                                     $('#defaultModalEliminar-'+item.idactividad).removeClass('hidden'); 
                                     $('#defaultModalEliminar-'+item.idactividad).addClass('flex'); 
@@ -393,7 +390,6 @@ $(document).ready(function(){
                     $('#mensajeOk').addClass("text-green-500");
                     $("#mensajeOk div").remove();
                     $('#mensajeOk').append('<div>' + data[0]['message'] + '</div>');
-                    
                     //$('#formulario').refresh();                    
                     //BuscarRealizados();
 
@@ -410,9 +406,7 @@ $(document).ready(function(){
                     
                     })
 
-                    
                   $('#defaultModalerror').removeClass('hidden');
-
          
                 }
             }).fail(function (jqxhr, textStatus, error) {

@@ -35,7 +35,7 @@
                         </div>   
 
 
-                    <div class="flex flex-row flex-initial justify-center mt-2 ">  
+                        <div class="flex flex-row flex-initial justify-center mt-2 ">  
                             <div class="flex flex-col flex-initial pb-1 px-1  justify-center ">
                                 <div class="flex flex-row flex-initial flex-none  w-full justify-center ">
                                     <x-label class="flex justify-center pb-2 w-full text-xs sm:text-sm mr-4" for="iDesde" :value="__('Período de la actividad')" />    
@@ -78,8 +78,7 @@
             </svg>
         </div> 
         <div class="bg-white shadow-sm sm:rounded-lg pb-4 ">     
-            <div class="container mx-1 sm:mx-2 flex flex-row w-full ">
-
+            <div class="container mx-1 flex flex-row w-full ">
                 <table id = "tablaActividades" name="tablaActividades" class="sm:mx-2 w-full flex sm:inline-table mt-2 overflow-auto flex-row flex-nowrap sm:bg-white rounded-lg  sm:shadow-lg mb-2 ">    
                     <thead id="headTable" name="headTable" class="text-black w-fit">
 

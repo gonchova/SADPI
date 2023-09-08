@@ -85,7 +85,6 @@
                                 </div>
                             </div>
                             
-                            
                         </div>  
                             
                     </form>
@@ -93,7 +92,6 @@
                 </div>
             </div> 
             {{-- tabla --}}
-            
             <div class="bg-white shadow-sm sm:rounded-lg pb-2 mx-2 mt-2">
                 <div class="container mx-1 sm:mx-2 ">
             
@@ -144,7 +142,6 @@
                                         </x-button>
 
                                          <!-- Modal toggle -->
-
                                         <x-button class="py-2 px-2 bg-red-600"  id="btnEliminar" name="btnEliminar" id-act="{{$act->idactividad}}" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button">
                                             <a class="btn btn-sm btn-danger" name = "btnEliminartext"  id = "btnEliminartext"  data-bs-toggle="modal" data-bs-target="#ModalEliminacion">Eliminar</a>
                                         </x-button>
@@ -198,12 +195,10 @@
             <div class="flex flex-row mx-4 pb-1">
                 <a href="">{{ $actividades->links('vendor.pagination.tailwind') }}</a> 
             </div>
-            
 
         </div>
 
         <div class="mx-6 my-3 ">
-        
                 <a href="{{route('actividades.nueva')}}" class="">
                     <x-button class="bg-green-600 px-3 font-medium py-2">
                         Nueva Actividad
@@ -225,21 +220,19 @@ $(document).ready(function(){
         });
     });
 
-
     $('[name=btnEliminar]').click(function(){
         
          var idactividad= $(this).attr('id-act');
-         console.log(idactividad);
            
-           $("input[name=idactividad]").val(idactividad);
+         $("input[name=idactividad]").val(idactividad);
           
-           var form = $('[name=form-elimina-actividad]');
-           form.attr('action', form.attr('action').replace('IDACT', idactividad));
+         var form = $('[name=form-elimina-actividad]');
+         form.attr('action', form.attr('action').replace('IDACT', idactividad));
             
        });
 
 });
-    
+   
     
 </script>   
 

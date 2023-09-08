@@ -88,10 +88,10 @@
                 </div>
                 
                 <div class="px-6 py-2">
-                <div class="font-bold text-xl pb-2 fuenteFichas rounded">Colocar Fichas</div>
-                <p class="text-gray-700 text-base">
-                    El juego se basa en colocar la ficha correctamente según su tipo.
-                </p>
+                    <div class="font-bold text-xl pb-2 fuenteFichas rounded">Colocar Fichas</div>
+                    <p class="text-gray-700 text-base">
+                        El juego se basa en colocar la ficha correctamente según su tipo.
+                    </p>
                 </div>
 
                 <div class="px-6 pt-4 pb-2 mt-auto">
@@ -127,8 +127,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                 </div>
 
