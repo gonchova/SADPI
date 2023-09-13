@@ -251,7 +251,7 @@
             if (resultados[mayorIndice] > 6) 
             {
                 cantDetecciones++;
-                console.log(clases[mayorIndice]);
+               // console.log(clases[mayorIndice]);
                 //Si detecte 5 veces la misma figura, se toma como deteccion cierta
                 if (cantDetecciones > 8)
                 {
