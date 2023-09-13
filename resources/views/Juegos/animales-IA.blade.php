@@ -106,7 +106,7 @@
     var cantDetecciones;
     var currentStream = null;
     var facingMode = "user"; //Para que funcione con el celular (user/environment)
-    var clases = ['CABALLO', 'CERDO','GALLO','VACA'];
+    var clases = ['CABALLO', 'CERDO','CONEJO','VACA'];
     var aleatorio='';
     var hayprediccion = false;
     var detectado = false;
@@ -246,18 +246,18 @@
 
             tf.dispose([tensor4]);
 
-            // Si tiene una prediccion > 4 por  10 vueltas, lo toma como valido.
+            // Si tiene una prediccion > 6 por  8 vueltas, lo toma como valido.
             
-            if (resultados[mayorIndice] > 4.5) 
+            if (resultados[mayorIndice] > 6) 
             {
                 cantDetecciones++;
-
+                console.log(clases[mayorIndice]);
                 //Si detecte 5 veces la misma figura, se toma como deteccion cierta
-                if (cantDetecciones > 5)
+                if (cantDetecciones > 8)
                 {
                   document.getElementById("resultado").innerHTML = clases[mayorIndice];
                   //console.log(clases[mayorIndice]);
-                  //console.log(aleatorio);
+                  //console.log(cantDetecciones);
                   if(clases.includes(aleatorio.toUpperCase()) && detectado === false)
                   { 
                     detectado = true;
@@ -289,7 +289,7 @@
                   }
                 
 
-                }
+                }         
 
             }
             else 
@@ -304,7 +304,7 @@
             
             document.getElementById("progressBar").style.width = valor+"%"
             
-            if(resultados[mayorIndice] > 4.5)
+            if(resultados[mayorIndice] > 6)
             {
               document.getElementById("progressBar").classList.remove('bg-blue-600');
               document.getElementById("progressBar").classList.add('bg-green-600');
