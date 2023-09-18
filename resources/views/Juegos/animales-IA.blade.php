@@ -353,8 +353,8 @@
         var ctx = canvas.getContext("2d", { willReadFrequently: true });
         var ctx2 = resize_canvas.getContext("2d", { willReadFrequently: true });
         
-        ctx.filter = "saturate(150%)";
-        ctx.filter = "brightness(100%)"; 
+        ctx.filter = "saturate(1.8)";
+        //ctx.filter = "brightness(100%)"; 
 
         var img = ctx.getImageData(0, 0, width_source, height_source);
         var img2 = ctx2.createImageData(width, height);

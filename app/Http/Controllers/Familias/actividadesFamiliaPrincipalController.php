@@ -51,6 +51,31 @@ class actividadesFamiliaPrincipalController extends Controller
 
         $actividadesFlia = ActividadesFamilia::find($idactividadfamilia);
 
+        $fechaInicio=strtotime($actividadesFlia->fecdesde);
+        $fechaFin=strtotime($actividadesFlia->fechasta);
+        
+        $bFin = false;
+        $nroDia=1;
+        $i=$fechaInicio;
+        
+        while($i<=$fechaFin && !$bFin)
+        { 
+          if(date('Y-m-d', $i) == Carbon::now()->format('Y-m-d') ) 
+          {
+              $bFin=true;
+              
+           }
+         else
+         {  
+            $nroDia++; 
+         }
+         
+         $i+=86400;
+          
+        }
+        
+        $diasObservacion=$nroDia;
+
         //verifico si no grabo hoy una activadad realizada
         $actividadAvance = ActividadesAvances::where('idactividadfamilia',$idactividadfamilia)->first();
 
@@ -75,7 +100,7 @@ class actividadesFamiliaPrincipalController extends Controller
             $msgCantRealizado = $actividadAvance->cantintentosdiafinalizados;
             
             $intentoObservacion=$actividadAvance->cantintentosdiafinalizados;
-            $diasObservacion= $actividadAvance->cantdiasfinalizados;
+            //$diasObservacion= $actividadAvance->cantdiasfinalizados;
 
             if($actividadAvance->cantintentosdiafinalizados >= $actividadesFlia->cantdia)
             { 
@@ -94,7 +119,7 @@ class actividadesFamiliaPrincipalController extends Controller
           $cantdiasfinalizados=0;
           $estado = 'N';
           $intentoObservacion=1;
-          $diasObservacion=0;
+         // $diasObservacion=0;
           $msgCantRealizado = 1;
 
           if($actividadesFlia->cantdia == 1 )
