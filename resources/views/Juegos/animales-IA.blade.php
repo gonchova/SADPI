@@ -42,7 +42,7 @@
 
         </div>
      
-        <div class = "mb-2 mt-4 text-sm justify-center" id="resultado" hidden></div> 
+        {{-- <div class = "mb-2 mt-4 text-sm justify-center" id="resultado" hidden></div>  --}}
          
         <div>
           <span>La barra indica si el sistema detecta una figura (verde) o si debe acercarla a la camara (azul)</span>
@@ -72,8 +72,7 @@
           
             if (data['status'] == true && data['message'])
             {   
-                console.log($("#mensaje").text());
-                
+                               
                 $("#mensaje").text(data['message']);
 
             }   
@@ -111,8 +110,10 @@
     var hayprediccion = false;
     var detectado = false;
     var correcto = false;
-    
+       
     document.getElementById("nuevoIntentoAleatorio").addEventListener("click", nuevoJuegoAleatorio);
+
+     
 
     (async () => {
         console.log("Cargando modelo...");
@@ -123,7 +124,7 @@
     window.onload = function() {
         nuevoJuegoAleatorio();
         mostrarCamara();
-        aleatorio = clases[Math.floor(Math.random() * clases.length)];
+        //aleatorio = clases[Math.floor(Math.random() * clases.length)];
         
     }
 
@@ -206,10 +207,11 @@
       if (aleatorio !=  null && clases.indexOf(aleatorio) != -1 )
       {
         var sonido = new Audio("/sounds/" + aleatorio + ".mp3");
-        sonido.play();
-        predecir();
-      }
 
+        //sonido.play();
+        ejecutarSonido("/sounds/" + aleatorio + ".mp3");
+        //predecir();
+      }
 
       
     }
@@ -248,16 +250,15 @@
 
             // Si tiene una prediccion > 6 por  8 vueltas, lo toma como valido.
             
-            if (resultados[mayorIndice] > 6) 
+            if (resultados[mayorIndice] > 4.5) 
             {
-                cantDetecciones++;
-               // console.log(clases[mayorIndice]);
-                //Si detecte 5 veces la misma figura, se toma como deteccion cierta
-                if (cantDetecciones > 8)
+               cantDetecciones++;
+               console.log(clases[mayorIndice]);
+                //Si detecte 6 veces la misma figura, se toma como deteccion cierta
+                if (cantDetecciones > 6)
                 {
-                  document.getElementById("resultado").innerHTML = clases[mayorIndice];
+                 // document.getElementById("resultado").innerHTML = clases[mayorIndice];
                   //console.log(clases[mayorIndice]);
-                  //console.log(cantDetecciones);
                   if(clases.includes(aleatorio.toUpperCase()) && detectado === false)
                   { 
                     detectado = true;
@@ -272,6 +273,7 @@
                       document.getElementById("mensajeanimal").classList.add('fuenteDivertidaOK');
                       var sonido = new Audio("/sounds/BienHecho.mp3");
                       sonido.play();
+                      cantDetecciones=0;
                       
                     }
                     else
@@ -282,12 +284,11 @@
                       document.getElementById("mensajeanimal").classList.add('fuenteDivertidaMAL');
                       var sonido = new Audio("/sounds/Ups.mp3");
                       sonido.play();
+                      cantDetecciones=0;
                       
                     }
-                  
 
                   }
-                
 
                 }         
 
@@ -296,7 +297,7 @@
             {                  
                 cantDetecciones=0;
             }
-
+            
             valor = resultados[mayorIndice]*11;
 
             if (valor > 100)
@@ -304,8 +305,8 @@
             
             document.getElementById("progressBar").style.width = valor+"%"
             
-            if(resultados[mayorIndice] > 6)
-            {
+            if(resultados[mayorIndice] >= 4.5)
+            {  
               document.getElementById("progressBar").classList.remove('bg-blue-600');
               document.getElementById("progressBar").classList.add('bg-green-600');
             }
@@ -335,7 +336,7 @@
 
         ctx.drawImage(video, 0, 0, size, size, 0, 0, size, size);
 
-        setTimeout(procesarCamara, 20);
+        setTimeout(procesarCamara, 10);
     }
 
     function resample_single(canvas, width, height, resize_canvas) {
@@ -351,6 +352,10 @@
 
         var ctx = canvas.getContext("2d", { willReadFrequently: true });
         var ctx2 = resize_canvas.getContext("2d", { willReadFrequently: true });
+        
+        ctx.filter = "saturate(150%)";
+        ctx.filter = "brightness(100%)"; 
+
         var img = ctx.getImageData(0, 0, width_source, height_source);
         var img2 = ctx2.createImageData(width, height);
         var data = img.data;
@@ -407,6 +412,22 @@
 
         ctx2.putImageData(img2, 0, 0);
     }
+
+    // makes playing audio return a promise
+  function playAudio(audio){
+    return new Promise(res=>{
+      audio.play()
+      audio.onended = res
+    })
+  }
+
+  // how to call
+  async function ejecutarSonido(url){
+    const audio = new Audio(url)
+    await playAudio(audio)
+    delete audio;
+    predecir();
+  }
 
   </script>
 
