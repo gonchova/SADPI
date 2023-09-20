@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Coordinador\ActividadesController;
 use App\Http\Controllers\Coordinador\DashboardController;
-use App\Http\Controllers\Coordinador\NuevoUsuarioController;
+use App\Http\Controllers\Coordinador\UsuarioController;
 use App\Http\Controllers\Familias\JuegosPrincipalController;
 use App\Http\Controllers\Familias\JuegoAnimalesController;
 use App\Http\Controllers\Familias\JuegoFichasController;
@@ -33,8 +33,8 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('principal');
 
 
-Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
-Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
+Route::get('/nuevousuario', [UsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
+Route::post('/nuevousuario', [UsuarioController::class,'store'])->middleware(['auth']);
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
 

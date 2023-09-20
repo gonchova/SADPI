@@ -43,4 +43,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->hasOne("App\Models\Roles",'idrol','idrol');
+    }
+
+        /* Scope para busqueda de actividades */
+        public function scopebuscar($query,$valorUsuario= null)
+        {   
+            if($valorUsuario)
+            {   
+                $query->whereRaw('LOWER(users.name) LIKE \'%'.strtolower($valorUsuario).'%\'');
+            } 
+                      
+            return $query->paginate(10, ['users.name AS name','users.id AS id', 'users.idrol AS idrol']);
+
+        }
 }

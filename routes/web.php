@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Coordinador\ActividadesController;
 use App\Http\Controllers\Coordinador\AsignacionActividadesController;
 use App\Http\Controllers\Coordinador\DashboardController;
-use App\Http\Controllers\Coordinador\NuevoUsuarioController;
+use App\Http\Controllers\Coordinador\UsuarioController;
 use App\Http\Controllers\Coordinador\EspecialidadesController;
 use App\Http\Controllers\Familias\JuegosPrincipalController;
 use App\Http\Controllers\Familias\JuegoAnimalesController;
@@ -28,8 +28,13 @@ Route::get('/', function () {
     return view('principal');
 })->middleware(['auth'])->name('principal');
 
-Route::get('/nuevousuario', [NuevoUsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
-Route::post('/nuevousuario', [NuevoUsuarioController::class,'store'])->middleware(['auth']);
+
+Route::get('/usuarios', [UsuarioController::class,'listar'])->middleware(['auth'])->name('listar');
+Route::get('/usuarios/filtrar', [UsuarioController::class,'filtrar'])->middleware(['auth'])->name('usuarios.filtrar');
+Route::delete('/usuarios/eliminar/{id}/{confirmaeliminacion}',[UsuarioController::class,'eliminar'])->middleware(['auth'])->name('usuarios.eliminar');
+
+Route::get('/nuevousuario', [UsuarioController::class,'index'])->middleware(['auth'])->name('nuevousuario');
+Route::post('/nuevousuario', [UsuarioController::class,'store'])->middleware(['auth']);
 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard/filtrar/{idfamilia}/{fecdesde}/{fechasta}/{categoria}', [DashboardController::class,'filtrar'])->middleware(['auth'])->name('dashboard.filtrar');
