@@ -117,8 +117,8 @@
 
     (async () => {
         console.log("Cargando modelo...");
-        // modelo = await tf.loadLayersModel("/modeloIA/model.json");
-        modelo = await tf.loadGraphModel("/modeloIA/model.json");
+        modelo = await tf.loadLayersModel("/modeloIA/model.json");
+        //modelo = await tf.loadGraphModel("/modeloIA/model.json");
         console.log("Modelo cargado...");
     })();
 
@@ -251,12 +251,12 @@
 
             // Si tiene una prediccion > 6 por  8 vueltas, lo toma como valido.
             
-            if (resultados[mayorIndice] > 5) 
+            if (resultados[mayorIndice] > 6) 
             {
                cantDetecciones++;
                console.log(clases[mayorIndice]);
                 //Si detecte 6 veces la misma figura, se toma como deteccion cierta
-                if (cantDetecciones > 6)
+                if (cantDetecciones > 8)
                 {
                  // document.getElementById("resultado").innerHTML = clases[mayorIndice];
                   //console.log(clases[mayorIndice]);
@@ -306,7 +306,7 @@
             
             document.getElementById("progressBar").style.width = valor+"%"
             
-            if(resultados[mayorIndice] >= 5)
+            if(resultados[mayorIndice] >= 6)
             {  
               document.getElementById("progressBar").classList.remove('bg-blue-600');
               document.getElementById("progressBar").classList.add('bg-green-600');
@@ -354,7 +354,7 @@
         var ctx = canvas.getContext("2d", { willReadFrequently: true });
         var ctx2 = resize_canvas.getContext("2d", { willReadFrequently: true });
         
-        ctx.filter = "saturate(1.2) brightness(0.9)";
+        ctx.filter = "saturate(1.9) brightness(1.0) contrast(120%)";
         //ctx.filter = "brightness(100%)"; 
 
         var img = ctx.getImageData(0, 0, width_source, height_source);
